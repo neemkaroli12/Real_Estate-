@@ -1,0 +1,253 @@
+{% extends 'common.html' %}
+{% block content %}
+<section class="hero">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row align-items-center justify-content-between">
+      <div class="col-lg-6 text-white mb-4 mb-lg-0">
+        <h1 class="hero-heading">Finding Roots in the Land of Dev Bhoomi</h1>
+      </div>
+      <div class="col-lg-5">
+        {% comment %} <form class="search-box glassmorphic p-4" method="GET" action="#">
+          <div class="btn-group w-100 mb-3" role="group">
+            <input type="radio" class="btn-check" name="purpose" id="buy" value="buy" checked />
+            <label class="btn btn-outline-success text-white" for="buy">Buy</label>
+            <input type="radio" class="btn-check" name="purpose" id="rent" value="rent" />
+            <label class="btn btn-outline-success text-white" for="rent">Rent</label>
+          </div>
+          <div class="mb-3">
+            <label for="propertyType" class="form-label text-white">Property Type</label>
+            <select class="form-select" id="propertyType" name="propertyType" required>
+              <option selected disabled>Select Property</option>
+              <option value="apartment">Apartment</option>
+              <option value="house">House</option>
+              <option value="villa">Villa</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="city" class="form-label text-white">Select City</label>
+            <select class="form-select" id="city" name="city" required>
+              <option selected disabled>Select City</option>
+              <option value="delhi">Delhi</option>
+              <option value="mumbai">Mumbai</option>
+              <option value="lucknow">Lucknow</option>
+              <option value="noida">Noida</option>
+              <option value="gurgaon">Gurgaon</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-success w-100">Search</button>
+        </form> {% endcomment %}
+        <form method="get" class="search-box glassmorphic p-4">
+          <div class="mb-3">
+            <label class="form-label text-white" for="{{ form.purpose.id_for_label }}">Purpose</label>
+            {{ form.purpose }}
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label text-white" for="{{ form.property_type.id_for_label }}">Property Type</label>
+            {{ form.property_type }}
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label text-white" for="{{ form.city.id_for_label }}">Select City</label>
+            {{ form.city }}
+          </div>
+
+          <button type="submit" class="btn btn-success w-100">Search</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container mt-5">
+  <h3 class="text-center">Explore Properties</h3>
+  <div class="slider-container">
+    <button class="slider-btn prev-btn" onclick="moveSlider(-1)">&#8249;</button>
+    <div class="slider-wrapper">
+      <div class="slider-track" id="sliderTrack">
+        <div class="slide">
+          <a href="">
+            <img src="https://assets-news.housing.com/news/wp-content/uploads/2022/02/18205828/Minimalist-interior-design-Tips-to-make-your-home-look-minimal.jpg" />
+            <p class="text-primary"><b>Buy a Home</b></p>
+          </a>
+        </div>
+        <div class="slide">
+          <a href="">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9UjzdFM5h9cFjUkRnuejeJAfPr8ouPG-9RA&s" />
+            <p class="text-primary"><b>Renting a home</b></p>
+          </a>
+        </div>
+        <div class="slide">
+          <a href="">
+            <img src="https://www.istorytime.com/wp-content/uploads/2020/08/Sell-or-Rent-980x656.jpeg" />
+            <p class="text-primary"><b>Sell/Rent your Property</b></p>
+          </a>
+        </div>
+        <div class="slide">
+          <a href="">
+            <img src="https://media.istockphoto.com/id/1338058166/photo/land-or-landscape-of-green-field-in-aerial-view-and-home-or-house-icon.jpg?s=612x612&w=0&k=20&c=c-VlOIv3Y18NyZ5qLDZbaNNcapXo2U3yctzf8KkltN0=" />
+            <p class="text-primary"><b>Plots/Lands</b></p>
+          </a>
+        </div>
+        <div class="slide">
+          <a href="#projects">
+            <img src="https://thumbs.dreamstime.com/b/new-projects-word-notebook-59737338.jpg" />
+            <p class="text-primary"><b>Upcoming Projects</b></p>
+          </a>
+        </div>
+        <div class="slide">
+          <a href="">
+            <img src="https://cupliv.com/images/hyderabad/settl-amalfi/1.jpg" />
+            <p class="text-primary"><b>PG and Co-living</b></p>
+          </a>
+        </div>
+        <div class="slide">
+          <a href="">
+            <img src="https://www.landmarkcr.com/wp-content/uploads/2019/10/landmark-commercial-realty-flex-space.png" />
+            <p class="text-primary"><b>Commercial Spaces</b></p>
+          </a>
+        </div>
+      </div>
+    </div>
+    <button class="slider-btn next-btn" onclick="moveSlider(1)">&#8250;</button>
+  </div>
+</div>
+
+<div class="container-fluid bg-dark py-5">
+  <div class="row align-items-center">
+    <div class="col-12 mb-4">
+      <h2 class="text-center text-white">Find Better Places to Live, Work and Wonder...</h2>
+    </div>
+
+    <div class="col-lg-6 mb-4 text-center">
+      <img src="https://assets-global.website-files.com/619e763bb3de7b56e6107aeb/61f2b0e1f0a732ae15de4d98_open-house-ideas-header-image-scaled.jpeg" alt="Open House" class="img-fluid rounded shadow" style="max-width: 100%; height: 400px;" />
+    </div>
+
+    <div class="col-lg-6 px-4">
+      <h6 class="text-white mb-3" style=" padding: 6px 12px; display: inline-block; border-radius: 4px;">BUY A HOME</h6>
+
+      <h3 class="text-white mb-3">Find, Buy & Own Your Dream Home</h3>
+
+      <p class="text-white mb-4" style="font-size: 15px;">Explore from Apartments, land, builder floors, villas and more</p>
+
+      <button class="btn btn-success px-4 py-2">Explore Buying</button>
+    </div>
+
+    
+  </div>
+</div>
+
+<!-- Include Bootstrap CDN in your HTML head -->
+{% comment %} <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+<section class="bg-light py-5">
+  <div class="container">
+    <div class="row align-items-center">
+      <!-- Left Column (Image + Overlay Box) -->
+      <div class="col-lg-6 position-relative">
+        <img src="https://thearchitectsdiary.com/wp-content/uploads/2024/10/modern-home-interior-design-6.jpg" alt="Home" class="img-fluid rounded" />
+
+        <div class="position-absolute top-50 start-50 translate-middle bg-white shadow p-3 rounded" style="width: 80%;">
+          <h5 class="mb-1">Top articles on home buying</h5>
+          <p class="mb-0 text-muted" style="font-size: 14px;">Read from Beginners checklist to Pro Tips</p>
+        </div>
+      </div>
+
+      <!-- Right Column (Text + Button + News) -->
+      <div class="col-lg-6 mt-4 mt-lg-0">
+        <h3 class="fw-bold">Dream Home</h3>
+        <p class="text-muted">Explore from Apartments, land, builder floors, villas and more</p>
+        <a href="#" class="btn btn-primary mb-4">Explore Buying</a>
+
+        <!-- Tabs and News -->
+        <div>
+          <ul class="nav nav-tabs mb-3" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="news-tab" data-bs-toggle="tab" data-bs-target="#news" type="button" role="tab">News</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="legal-tab" data-bs-toggle="tab" data-bs-target="#legal" type="button" role="tab">Tax & Legal</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="guide-tab" data-bs-toggle="tab" data-bs-target="#guide" type="button" role="tab">Help Guides</button>
+            </li>
+          </ul>
+
+          <div class="tab-content">
+            <div class="tab-pane fade show active" id="news" role="tabpanel">
+              <div class="row">
+                <div class="col-6 mb-3">
+                  <p class="mb-1 fw-semibold">Oberoi Realty to enter Gurgaon market</p>
+                  <small class="text-muted">May 24, 2025</small>
+                </div>
+                <div class="col-6 mb-3">
+                  <p class="mb-1 fw-semibold">New stamp duty norms in Greater Noida</p>
+                  <small class="text-muted">Apr 15, 2025</small>
+                </div>
+                <div class="col-6">
+                  <p class="mb-1 fw-semibold">Prestige Group’s new launch in Ghaziabad</p>
+                  <small class="text-muted">May 20, 2025</small>
+                </div>
+                <div class="col-6">
+                  <p class="mb-1 fw-semibold">UPHDB okays 40-acre project in Varanasi</p>
+                  <small class="text-muted">Apr 10, 2025</small>
+                </div>
+              </div>
+              <a href="#" class="text-primary">Read realty news, guides & articles →</a>
+            </div>
+
+            <div class="tab-pane fade" id="legal" role="tabpanel">Tax & Legal info will go here.</div>
+            <div class="tab-pane fade" id="guide" role="tabpanel">Helpful buying guides here.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> {% endcomment %}
+
+
+<section id="projects" class="bg-light py-5">
+  <div class="container">
+    <div class="row text-center">
+      <!-- Project 1 -->
+      <div class="col-lg-6 mb-4">
+        <div class="card h-100 shadow-sm">
+          <img src="https://thumbs.dreamstime.com/b/new-projects-word-notebook-59737338.jpg" class="card-img-top" alt="Project 1" height="300px">
+          <div class="card-body">
+            <h5 class="card-title">Project 1</h5>
+          </div>
+        </div>
+      </div>
+      <!-- Project 2 -->
+      <div class="col-lg-6 mb-4">
+        <div class="card h-100 shadow-sm">
+          <img src="https://thumbs.dreamstime.com/b/new-projects-word-notebook-59737338.jpg" class="card-img-top" alt="Project 2" height="300px">
+          <div class="card-body">
+            <h5 class="card-title">Project 2</h5>
+          </div>
+        </div>
+      </div>
+      <!-- Project 3 -->
+      <div class="col-lg-6 mb-4">
+        <div class="card h-100 shadow-sm">
+          <img src="https://thumbs.dreamstime.com/b/new-projects-word-notebook-59737338.jpg" class="card-img-top" alt="Project 3" height="300px">
+          <div class="card-body">
+            <h5 class="card-title">Project 3</h5>
+          </div>
+        </div>
+      </div>
+      <!-- Project 4 -->
+      <div class="col-lg-6 mb-4">
+        <div class="card h-100 shadow-sm">
+          <img src="https://thumbs.dreamstime.com/b/new-projects-word-notebook-59737338.jpg" class="card-img-top" alt="Project 4" height="300px">
+          <div class="card-body">
+            <h5 class="card-title">Project 4</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
