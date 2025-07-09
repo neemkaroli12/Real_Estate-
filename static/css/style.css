@@ -8,11 +8,42 @@ body {
 }
 
 /*        NAVBAR STYLES     */
+/* Navbar background with smooth gradient */
+.navbar {
+  background: linear-gradient(to right, white, #2063c9);
+  padding: 0.5rem 1rem;
+}
+
+/* Brand logo */
+.navbar-brand img {
+  max-height: 70px;
+  width: auto;
+}
+
+/* Navigation items spacing */
+.navbar-nav {
+  gap: 2rem;
+  align-items: center;
+}
+
+/* Nav links */
+.nav-link {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #000000;  /* Visible on white and light blue */
+  transition: color 0.3s ease;
+}
+
+/* On hover: make text white for blue background */
+.nav-link:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
 .navbar {
   background: linear-gradient(to right, white, #2063c9);
   padding: 0;
-  max-height: 100px;
-  line-height: 97px;
+ 
 }
 
 .navbar-brand img {
@@ -132,130 +163,6 @@ form button:hover {
   background-color: #007f5f;
 }
 
-
-/*        SLIDER SECTION    */
-/* .slider-container {
-  position: relative;
-  max-width: 100%;
-  margin: auto;
-  padding: 40px 0;
-}
-
-.slider-wrapper {
-  overflow: hidden;
-  padding: 0 50px;
-}
-
-.slider-track {
-  display: flex;
-  transition: transform 0.5s ease-in-out;
-}
-
-.slide {
-  min-width: 150px;
-  margin-right: 10px;
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-.slide img {
-  width: 100%;
-  height: 100px;
-  object-fit: cover;
-  border-radius: 8px;
-}
-
-.slide p {
-  font-size: 14px;
-  color: #333;
-  margin: 6px 0;
-  padding: 0 5px;
-}
-
-.slide a {
-  text-decoration: none;
-  list-style: none;
-}
-
-/* Slider Navigation Buttons 
-.slider-btn {
-  position: absolute;
-  top: 87px;
-  transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.7);
-  color: #fff;
-  border: none;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  font-size: 20px;
-  cursor: pointer;
-  z-index: 10;
-  transition: background 0.3s;
-}
-
-.slider-btn:hover {
-  background: rgba(0, 0, 0, 1);
-}
-
-.prev-btn {
-  left: -40px !important;
-}
-
-.next-btn {
-  right: -40px;
-} */
-
-/* ======================== */
-/*        HEADING BAR       */
-/* ======================== */
-.heading {
-  background-color: #2063c9;
-  font-size: 12px;
-  line-height: 16px;
-  font-weight: 400;
-  color: #8993a4;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* ======================== */
-/*      RESPONSIVE STYLES   */
-/* ======================== */
- 
-/* Medium devices (tablets) */
-/* @media (max-width: 992px) {
-  .slider-wrapper {
-    padding: 0 30px;
-  }
-
-  .slide {
-    min-width: 120px;
-  }
-
-  .slide img {
-    height: 90px;
-  }
-
-  .prev-btn,
-  .next-btn {
-    width: 35px;
-    height: 35px;
-    font-size: 18px;
-    top: 75px;
-  }
-
-  .prev-btn {
-    left: -20px !important;
-  }
-
-  .next-btn {
-    right: -20px;
-  } 
-} */
-
 /* Tablets and small desktops */
 @media (max-width: 768px) {
   .hero-heading {
@@ -267,62 +174,11 @@ form button:hover {
     text-align: center;
     padding: 30px 0;
   }
-
+  
   .form-select {
     width: 100% !important;
   }
 }
-/* 
-  .slider-wrapper {
-    padding: 0 20px;
-  }
-
-  .slide {
-    min-width: 100px;
-    margin-right: 8px;
-  }
-
-  .slide img {
-    height: 80px;
-  }
-
-  .slide p {
-    font-size: 12px;
-  }
-}
-
-/* Extra small devices (phones) 
-@media (max-width: 576px) {
-  .slide {
-    min-width: 90px;
-    margin-right: 6px;
-  }
-
-  .slide img {
-    height: 70px;
-  }
-
-  .slider-wrapper {
-    padding: 0 10px;
-  }
-
-  .prev-btn,
-  .next-btn {
-    width: 25px;
-    height: 25px;
-    font-size: 14px;
-    top: 65px;
-  }
-
-  .prev-btn {
-    left: -20px !important;
-  }
-
-  .next-btn {
-    right: -20px;
-  }
-} */
-
 
 .footer {
     background: white;
@@ -389,7 +245,8 @@ form button:hover {
     border-top: 1px solid #ccc;
     margin-top: 20px;
   }
-
+  
+  /*        SLIDER SECTION    */
   .slider-container {
   position: relative;
   max-width: 100%;
@@ -487,3 +344,4 @@ form button:hover {
     font-size: 14px;
   }
 }
+
