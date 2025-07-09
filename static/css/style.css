@@ -80,10 +80,59 @@ body {
 }
 
 .form-select {
-  width: 400px !important;
+  width: 100%;  /* mobile friendly */
   line-height: 2 !important;
   border-radius: 10px;
+  padding: 8px 12px;
+  font-size: 1rem;
 }
+
+form {
+  background-color: rgba(255, 255, 255, 0.85);
+  padding: 30px;
+  border-radius: 20px;
+  max-width: 420px;
+  margin: auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+form label {
+  font-weight: bold;
+  margin-bottom: 6px;
+  display: block;
+  color: #333;
+  font-size: 16px;
+}
+
+form select {
+  width: 100%;
+  padding: 12px;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fff;
+  color: #333;
+  margin-bottom: 18px;
+  box-sizing: border-box;
+}
+
+form button {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  background-color: #00a67e;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+form button:hover {
+  background-color: #007f5f;
+}
+
+
 /*        SLIDER SECTION    */
 /* .slider-container {
   position: relative;
