@@ -17,37 +17,45 @@
     <!-- ✅ NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow">
       <div class="container d-flex justify-content-between align-items-center">
-        <a class="navbar-brand" href="#">
-          <img src="{% static 'images/haldwani nk.png' %}" alt="Logo" width="250" />
-        </a>
+        <a class="navbar-brand" href="#"><img src="{% static 'images/haldwani nk.png' %}" alt="Logo" width="250" /></a>
 
         <!-- Toggler Button -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
 
         <!-- Navbar Links -->
         <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
           <ul class="navbar-nav mb-2 mb-lg-0 d-flex justify-content-center gap-3">
-            <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Buy</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Sell</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Rent</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Lease</a></li>
-            <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Buy</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Sell</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Rent</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Lease</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#projects">Projects</a>
+            </li>
 
             <!-- ✅ Location Dropdown -->
+            <!-- layout.html -->
+
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="locationDropdown" role="button"
-                data-bs-toggle="dropdown" aria-expanded="false">
-                Location
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="locationDropdown">
-                {% for loc in locations %}
-                  <li><a class="dropdown-item" href="#">{{ loc.location }}</a></li>
+              <a class="nav-link dropdown-toggle" href="#" id="cityDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Location</a>
+              <ul class="dropdown-menu" aria-labelledby="cityDropdown">
+                {% for city in cities %}
+                  <li>
+                    <a class="dropdown-item" href="{% url 'city_detail' city.id %}">{{ city.name }}</a>
+                  </li>
                 {% empty %}
-                  <li><span class="dropdown-item">No locations available</span></li>
+                  <li class="dropdown-item">No cities found</li>
                 {% endfor %}
               </ul>
             </li>
@@ -58,6 +66,7 @@
 
     <!-- ✅ Content Block -->
     {% block content %}
+
     {% endblock %}
 
     <!-- ✅ Footer -->
@@ -70,37 +79,71 @@
           <div class="col-lg-2 mt-5">
             <h4>Quick Links</h4>
             <ul>
-              <li><a href="#">Home</a></li>
-              <li><a href="#">Buy</a></li>
-              <li><a href="#">Sell</a></li>
-              <li><a href="#">Rent</a></li>
+              <li>
+                <a href="#">Home</a>
+              </li>
+              <li>
+                <a href="#">Buy</a>
+              </li>
+              <li>
+                <a href="#">Sell</a>
+              </li>
+              <li>
+                <a href="#">Rent</a>
+              </li>
             </ul>
           </div>
           <div class="col-lg-2 mt-5">
             <h5>Company</h5>
             <ul>
-              <li><a href="#">About us</a></li>
-              <li><a href="#">Contact us</a></li>
-              <li><a href="#">Privacy Policy</a></li>
-              <li><a href="#">Request Info</a></li>
-              <li><a href="#">Feedback</a></li>
+              <li>
+                <a href="#">About us</a>
+              </li>
+              <li>
+                <a href="#">Contact us</a>
+              </li>
+              <li>
+                <a href="#">Privacy Policy</a>
+              </li>
+              <li>
+                <a href="#">Request Info</a>
+              </li>
+              <li>
+                <a href="#">Feedback</a>
+              </li>
             </ul>
           </div>
           <div class="col-lg-2 mt-5">
             <h5>Uttarakhand Realtors</h5>
             <ul>
-              <li><a href="#">Our Services</a></li>
-              <li><a href="#">Post Your Property</a></li>
-              <li><a href="#">Rent Receipt</a></li>
-              <li><a href="#">Customer Service</a></li>
-              <li><a href="#">Sitemap</a></li>
+              <li>
+                <a href="#">Our Services</a>
+              </li>
+              <li>
+                <a href="#">Post Your Property</a>
+              </li>
+              <li>
+                <a href="#">Rent Receipt</a>
+              </li>
+              <li>
+                <a href="#">Customer Service</a>
+              </li>
+              <li>
+                <a href="#">Sitemap</a>
+              </li>
             </ul>
           </div>
           <div class="col-lg-3 mt-5">
             <h4>Contact Us</h4>
-            <p>Neem Karoli House, Plot no-86, Heera Nagar,<br>Haldwani, Uttarakhand</p>
-            <p><a href="mailto:sales@neemkarolitechnologies.com">sales@neemkarolitechnologies.com</a></p>
-            <p><strong>Phone:</strong> 9874561230</p>
+            <p>
+              Neem Karoli House, Plot no-86, Heera Nagar,<br />Haldwani, Uttarakhand
+            </p>
+            <p>
+              <a href="mailto:sales@neemkarolitechnologies.com">sales@neemkarolitechnologies.com</a>
+            </p>
+            <p>
+              <strong>Phone:</strong> 9874561230
+            </p>
           </div>
         </div>
         <div class="footer-bottom mt-4 text-center">&copy; 2025 Neem Karoli Real Estate. All rights reserved.</div>

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404
 from .forms import PropertySearchForm
 from .models import PropertySearch
 
@@ -24,3 +24,13 @@ def home(request):
     form = PropertySearchForm()
 
     return render(request, 'index.html', {"form": form})
+
+from .models import City
+
+def city_detail(request, city_id):
+    city = get_object_or_404(City, id=city_id)
+    locations = city.locations.all()  # All locations of this city
+    return render(request, 'city_detail.html', {
+        'city': city,
+        'locations': locations
+    })

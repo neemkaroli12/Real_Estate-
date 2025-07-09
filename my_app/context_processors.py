@@ -1,7 +1,4 @@
-# myblog_app/context_processors.py
+from .models import City
 
-from .models import Location
-
-def location_dropdown(request):
-    locations = Location.objects.all()
-    return {'locations': locations}
+def all_cities(request):
+    return {'cities': City.objects.all()}
