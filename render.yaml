@@ -1,14 +1,12 @@
 services:
   - type: web
-    name: my-django-blog
+    name: my_project
     env: python
-    buildCommand: >
-      pip install -r requirements.txt &&
-      python manage.py collectstatic --noinput &&
-      python manage.py migrate
-    startCommand: gunicorn my_project.wsgi:application
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn my_project.wsgi:application"
+    staticPublishPath: staticfiles
     envVars:
-      - key: DJANGO_SETTINGS_MODULE
-        value: my_project.settings
-      - key: PYTHON_VERSION
-        value: 3.9
+      - key: DEBUG
+        value: "False"
+      - key: SECRET_KEY
+        generateValue: true
