@@ -2,25 +2,32 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8"/>
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Uttarakhand Realtors</title>
 
-    <!-- CSS -->
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ENjdO4Dr2bkBIFxQpeo5ljbNl6E5l9l0O8aN4+tWqPPwUib5M8lfdxLv8b94jf5M" crossorigin="anonymous">
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-lg sticky-top bg-light shadow">
+    <!-- ✅ NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow">
       <div class="container d-flex justify-content-between align-items-center">
         <a class="navbar-brand" href="#">
-          <img src="{% static 'images/haldwani-nk.png' %}" alt="Logo" width="250" />
+          <img src="{% static 'images/haldwani nk.png' %}" alt="Logo" width="250" />
         </a>
+
+        <!-- Toggler Button -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
+
+        <!-- Navbar Links -->
         <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
           <ul class="navbar-nav mb-2 mb-lg-0 d-flex justify-content-center gap-3">
             <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
@@ -29,6 +36,8 @@
             <li class="nav-item"><a class="nav-link" href="#">Rent</a></li>
             <li class="nav-item"><a class="nav-link" href="#">Lease</a></li>
             <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+
+            <!-- ✅ Location Dropdown -->
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="locationDropdown" role="button"
                 data-bs-toggle="dropdown" aria-expanded="false">
@@ -47,13 +56,16 @@
       </div>
     </nav>
 
-    {% block content %}{% endblock %}
+    <!-- ✅ Content Block -->
+    {% block content %}
+    {% endblock %}
 
-    <footer class="footer bg-light mt-5">
+    <!-- ✅ Footer -->
+    <footer class="footer bg-body-info mt-5">
       <div class="container-fluid">
         <div class="row">
           <div class="col-lg-3 mt-5">
-            <a href="#"><img src="{% static 'images/haldwani-nk.png' %}" alt="Logo" height="150" width="150" /></a>
+            <a href="#"><img src="{% static 'images/haldwani nk.png' %}" alt="Logo" height="150" width="150" /></a>
           </div>
           <div class="col-lg-2 mt-5">
             <h4>Quick Links</h4>
@@ -95,9 +107,8 @@
       </div>
     </footer>
 
-    <!-- JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+    <!-- ✅ JS Files -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{% static 'js/script.js' %}"></script>
   </body>
-  </html>
-  
+</html>
