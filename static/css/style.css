@@ -269,7 +269,7 @@ form button:hover {
   }
 
   .form-select {
-    width: 200px !important;
+    width: 100% !important;
   }
 }
 /* 
