@@ -1,173 +1,187 @@
 {% extends 'common.html' %}
 {% block content %}
-<section class="hero">
-  <div class="overlay"></div>
-  <div class="container">
-    <div class="row align-items-center justify-content-between">
-      <div class="col-lg-6 text-white mb-4 mb-lg-0">
-        <h1 class="hero-heading">Finding Roots in the Land of Dev Bhoomi</h1>
+  <section class="hero">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row align-items-center justify-content-between">
+        <div class="col-lg-6 text-white mb-4 mb-lg-0">
+          <h1 class="hero-heading">Finding Roots in the Land of Dev Bhoomi</h1>
+        </div>
+        <div class="col-lg-5">
+          {% comment %} <form class="search-box glassmorphic p-4" method="GET" action="#">
+            <div class="btn-group w-100 mb-3" role="group">
+              <input type="radio" class="btn-check" name="purpose" id="buy" value="buy" checked />
+              <label class="btn btn-outline-success text-white" for="buy">Buy</label>
+              <input type="radio" class="btn-check" name="purpose" id="rent" value="rent" />
+              <label class="btn btn-outline-success text-white" for="rent">Rent</label>
+            </div>
+            <div class="mb-3">
+              <label for="propertyType" class="form-label text-white">Property Type</label>
+              <select class="form-select" id="propertyType" name="propertyType" required>
+                <option selected disabled>Select Property</option>
+                <option value="apartment">Apartment</option>
+                <option value="house">House</option>
+                <option value="villa">Villa</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="city" class="form-label text-white">Select City</label>
+              <select class="form-select" id="city" name="city" required>
+                <option selected disabled>Select City</option>
+                <option value="delhi">Delhi</option>
+                <option value="mumbai">Mumbai</option>
+                <option value="lucknow">Lucknow</option>
+                <option value="noida">Noida</option>
+                <option value="gurgaon">Gurgaon</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-success w-100">Search</button>
+          </form> {% endcomment %}
+          <form method="get" class="search-box glassmorphic p-4">
+            <div class="mb-3">
+              <label class="form-label text-white" for="{{ form.purpose.id_for_label }}">Purpose</label>
+              {{ form.purpose }}
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label text-white" for="{{ form.property_type.id_for_label }}">Property Type</label>
+              {{ form.property_type }}
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label text-white" for="{{ form.city.id_for_label }}">Select City</label>
+              {{ form.city }}
+            </div>
+
+            <button type="submit" class="btn btn-success w-100">Search</button>
+          </form>
+        </div>
       </div>
-      <div class="col-lg-5">
-        {% comment %} <form class="search-box glassmorphic p-4" method="GET" action="#">
-          <div class="btn-group w-100 mb-3" role="group">
-            <input type="radio" class="btn-check" name="purpose" id="buy" value="buy" checked />
-            <label class="btn btn-outline-success text-white" for="buy">Buy</label>
-            <input type="radio" class="btn-check" name="purpose" id="rent" value="rent" />
-            <label class="btn btn-outline-success text-white" for="rent">Rent</label>
-          </div>
-          <div class="mb-3">
-            <label for="propertyType" class="form-label text-white">Property Type</label>
-            <select class="form-select" id="propertyType" name="propertyType" required>
-              <option selected disabled>Select Property</option>
-              <option value="apartment">Apartment</option>
-              <option value="house">House</option>
-              <option value="villa">Villa</option>
-            </select>
-          </div>
-          <div class="mb-3">
-            <label for="city" class="form-label text-white">Select City</label>
-            <select class="form-select" id="city" name="city" required>
-              <option selected disabled>Select City</option>
-              <option value="delhi">Delhi</option>
-              <option value="mumbai">Mumbai</option>
-              <option value="lucknow">Lucknow</option>
-              <option value="noida">Noida</option>
-              <option value="gurgaon">Gurgaon</option>
-            </select>
-          </div>
-          <button type="submit" class="btn btn-success w-100">Search</button>
-        </form> {% endcomment %}
-        <form method="get" class="search-box glassmorphic p-4">
-          <div class="mb-3">
-            <label class="form-label text-white" for="{{ form.purpose.id_for_label }}">Purpose</label>
-            {{ form.purpose }}
-          </div>
+    </div>
+  </section>
 
-          <div class="mb-3">
-            <label class="form-label text-white" for="{{ form.property_type.id_for_label }}">Property Type</label>
-            {{ form.property_type }}
+  <div class="container mt-5">
+    <h3 class="text-center">Explore Properties</h3>
+    <div class="slider-container">
+      <button class="slider-btn prev-btn" onclick="moveSlider(-1)">&#8249;</button>
+      <div class="slider-wrapper">
+        <div class="slider-track" id="sliderTrack">
+          <div class="slide">
+            <a href="">
+              <img src="https://assets-news.housing.com/news/wp-content/uploads/2022/02/18205828/Minimalist-interior-design-Tips-to-make-your-home-look-minimal.jpg" />
+              <p class="text-primary">
+                <b>Buy a Home</b>
+              </p>
+            </a>
           </div>
-
-          <div class="mb-3">
-            <label class="form-label text-white" for="{{ form.city.id_for_label }}">Select City</label>
-            {{ form.city }}
+          <div class="slide">
+            <a href="">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9UjzdFM5h9cFjUkRnuejeJAfPr8ouPG-9RA&s" />
+              <p class="text-primary">
+                <b>Renting a home</b>
+              </p>
+            </a>
           </div>
-
-          <button type="submit" class="btn btn-success w-100">Search</button>
-        </form>
+          <div class="slide">
+            <a href="">
+              <img src="https://www.istorytime.com/wp-content/uploads/2020/08/Sell-or-Rent-980x656.jpeg" />
+              <p class="text-primary">
+                <b>Sell/Rent your Property</b>
+              </p>
+            </a>
+          </div>
+          <div class="slide">
+            <a href="">
+              <img src="https://media.istockphoto.com/id/1338058166/photo/land-or-landscape-of-green-field-in-aerial-view-and-home-or-house-icon.jpg?s=612x612&w=0&k=20&c=c-VlOIv3Y18NyZ5qLDZbaNNcapXo2U3yctzf8KkltN0=" />
+              <p class="text-primary">
+                <b>Plots/Lands</b>
+              </p>
+            </a>
+          </div>
+          <div class="slide">
+            <a href="#projects">
+              <img src="https://thumbs.dreamstime.com/b/new-projects-word-notebook-59737338.jpg" />
+              <p class="text-primary">
+                <b>Upcoming Projects</b>
+              </p>
+            </a>
+          </div>
+          <div class="slide">
+            <a href="">
+              <img src="https://cupliv.com/images/hyderabad/settl-amalfi/1.jpg" />
+              <p class="text-primary">
+                <b>PG and Co-living</b>
+              </p>
+            </a>
+          </div>
+          <div class="slide">
+            <a href="">
+              <img src="https://www.landmarkcr.com/wp-content/uploads/2019/10/landmark-commercial-realty-flex-space.png" />
+              <p class="text-primary">
+                <b>Commercial Spaces</b>
+              </p>
+            </a>
+          </div>
+        </div>
+      </div>
+      <button class="slider-btn next-btn" onclick="moveSlider(1)">&#8250;</button>
+    </div>
+  </div>
+  <div class="container-fluid bg-dark py-5">
+    <div class="row align-items-center">
+      <div class="col-12 mb-4">
+        <h2 class="text-center text-white">Find Better Places to Live, Work and Wonder...</h2>
+      </div>
+      <div class="col-lg-6 mb-4 text-center">
+        <img src="https://assets-global.website-files.com/619e763bb3de7b56e6107aeb/61f2b0e1f0a732ae15de4d98_open-house-ideas-header-image-scaled.jpeg" alt="Open House" class="img-fluid rounded shadow" style="max-width: 100%; height: 400px;" />
+      </div>
+      <div class="col-lg-6 px-4">
+        <h6 class="text-white mb-3" style=" padding: 6px 12px; display: inline-block; border-radius: 4px;">BUY A HOME</h6>
+        <h3 class="text-white mb-3">Find, Buy & Own Your Dream Home</h3>
+        <p class="text-white mb-4" style="font-size: 15px;">Explore from Apartments, land, builder floors, villas and more</p>
+        <button class="btn btn-success px-4 py-2">Explore Buying</button>
       </div>
     </div>
   </div>
-</section>
+ <section id="projects" class="bg-light py-5">
+  <style>
+    .card {
+      border-radius: 15px;
+      overflow: hidden;
+    }
+    .card-img-top {
+      border-bottom: 1px solid #ddd;
+    }
+  </style>
 
-<div class="container mt-5">
-  <h3 class="text-center">Explore Properties</h3>
-  <div class="slider-container">
-    <button class="slider-btn prev-btn" onclick="moveSlider(-1)">&#8249;</button>
-    <div class="slider-wrapper">
-      <div class="slider-track" id="sliderTrack">
-        <div class="slide">
-          <a href="">
-            <img src="https://assets-news.housing.com/news/wp-content/uploads/2022/02/18205828/Minimalist-interior-design-Tips-to-make-your-home-look-minimal.jpg" />
-            <p class="text-primary"><b>Buy a Home</b></p>
-          </a>
-        </div>
-        <div class="slide">
-          <a href="">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9UjzdFM5h9cFjUkRnuejeJAfPr8ouPG-9RA&s" />
-            <p class="text-primary"><b>Renting a home</b></p>
-          </a>
-        </div>
-        <div class="slide">
-          <a href="">
-            <img src="https://www.istorytime.com/wp-content/uploads/2020/08/Sell-or-Rent-980x656.jpeg" />
-            <p class="text-primary"><b>Sell/Rent your Property</b></p>
-          </a>
-        </div>
-        <div class="slide">
-          <a href="">
-            <img src="https://media.istockphoto.com/id/1338058166/photo/land-or-landscape-of-green-field-in-aerial-view-and-home-or-house-icon.jpg?s=612x612&w=0&k=20&c=c-VlOIv3Y18NyZ5qLDZbaNNcapXo2U3yctzf8KkltN0=" />
-            <p class="text-primary"><b>Plots/Lands</b></p>
-          </a>
-        </div>
-        <div class="slide">
-          <a href="#projects">
-            <img src="https://thumbs.dreamstime.com/b/new-projects-word-notebook-59737338.jpg" />
-            <p class="text-primary"><b>Upcoming Projects</b></p>
-          </a>
-        </div>
-        <div class="slide">
-          <a href="">
-            <img src="https://cupliv.com/images/hyderabad/settl-amalfi/1.jpg" />
-            <p class="text-primary"><b>PG and Co-living</b></p>
-          </a>
-        </div>
-        <div class="slide">
-          <a href="">
-            <img src="https://www.landmarkcr.com/wp-content/uploads/2019/10/landmark-commercial-realty-flex-space.png" />
-            <p class="text-primary"><b>Commercial Spaces</b></p>
-          </a>
-        </div>
-      </div>
-    </div>
-    <button class="slider-btn next-btn" onclick="moveSlider(1)">&#8250;</button>
-  </div>
-</div>
-<div class="container-fluid bg-dark py-5">
-  <div class="row align-items-center">
-    <div class="col-12 mb-4">
-      <h2 class="text-center text-white">Find Better Places to Live, Work and Wonder...</h2>
-    </div>
-    <div class="col-lg-6 mb-4 text-center">
-      <img src="https://assets-global.website-files.com/619e763bb3de7b56e6107aeb/61f2b0e1f0a732ae15de4d98_open-house-ideas-header-image-scaled.jpeg" alt="Open House" class="img-fluid rounded shadow" style="max-width: 100%; height: 400px;" />
-    </div>
-    <div class="col-lg-6 px-4">
-      <h6 class="text-white mb-3" style=" padding: 6px 12px; display: inline-block; border-radius: 4px;">BUY A HOME</h6>
-      <h3 class="text-white mb-3">Find, Buy & Own Your Dream Home</h3>
-      <p class="text-white mb-4" style="font-size: 15px;">Explore from Apartments, land, builder floors, villas and more</p>
-      <button class="btn btn-success px-4 py-2">Explore Buying</button>
-    </div>
-  </div>
-</div>
-<section id="projects" class="bg-light py-5">
-  <div class="container">
-    <div class="row text-center">
-      <!-- Project 1 -->
-      <div class="col-lg-6 mb-4">
-        <div class="card h-100 shadow-sm">
-          <img src="https://thumbs.dreamstime.com/b/new-projects-word-notebook-59737338.jpg" class="card-img-top" alt="Project 1" height="300px">
-          <div class="card-body">
-            <h5 class="card-title">Project 1</h5>
+  <div class="container mt-5">
+    <h2 class="mb-4">New Projects</h2>
+
+    <h5>Projects Found: {{ projects|length }}</h5> <!-- DEBUG LINE -->
+
+    <div class="row">
+      {% for project in projects %}
+        <div class="col-md-4">
+          <div class="card shadow mb-4">
+            <img src="{{ project.image.url }}" class="card-img-top" alt="Project Image" style="height: 200px; object-fit: cover;" />
+
+            <div class="card-body">
+              <h5 class="card-title">{{ project.title }}</h5>
+              <p class="card-text">
+                {{ project.summary|truncatewords:20 }}
+              </p>
+
+              {% if project.pdf %}
+                <a href="{{ project.pdf.url }}" class="btn btn-primary btn-sm w-100" target="_blank">Know More</a>
+              {% else %}
+                <button class="btn btn-secondary btn-sm" disabled>No PDF</button>
+              {% endif %}
+            </div>
           </div>
         </div>
-      </div>
-      <!-- Project 2 -->
-      <div class="col-lg-6 mb-4">
-        <div class="card h-100 shadow-sm">
-          <img src="https://thumbs.dreamstime.com/b/new-projects-word-notebook-59737338.jpg" class="card-img-top" alt="Project 2" height="300px">
-          <div class="card-body">
-            <h5 class="card-title">Project 2</h5>
-          </div>
-        </div>
-      </div>
-      <!-- Project 3 -->
-      <div class="col-lg-6 mb-4">
-        <div class="card h-100 shadow-sm">
-          <img src="https://thumbs.dreamstime.com/b/new-projects-word-notebook-59737338.jpg" class="card-img-top" alt="Project 3" height="300px">
-          <div class="card-body">
-            <h5 class="card-title">Project 3</h5>
-          </div>
-        </div>
-      </div>
-      <!-- Project 4 -->
-      <div class="col-lg-6 mb-4">
-        <div class="card h-100 shadow-sm">
-          <img src="https://thumbs.dreamstime.com/b/new-projects-word-notebook-59737338.jpg" class="card-img-top" alt="Project 4" height="300px">
-          <div class="card-body">
-            <h5 class="card-title">Project 4</h5>
-          </div>
-        </div>
-      </div>
+      {% empty %}
+        <p>No projects available right now.</p>
+      {% endfor %}
     </div>
   </div>
 </section>
