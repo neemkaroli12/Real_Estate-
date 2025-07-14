@@ -40,12 +40,26 @@ def home(request):
 
 
 #  Optional: City Detail Page (agar tum city-specific locations dikhati ho)
+from django.shortcuts import render, get_object_or_404
+from .models import City, Location, Property
+
 def city_detail(request, city_id):
     city = get_object_or_404(City, id=city_id)
-    locations = city.locations.all()  # City ke related locations
+    locations = city.locations.all()
+
+    # Group properties by location
+    location_properties = []
+    for location in locations:
+        properties = Property.objects.filter(location=location)
+        if properties.exists():
+            location_properties.append({
+                'location': location,
+                'properties': properties
+            })
+
     return render(request, 'city_detail.html', {
         'city': city,
-        'locations': locations
+        'location_properties': location_properties
     })
 
 
