@@ -7,7 +7,7 @@ from django.conf import settings
 
 
 urlpatterns = [
-    path('index/', views.home, name="index"),  
+    path('', views.home, name="index"),  
     path('city/<int:city_id>/', views.city_detail, name='city_detail'),
      path('property/<int:pk>/', views.property_detail, name='property_detail'),
      path('buy/', views.buy_properties, name='buy_properties'),
