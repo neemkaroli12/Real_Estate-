@@ -32,19 +32,19 @@
         <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
           <ul class="navbar-nav mb-2 mb-lg-0 d-flex justify-content-center gap-3">
             <li class="nav-item">
-              <a class="nav-link" href="#">Home</a>
+              <a class="nav-link" href="{% url 'index' %}">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Buy</a>
+              <a class="nav-link" href="{% url 'buy_properties' %}">Buy</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Sell</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Rent</a>
+              <a class="nav-link" href="{% url 'rent_properties' %}">Rent</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Lease</a>
+              <a class="nav-link" href="{% url 'lease_properties' %}">Lease</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#projects">Projects</a>

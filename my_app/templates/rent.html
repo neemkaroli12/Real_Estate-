@@ -1,0 +1,26 @@
+{% extends 'common.html' %}
+{% block content %}
+<div class="container mt-5">
+  <h2>Available Properties for Rent</h2>
+  <div class="row">
+    {% for property in properties %}
+    <div class="col-md-4 mb-4">
+      <div class="card">
+        {% if property.image %}
+        <img src="{{ property.image.url }}" class="card-img-top" style="height: 250px; object-fit: cover;">
+        {% else %}
+        <img src="https://via.placeholder.com/400x250?text=No+Image" class="card-img-top">
+        {% endif %}
+        <div class="card-body">
+          <h5>{{ property.title }}</h5>
+          <p>{{ property.description|truncatewords:15 }}</p>
+          <a href="{% url 'property_detail' property.pk %}" class="btn btn-primary">View Details</a>
+        </div>
+      </div>
+    </div>
+    {% empty %}
+    <p>No rental properties available.</p>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'common.html' %}
+{% block content %}
+<div class="container py-5">
+  <h2 class="mb-4">Buy Properties</h2>
+  <div class="row">
+    {% for property in properties %}
+      <div class="col-md-4 mb-4">
+        <div class="card shadow-sm">
+          <img src="{{ property.image.url }}" class="card-img-top" style="height: 250px; object-fit: cover;" alt="Property Image">
+          <div class="card-body">
+            <h5 class="card-title">{{ property.title }}</h5>
+            <p class="card-text">₹{{ property.price }}</p>
+            <p class="card-text"><strong>Location:</strong> {{ property.location.name }}</p>
+            <a href="{% url 'property_detail' property.pk %}" class="btn btn-primary">View Details</a>
+          </div>
+        </div>
+      </div>
+    {% empty %}
+      <p class="text-muted">No properties available for buying at the moment.</p>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
