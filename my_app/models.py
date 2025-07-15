@@ -1,7 +1,4 @@
 from django.db import models
-
-
-
 class Purpose(models.Model):
     name = models.CharField(max_length=50)
     def __str__(self): return self.name
@@ -21,7 +18,7 @@ class Location(models.Model):
 
 class Property(models.Model):
     title = models.CharField(max_length=200)
-    image = models.ImageField(upload_to="property/images", null=True, blank=True)
+    # image = models.ImageField(upload_to="property/images", null=True, blank=True)
     purpose = models.ForeignKey(Purpose, on_delete=models.SET_NULL, null=True)
     property_type = models.ForeignKey(PropertyType, on_delete=models.SET_NULL, null=True)
     city = models.ForeignKey(City, on_delete=models.SET_NULL, null=True)
@@ -37,7 +34,7 @@ class PropertyImage(models.Model):
     image = models.ImageField(upload_to='property_images/')
 
     def __str__(self):
-        return f"Image for {self.property.title}"
+        return f"Image for {self.property.location}"
     
     
 #  7. New Project Section (For New/Upcoming Projects)

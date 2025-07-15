@@ -6,8 +6,8 @@
     {% for property in properties %}
     <div class="col-md-4 mb-4">
       <div class="card">
-        {% if property.image %}
-        <img src="{{ property.image.url }}" class="card-img-top" style="height: 250px; object-fit: cover;">
+        {% if property.image.all %}
+        <img src="{{ property.images.all.0.image.url}}" class="card-img-top" style="height: 250px; object-fit: cover;">
         {% else %}
         <img src="https://via.placeholder.com/400x250?text=No+Image" class="card-img-top">
         {% endif %}

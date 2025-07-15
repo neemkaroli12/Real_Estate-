@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Property, Purpose, City,newProject
+from .models import Property, Purpose, City,newProject, PropertyImage
 from .forms import PropertySearchForm
 
 
@@ -85,8 +85,7 @@ def rent_properties(request):
         properties = Property.objects.filter(purpose=rent_purpose)
     except Purpose.DoesNotExist:
         properties = Property.objects.none()
-
-    return render(request, 'rent.html', {'properties': properties})
+    return render(request, 'rent.html', {'properties': properties,  })
 
 
 def lease_properties(request):
