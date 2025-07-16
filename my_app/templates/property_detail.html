@@ -1,60 +1,184 @@
 {% extends 'common.html' %}
 {% block content %}
-  <div class="container py-5">
-    <div class="row">
-      <!-- ✅ Images Gallery Section -->
-      <div class="col-md-6 d-flex justify-content-center">
-        {% if property.images.all %}
-          <div id="carouselImages" class="carousel slide" data-bs-ride="carousel" style="width: 100%; max-width: 500px;">
-            <div class="carousel-inner">
-              {% for img in property.images.all %}
-                <div class="carousel-item {% if forloop.first %}active{% endif %}">
-                  <img src="{{ img.image.url }}" class="d-block w-100 rounded" alt="Property Image" style="height: 400px; object-fit: cover;" />
+  <style>
+    .modal-content {
+      border-radius: 12px;
+    }
+    .modal-header h5 {
+      font-size: 1rem;
+      line-height: 1.4;
+    }
+  </style>
+  {% comment %}MAIN SECTION{% endcomment %}
+  <div class="container mt-5">
+    <div class="row g-4">
+      {% comment %}LEFT: Property Info{% endcomment %}
+      <div class="col-lg-8">
+        <div class="bg-white p-4 shadow rounded border">
+          <h3 class="text-danger fw-bold">
+            ₹{{ property.price }}
+            <small class="text-muted fs-6">({{ property.price_per_sqft }}/sqft)</small>
+          </h3>
+          <p class="mb-2 text-secondary">
+            {{ property.area }} Sq-ft Residential Plot/Land For Sale in <strong>{{ property.location.name }}</strong>
+          </p>
+
+          {% comment %} IMAGE + DETAILS  {% endcomment %}
+          <div class="row">
+            {% comment %} Image Carousel  {% endcomment %}
+            <div class="col-md-5 d-flex justify-content-center mt-3 mb-3">
+              {% if property.images.all %}
+                <div id="carouselImages" class="carousel slide" data-bs-ride="carousel" style="width: 100%; max-width: 500px;">
+                  <div class="carousel-inner">
+                    {% for img in property.images.all %}
+                      <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                        <img src="{{ img.image.url }}" class="d-block w-100 rounded" alt="Property Image" style="height: 200px; object-fit: cover;" />
+                      </div>
+                    {% endfor %}
+                  </div>
+                  <button class="carousel-control-prev" type="button" data-bs-target="#carouselImages" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span></button>
+                  <button class="carousel-control-next" type="button" data-bs-target="#carouselImages" data-bs-slide="next"><span class="carousel-control-next-icon"></span></button>
                 </div>
-              {% endfor %}
+              {% else %}
+                <img src="https://via.placeholder.com/600x400?text=No+Image" class="img-fluid rounded" alt="No image available" />
+              {% endif %}
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselImages" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span></button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselImages" data-bs-slide="next"><span class="carousel-control-next-icon"></span></button>
+
+            {% comment %} Property Details  {% endcomment %}
+            <div class="col-md-7">
+              <div class="row">
+                <div class="col-6 mb-2">
+                  <strong>Plot Area:</strong><br />{{ property.area }} sqft
+                </div>
+                <div class="col-6 mb-2">
+                  <strong>Dimensions (L X B):</strong><br />{{ property.length }} x {{ property.breadth }}
+                </div>
+                <div class="col-6 mb-2">
+                  <strong>Open Sides:</strong><br />{{ property.open_sides }}
+                </div>
+                <div class="col-6 mb-2">
+                  <strong>Facing:</strong><br />{{ property.facing }}
+                </div>
+                <div class="col-6 mb-2">
+                  <strong>Construction Done:</strong><br />{{ property.construction_done }}
+                </div>
+                <div class="col-6 mb-2">
+                  <strong>Boundary Wall:</strong><br />{{ property.boundary_wall }}
+                </div>
+                <div class="col-6 mb-2">
+                  <strong>Ownership:</strong><br />{{ property.ownership }}
+                </div>
+                <div class="col-6 mb-2">
+                  <strong>Transaction Type:</strong><br />{{ property.transaction_type }}
+                </div>
+                <div class="col-12">
+                  <strong>Overlooking:</strong><br />{{ property.overlooking }}
+                </div>
+              </div>
+            </div>
           </div>
-        {% else %}
-          <img src="https://via.placeholder.com/600x400?text=No+Image" class="img-fluid rounded" alt="No image available" />
-        {% endif %}
+
+          {% comment %} Contact Buttons  {% endcomment %}
+          <div class="d-flex gap-3 mt-4">
+            <a href="tel:+91{{ property.agent_phone }}" class="btn btn-primary ">Contact Owner</a>
+            <a href="#" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#whatsappModal"> Get Phone No.</a>
+          </div>
+        </div>
       </div>
 
-      <!-- ✅ Property Details Section -->
-      <div class="col-md-6">
-        <h2 class="mb-3">{{ property.title }}</h2>
-        <p>
-          <strong>Purpose:</strong> {{ property.purpose.name }}
-        </p>
-        <p>
-          <strong>Type:</strong> {{ property.property_type.name }}
-        </p>
-        <p>
-          <strong>City:</strong> {{ property.city.name }}
-        </p>
-        <p>
-          <strong>Location:</strong> {{ property.location.name }}
-        </p>
-        <p>
-          <strong>Price:</strong> ₹{{ property.price }}
-        </p>
-        <p class="mt-3">{{ property.description }}</p>
+      {% comment %} RIGHT: Contact Box  {% endcomment %}
+      <div class="col-lg-4">
+        <div class="p-4 bg-white shadow border rounded">
+          <h5 class="mb-2">Contact Agent</h5>
+          <p>
+            <strong>Landmark Real Estate</strong>
+          </p>/
+          <p class="text-muted">+91-96XXXXXXXX<p>
+          <a href="#" class="btn btn-outline-primary  px-4 mb-2" data-bs-toggle="modal" data-bs-target="#whatsappModal">Get Phone No.</a>
 
-        <!-- ✅ WhatsApp Button -->
-        <a class="btn btn-success" href="https://wa.me/7838020110?text=Hi, I'm interested in the property: {{ property.title }} in {{ property.city.name }}" target="_blank">
-          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="white" class="bi bi-whatsapp" viewBox="0 0 16 16">
-            <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232" />
-          </svg>
-        WhatsApp</a>
-        {% comment %} Phone {% endcomment %}
-        <a href="tel:+91 7838020110" target="_blank" class="btn btn-primary ms-4">
-          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-telephone" viewBox="0 0 16 16">
-            <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.6 17.6 0 0 0 4.168 6.608 17.6 17.6 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.68.68 0 0 0-.58-.122l-2.19.547a1.75 1.75 0 0 1-1.657-.459L5.482 8.062a1.75 1.75 0 0 1-.46-1.657l.548-2.19a.68.68 0 0 0-.122-.58zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z" />
-          </svg>
-          Request a Call
-        </a>
+          <a href="https://wa.me/91{{ property.agent_phone }}?text=Hi, I'm interested in the property: {{ property.title }}" class="btn btn-success w-100" target="_blank">WhatsApp</a>
+        </div>
       </div>
     </div>
   </div>
+
+  {% comment %} WHATSAPP CONTACT MODAL  {% endcomment %}
+  <div class="modal fade" id="whatsappModal" tabindex="-1" aria-labelledby="whatsappModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="whatsappModalLabel"><span class="text-success">💬 Enter your WhatsApp No.</span> to get Contact Details of the Owner</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <form id="whatsappForm">
+          <div class="modal-body">
+            <div class="mb-3">
+              <label class="form-label">Your Name</label>
+              <input type="text" class="form-control" required />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Email</label>
+              <input type="email" class="form-control" required />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">WhatsApp Number</label>
+              <div class="input-group">
+                <span class="input-group-text">+91</span>
+                <input type="tel" class="form-control" required />
+              </div>
+            </div>
+            <div class="form-check mb-3">
+              <input type="checkbox" class="form-check-input" id="agree" required />
+              <label class="form-check-label" for="agree">I agree to the <a href="#">Terms of Use</a></label>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-danger w-100">Continue</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  {% comment %} RELATED PROPERTIES  {% endcomment %}
+  <div class="container mt-5">
+    <h4 class="text-success mb-4">Related Properties in {{ property.city.name }}</h4>
+    <div class="row">
+      {% for prop in related_properties %}
+        <div class="col-md-4 mb-4">
+          <div class="card h-100">
+            {% if prop.images.all %}
+              <img src="{{ prop.images.first.image.url }}" class="card-img-top" style="height: 200px; object-fit: cover;" alt="Property Image" />
+            {% else %}
+              <img src="https://via.placeholder.com/400x250?text=No+Image" class="card-img-top" />
+            {% endif %}
+            <div class="card-body">
+              <h5>{{ prop.title }}</h5>
+              <p>₹{{ prop.price }}</p>
+              <p>
+                <strong>Location:</strong> {{ prop.location.name }}
+              </p>
+              <a href="{% url 'property_detail' prop.pk %}" class="btn btn-outline-primary btn-sm">View Details</a>
+            </div>
+          </div>
+        </div>
+      {% empty %}
+        <p class="text-muted">No related properties found.</p>
+      {% endfor %}
+    </div>
+  </div>
+  <script>
+    document.getElementById('whatsappForm').addEventListener('submit', function (e) {
+      e.preventDefault()
+    
+      // Simulate action
+      alert('Owner Phone Number: +91 {{ property.agent_phone }}')
+    
+      // Optional: Redirect to WhatsApp
+      // window.open("https://wa.me/91{{ property.agent_phone }}?text=Hi, I'm interested in your property.", "_blank");
+    
+      // Close modal
+      var modal = bootstrap.Modal.getInstance(document.getElementById('whatsappModal'))
+      modal.hide()
+    })
+  </script>
 {% endblock %}

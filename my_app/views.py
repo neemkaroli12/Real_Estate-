@@ -2,8 +2,6 @@ from django.shortcuts import render, get_object_or_404
 from .models import Property, Purpose, City,newProject, PropertyImage
 from .forms import PropertySearchForm
 
-
-
 def home(request):
     form = PropertySearchForm(request.GET or None)
     results = None
@@ -65,17 +63,27 @@ def city_detail(request, city_id):
 
 def property_detail(request, pk):
     property_obj = get_object_or_404(Property, pk=pk)
+
+    # Find related properties: Same city + same purpose, excluding the current one
+    related_properties = Property.objects.filter(
+        city=property_obj.city,
+        purpose=property_obj.purpose
+    ).exclude(pk=property_obj.pk)[:3]  # Limit to 3 suggestions
+
     return render(request, 'property_detail.html', {
-        'property': property_obj
+        'property': property_obj,
+        'related_properties': related_properties
     })
-    
+
 def buy_properties(request):
     try:
         sell_purpose = Purpose.objects.get(name__iexact="Sell")
         properties = Property.objects.filter(purpose=sell_purpose)
+        p = Property.objects.first()
     except Purpose.DoesNotExist:
         properties = Property.objects.none()
 
+        p.images.all()
     return render(request, 'buy.html', {'properties': properties})
 
 
@@ -92,7 +100,9 @@ def lease_properties(request):
     try:
         lease_purpose = Purpose.objects.get(name__iexact="Lease")
         properties = Property.objects.filter(purpose=lease_purpose)
+        p = Property.objects.first()
     except Purpose.DoesNotExist:
         properties = Property.objects.none()
+        p.images.all()
 
     return render(request, 'lease.html', {'properties': properties})

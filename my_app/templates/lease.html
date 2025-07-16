@@ -6,10 +6,10 @@
     {% for property in properties %}
     <div class="col-md-4 mb-4">
       <div class="card">
-        {% if property.image %}
-        <img src="{{ property.image.url }}" class="card-img-top" style="height: 250px; object-fit: cover;">
+        {% if property.images.all %}
+          <img src="{{ property.images.first.image.url }}" class="card-img-top" style="height: 250px; object-fit: cover;" alt="Lease Property Image">
         {% else %}
-        <img src="https://via.placeholder.com/400x250?text=No+Image" class="card-img-top">
+          <img src="https://via.placeholder.com/400x250?text=No+Image" class="card-img-top" alt="No image available">
         {% endif %}
         <div class="card-body">
           <h5>{{ property.title }}</h5>
@@ -19,7 +19,7 @@
       </div>
     </div>
     {% empty %}
-    <p>No lease properties available.</p>
+    <p class="text-muted">No lease properties available at the moment.</p>
     {% endfor %}
   </div>
 </div>

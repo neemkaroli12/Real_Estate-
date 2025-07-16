@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 class Purpose(models.Model):
     name = models.CharField(max_length=50)
     def __str__(self): return self.name
@@ -26,6 +27,7 @@ class Property(models.Model):
     price = models.PositiveIntegerField()
     description = models.TextField(max_length=1000)
     posted_on = models.DateTimeField(auto_now_add=True)
+    posted_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
 
     def __str__(self): return f"{self.title} - {self.city.name}"
 
