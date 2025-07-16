@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Purpose,PropertyType,City,Location,newProject,Property, PropertyImage
+from .models import Purpose,PropertyType,City,Location,newProject,Property, PropertyImage,  LeadRequest
 
 # Register your models here.
 # admin.site.register(PropertySearch)
@@ -13,5 +13,12 @@ class PropertyAdmin(admin.ModelAdmin):
     list_display = ['title', 'city', 'posted_by']
 
 admin.site.register(Property, PropertyAdmin)
+
+
+
+@admin.register(LeadRequest)
+class LeadAdmin(admin.ModelAdmin):
+    list_display = ('property', 'name', 'whatsapp', 'is_verified', 'created_at')
+    list_filter = ('is_verified',)
 
 
