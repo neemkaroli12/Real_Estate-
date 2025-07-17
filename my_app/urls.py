@@ -14,8 +14,14 @@ urlpatterns = [
     path('buy/', views.buy_properties, name='buy_properties'),
     path('rent/', views.rent_properties, name="rent_properties"),
     path('lease/', views.lease_properties, name="lease_properties"),
-
+    path('post-property/', views.post_property, name='post_property'),
+    path('signup/', views.signup, name='signup'),
+    path('user-login/', views.user_login, name='user-login'),
+    path('user-logout/', views.user_logout, name='user-logout'),
 ] 
+
+
+
 
 
 

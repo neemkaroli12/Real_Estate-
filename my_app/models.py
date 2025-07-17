@@ -39,7 +39,6 @@ class Property(models.Model):
     location = models.ForeignKey(Location, on_delete=models.SET_NULL, null=True)
     price = models.PositiveIntegerField()
     description = models.TextField(max_length=1000)
-    # Optional fields (add these only if you're using them in template)
     area = models.PositiveIntegerField(null=True, blank=True)
     length = models.PositiveIntegerField(null=True, blank=True)
     breadth = models.PositiveIntegerField(null=True, blank=True)
@@ -50,12 +49,12 @@ class Property(models.Model):
     ownership = models.CharField(max_length=100, null=True, blank=True)
     transaction_type = models.CharField(max_length=100, null=True, blank=True)
     overlooking = models.CharField(max_length=100, null=True, blank=True)
-
     agent_phone = models.CharField(max_length=15, null=True, blank=True)  # Contact no.
     brochure = models.FileField(upload_to='property/brochures/', null=True, blank=True)
-
     posted_on = models.DateTimeField(auto_now_add=True)
     posted_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+    # for admin approval
+    is_approved = models.BooleanField(default=False)
 
     def __str__(self):
         return f"{self.title} - {self.city.name}"
@@ -66,7 +65,7 @@ class PropertyImage(models.Model):
     image = models.ImageField(upload_to='property_images/')
 
     def __str__(self):
-        return f"Image for {self.property.title}"
+        return f"Image for {self.property.location.city}"
 
 
 class LeadRequest(models.Model):

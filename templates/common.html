@@ -31,7 +31,7 @@
               <a class="nav-link" href="{% url 'buy_properties' %}">Buy</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Sell</a>
+              <a class="nav-link" href="{% url 'post_property' %}">Sell</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{% url 'rent_properties' %}">Rent</a>
@@ -52,8 +52,23 @@
                 {% empty %}
                   <li class="dropdown-item">No cities found</li>
                 {% endfor %}
+
+                 
               </ul>
             </li>
+            {% if user.is_authenticated %}
+    
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'user-logout' %}">Logout</a>
+    </li>
+  {% else %}
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'user-login' %}">Login</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'signup' %}">Signup</a>
+    </li>
+  {% endif %}
           </ul>
         </div>
       </div>
