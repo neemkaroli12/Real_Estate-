@@ -1,4 +1,6 @@
 from django import forms
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 from .models import Purpose, PropertyType, City, LeadRequest, Property, PropertyImage
 
 class PropertySearchForm(forms.Form):
@@ -40,7 +42,7 @@ class PropertyForm(forms.ModelForm):
     class Meta:
         model = Property
         fields = [
-            'title', 'description', 'price', 'purpose', 'property_type',
+            'description', 'price', 'purpose', 'property_type',
             'city', 'location', 'area', 'length', 'breadth', 'open_sides',
             'facing', 'construction_done', 'boundary_wall', 'ownership',
             'transaction_type', 'overlooking', 'agent_phone', 'brochure'
@@ -54,12 +56,7 @@ class PropertyImageForm(forms.ModelForm):
         fields = ['image']
         
         
-        
-# myapp/forms.py
-from django import forms
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.models import User
-
+    
 class CustomUserCreationForm(UserCreationForm):
     email = forms.EmailField(required=True)
 

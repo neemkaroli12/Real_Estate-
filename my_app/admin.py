@@ -18,7 +18,7 @@ class LeadAdmin(admin.ModelAdmin):
     
 @admin.register(Property)
 class PropertyAdmin(admin.ModelAdmin):
-    list_display = ['title', 'posted_by', 'is_approved']
+    list_display = [ 'posted_by', 'is_approved']
     list_filter = ['is_approved']
     actions = ['approve_properties']
 

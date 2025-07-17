@@ -32,7 +32,6 @@ class Location(models.Model):
 
 
 class Property(models.Model):
-    title = models.CharField(max_length=200)
     purpose = models.ForeignKey(Purpose, on_delete=models.SET_NULL, null=True)
     property_type = models.ForeignKey(PropertyType, on_delete=models.SET_NULL, null=True)
     city = models.ForeignKey(City, on_delete=models.SET_NULL, null=True)
@@ -57,7 +56,7 @@ class Property(models.Model):
     is_approved = models.BooleanField(default=False)
 
     def __str__(self):
-        return f"{self.title} - {self.city.name}"
+        return f"{self.posted_by} - {self.city.name}"
 
 
 class PropertyImage(models.Model):

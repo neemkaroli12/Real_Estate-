@@ -28,7 +28,7 @@ body {
 
 /* Nav links */
 .nav-link {
-  font-size: 10px !important ;
+
   font-weight: 600;
   color: #000000;  /* Visible on white and light blue */
   transition: color 0.3s ease;
