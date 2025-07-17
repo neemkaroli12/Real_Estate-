@@ -4,7 +4,7 @@ from .forms import PropertySearchForm, LeadRequestForm
 from django.conf import settings
 import requests
 import random
-from .utils import send_otp
+from .utils import send_otp, generate_otp
 
 
 # Home page with search and project list
