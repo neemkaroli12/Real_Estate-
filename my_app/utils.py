@@ -13,7 +13,7 @@ def send_otp(phone_number, otp):
         'sender_id': 'FSTSMS',
         'message': f'Your OTP is {otp}',
         'language': 'english',
-        'route': 'v3',
+        'route': 'otp',
         'numbers': phone_number,
     }
     headers = {
