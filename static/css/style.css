@@ -2,10 +2,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Libertinus+Mono&display=swap');
 
 body {
-  font-family: Georgia, 'Times New Roman', Times, serif !important;
+   font-family: 'Merriweather', 'Georgia', serif !important;
   margin: 0;
   padding: 0;
 }
+
 
 /*        NAVBAR STYLES     */
 /* Navbar background with smooth gradient */
@@ -28,10 +29,10 @@ body {
 
 /* Nav links */
 .nav-link {
-
   font-weight: 600;
   color: #000000;  /* Visible on white and light blue */
   transition: color 0.3s ease;
+  font-size: 1.8rem !important;
 }
 
 .navbar {
