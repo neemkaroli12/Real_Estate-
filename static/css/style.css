@@ -34,12 +34,6 @@ body {
   transition: color 0.3s ease;
 }
 
-/* On hover: make text white for blue background */
-.nav-link:hover {
-  color: #ffffff;
-  text-decoration: underline;
-}
-
 .navbar {
   background: linear-gradient(to right, white, #2063c9);
   padding: 0;
@@ -51,19 +45,15 @@ body {
   width: auto;
 }
 
-.navbar-nav {
-  font-size: 1.2rem;
-  gap: 30px;
-}
-
 .nav-link {
-  font-size: 1.5rem !important;
+  font-size: 1.2rem !important;
   font-weight: bold !important;
   color: black !important;
 }
 
 .nav-link:hover {
-  color: white !important;
+  color: rgb(12, 33, 156)!important;
+   text-decoration: underline;
 }
 /*        HERO SECTION      */
 .hero {

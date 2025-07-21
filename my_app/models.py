@@ -1,28 +1,28 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-
+# Purpose (e.g., Sell, Rent)
 class Purpose(models.Model):
     name = models.CharField(max_length=50)
 
     def __str__(self):
         return self.name
 
-
+# Property Type (e.g., Apartment, Villa, Commercial)
 class PropertyType(models.Model):
     name = models.CharField(max_length=50)
 
     def __str__(self):
         return self.name
 
-
+# City
 class City(models.Model):
     name = models.CharField(max_length=50)
 
     def __str__(self):
         return self.name
 
-
+# Locality or Neighborhood
 class Location(models.Model):
     name = models.CharField(max_length=100)
     city = models.ForeignKey(City, on_delete=models.CASCADE, related_name='locations')
@@ -30,43 +30,38 @@ class Location(models.Model):
     def __str__(self):
         return f"{self.name} ({self.city.name})"
 
-
+# Property Listing
 class Property(models.Model):
     purpose = models.ForeignKey(Purpose, on_delete=models.SET_NULL, null=True)
     property_type = models.ForeignKey(PropertyType, on_delete=models.SET_NULL, null=True)
     city = models.ForeignKey(City, on_delete=models.SET_NULL, null=True)
     location = models.ForeignKey(Location, on_delete=models.SET_NULL, null=True)
     price = models.PositiveIntegerField()
+    area = models.PositiveIntegerField(null=True, blank=True)  # in sq.ft
     description = models.TextField(max_length=1000)
-    area = models.PositiveIntegerField(null=True, blank=True)
-    length = models.PositiveIntegerField(null=True, blank=True)
-    breadth = models.PositiveIntegerField(null=True, blank=True)
-    open_sides = models.IntegerField(null=True, blank=True)
     facing = models.CharField(max_length=50, null=True, blank=True)
-    construction_done = models.CharField(max_length=100, null=True, blank=True)
-    boundary_wall = models.CharField(max_length=100, null=True, blank=True)
     ownership = models.CharField(max_length=100, null=True, blank=True)
     transaction_type = models.CharField(max_length=100, null=True, blank=True)
-    overlooking = models.CharField(max_length=100, null=True, blank=True)
-    agent_phone = models.CharField(max_length=15, null=True, blank=True)  # Contact no.
+    agent_phone = models.CharField(max_length=15, null=True, blank=True)
     brochure = models.FileField(upload_to='property/brochures/', null=True, blank=True)
     posted_on = models.DateTimeField(auto_now_add=True)
     posted_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
-    # for admin approval
     is_approved = models.BooleanField(default=False)
 
     def __str__(self):
-        return f"{self.posted_by} - {self.city.name}"
+        return f"{self.property_type} in {self.location} by {self.posted_by}"
 
-
+# Multiple images per property
 class PropertyImage(models.Model):
     property = models.ForeignKey(Property, related_name='images', on_delete=models.CASCADE)
     image = models.ImageField(upload_to='property_images/')
-
     def __str__(self):
-        return f"Image for {self.property.location.city}"
+        return f"Image for {self.property.location.name}, {self.property.city.name} (ID: {self.property.id})"
 
 
+
+
+# Inquiries / Lead Requests
 class LeadRequest(models.Model):
     property = models.ForeignKey(Property, on_delete=models.CASCADE, related_name='leads')
     name = models.CharField(max_length=100)
@@ -74,18 +69,40 @@ class LeadRequest(models.Model):
     whatsapp = models.CharField(max_length=15)
     is_verified = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
-    otp = models.CharField(max_length=6, blank=True, null=True)
 
     def __str__(self):
-        return f"Lead for {self.property.title} by {self.name}"
+        return f"Lead by {self.name} for {self.property.property_type} at {self.property.location}"
 
-
+# Projects section
 class newProject(models.Model):
     title = models.CharField(max_length=200, null=True, blank=True)
-    image = models.ImageField(upload_to="newProject/images")
-    summary = models.TextField(max_length=200, null=True, blank=True)
-    pdf = models.FileField(upload_to="newProject/pdfs", null=True, blank=True)
+    image = models.ImageField(upload_to="new_projects/images", null=True, blank=True)
+    summary = models.TextField(max_length=500, null=True, blank=True)
+    brochure = models.FileField(upload_to="new_projects/pdfs", null=True, blank=True)
 
     def __str__(self):
         return self.title or "Unnamed Project"
 
+# Lease listing
+
+class Lease(models.Model):
+    property = models.ForeignKey(Property, on_delete=models.SET_NULL, null=True, blank=True, related_name="leases")
+    city = models.ForeignKey(City, on_delete=models.CASCADE)
+    location = models.ForeignKey(Location, on_delete=models.CASCADE)
+    area = models.CharField(max_length=100, null=True)
+    price = models.DecimalField(max_digits=10, decimal_places=2, null=True)
+    contact_name = models.CharField(max_length=100, null=True)
+    contact_number = models.CharField(max_length=15, null=True)
+    description = models.TextField(null=True, blank=True)  
+    is_approved = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"Lease in {self.location.name}, {self.city.name}"
+
+
+class LeaseImage(models.Model):
+    lease = models.ForeignKey(Lease, on_delete=models.CASCADE, related_name='images')
+    image = models.ImageField(upload_to='leases/')
+
+    def __str__(self):
+        return f"Image for Lease #{self.lease.id}"

@@ -1,5 +1,25 @@
 {% extends 'common.html' %}
 {% block content %}
+<!-- SweetAlert2 CDN -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<!-- JS Alert block -->
+<script>
+  {% if messages %}
+    {% for message in messages %}
+      Swal.fire({
+        toast: true,
+        position: 'top-end',
+        icon: '{{ message.tags }}',  // success, error, info
+        title: '{{ message }}',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true
+      });
+    {% endfor %}
+  {% endif %}
+</script>
+
   <div class="container py-5">
     <h2 class="mb-4">Buy Properties</h2>
     <div class="row">

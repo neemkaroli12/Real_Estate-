@@ -2,15 +2,29 @@
 {% load static %}
 {% block content %}
 
-<div class="container mt-5" style="max-width: 400px;">
-  <h3 class="text-center mb-4">Login to Your Account</h3>
-  
+<!-- SweetAlert2 CDN -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<!-- JS Alert block -->
+<script>
   {% if messages %}
     {% for message in messages %}
-      <div class="alert alert-danger">{{ message }}</div>
+      Swal.fire({
+        toast: true,
+        position: 'top-end',
+        icon: '{{ message.tags }}',  // success, error, info
+        title: '{{ message }}',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true
+      });
     {% endfor %}
   {% endif %}
-  
+</script>
+
+<div class="container mt-5" style="max-width: 400px;">
+  <h3 class="text-center mb-4">Login to Your Account</h3>
+
   <form method="POST" action="">
     {% csrf_token %}
     <div class="mb-3">

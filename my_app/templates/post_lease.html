@@ -1,0 +1,80 @@
+<!-- templates/post_lease.html -->
+{% extends 'common.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block content %}
+<div class="container mt-5">
+  <h2 class="mb-4 text-center">Post Lease Property</h2>
+
+  <form method="POST" enctype="multipart/form-data" class="p-4 bg-light border rounded">
+    {% csrf_token %}
+
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <label for="id_city">City</label>
+        {{ form.city|add_class:"form-select" }}
+      </div>
+      <div class="col-md-6">
+        <label for="id_location">Location</label>
+        {{ form.location|add_class:"form-select" }}
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <label>Area (sq ft)</label>
+        {{ form.area|add_class:"form-control" }}
+      </div>
+      <div class="col-md-6">
+        <label>Price (₹)</label>
+        {{ form.price|add_class:"form-control" }}
+      </div>
+      
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-6">
+        <label>Owner Name</label>
+        {{ form.contact_name|add_class:"form-control" }}
+      </div>
+      <div class="col-md-6">
+        <label>Contact Number</label>
+        {{ form.contact_number|add_class:"form-control" }}
+      </div>
+    </div>
+
+  
+  <label>Upload Images:</label>
+  <input type="file" name="images" multiple accept="image/*"><br><br>
+
+
+    <div class="mb-3">
+      <label>Description</label>
+      {{ form.description|add_class:"form-control" }}
+    </div>
+
+    <div class="text-center">
+      <button type="submit" class="btn btn-primary">Submit Lease</button>
+    </div>
+  </form>
+</div>
+
+<script>
+  document.getElementById('id_city').addEventListener('change', function () {
+    let cityId = this.value;
+    fetch(`/ajax/load-locations/?city_id=${cityId}`)
+      .then(response => response.json())
+      .then(data => {
+        const locationSelect = document.getElementById('id_location');
+        locationSelect.innerHTML = '<option value="">Select Location</option>';
+        data.forEach(function(loc) {
+          const option = document.createElement('option');
+          option.value = loc.id;
+          option.text = loc.name;
+          locationSelect.add(option);
+        });
+      });
+  });
+</script>
+{% endblock %}

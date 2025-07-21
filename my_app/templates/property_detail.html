@@ -1,147 +1,173 @@
 {% extends 'common.html' %}
 {% block content %}
-<style>
-  .modal-content {
-    border-radius: 12px;
-  }
-  .modal-header h5 {
-    font-size: 1rem;
-    line-height: 1.4;
-  }
-</style>
+  <!-- GLightbox CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+  <style>
+    .modal-content {
+      border-radius: 12px;
+    }
+    .modal-header h5 {
+      font-size: 1rem;
+      line-height: 1.4;
+    }
+    .gslide-image img {
+      max-width: 600px !important;
+      max-height: 400px !important;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      margin: auto;
+    }
+  </style>
 
-<!-- MAIN CONTENT -->
-<div class="container mt-5">
-  <div class="row g-4">
-    <!-- LEFT: Property Info -->
-    <div class="col-lg-8">
-      <div class="bg-white p-4 shadow rounded border">
-        <h3 class="text-danger fw-bold">
-          ₹{{ property.price }}
-        </h3>
-        <p class="mb-2 text-secondary">
-          {{ property.area }} Sq-ft Residential Plot/Land For Sale in <strong>{{ property.location.name }}</strong>
-        </p>
-
-        <!-- Image Carousel -->
-        <div class="row">
-          <div class="col-md-5 d-flex justify-content-center mt-3 mb-3">
-            {% if property.images.all %}
-              <div id="carouselImages" class="carousel slide" data-bs-ride="carousel" style="width: 100%; max-width: 500px;">
-                <div class="carousel-inner">
-                  {% for img in property.images.all %}
-                    <div class="carousel-item {% if forloop.first %}active{% endif %}">
-                      <img src="{{ img.image.url }}" class="d-block w-100 rounded" alt="Property Image" style="height: 200px; object-fit: cover;" />
-                    </div>
-                  {% endfor %}
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselImages" data-bs-slide="prev">
-                  <span class="carousel-control-prev-icon"></span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselImages" data-bs-slide="next">
-                  <span class="carousel-control-next-icon"></span>
-                </button>
-              </div>
-            {% else %}
-              <img src="https://via.placeholder.com/600x400?text=No+Image" class="img-fluid rounded" alt="No image available" />
-            {% endif %}
+  <!-- MAIN CONTENT -->
+  <div class="container mt-5">
+    <div class="row g-4">
+      <!-- LEFT: Property Info -->
+      <div class="col-lg-8">
+        <div class="bg-white p-4 shadow rounded border">
+          <div class="d-flex">
+            <h3 class="text-success fw-bold"> Please Contact to Owner for Price </h3>
+            <a href="#" class="btn btn-outline-success ms-5" data-bs-toggle="modal" data-bs-target="#whatsappModal">Price</a>
           </div>
+          <p class="mb-2 text-secondary">
+            {{ property.area }} Sq-ft Residential Plot/Land For Sale in <strong>{{ property.location.name }}</strong>
+          </p>
 
-          <!-- Property Details -->
-          <div class="col-md-7">
-            <div class="row">
-              <div class="col-6 mb-2"><strong>Plot Area:</strong><br />{{ property.area }} sqft</div>
-              <div class="col-6 mb-2"><strong>Dimensions:</strong><br />{{ property.length }} x {{ property.breadth }}</div>
-              <div class="col-6 mb-2"><strong>Open Sides:</strong><br />{{ property.open_sides }}</div>
-              <div class="col-6 mb-2"><strong>Facing:</strong><br />{{ property.facing }}</div>
-              <div class="col-6 mb-2"><strong>Construction Done:</strong><br />{{ property.construction_done }}</div>
-              <div class="col-6 mb-2"><strong>Boundary Wall:</strong><br />{{ property.boundary_wall }}</div>
-              <div class="col-6 mb-2"><strong>Ownership:</strong><br />{{ property.ownership }}</div>
-              <div class="col-6 mb-2"><strong>Transaction Type:</strong><br />{{ property.transaction_type }}</div>
-              <div class="col-12"><strong>Overlooking:</strong><br />{{ property.overlooking }}</div>
+          <!-- Image Carousel with Zoom -->
+          <div class="row">
+            <div class="col-md-5 d-flex justify-content-center mt-3 mb-3">
+              {% if property.images.all %}
+                <div id="carouselImages" class="carousel slide" data-bs-ride="carousel" style="width: 100%; max-width: 500px;">
+                  <div class="carousel-inner">
+                    {% for img in property.images.all %}
+                      <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                        <a href="{{ img.image.url }}" class="glightbox" data-gallery="property">
+                          <img src="{{ img.image.url }}" class="d-block w-100 rounded" alt="Property Image" style="height: 200px; width: 100px;" />
+                        </a>
+                      </div>
+                    {% endfor %}
+                  </div>
+                  <button class="carousel-control-prev" type="button" data-bs-target="#carouselImages" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span></button>
+                  <button class="carousel-control-next" type="button" data-bs-target="#carouselImages" data-bs-slide="next"><span class="carousel-control-next-icon"></span></button>
+                </div>
+              {% else %}
+                <img src="https://via.placeholder.com/600x400?text=No+Image" class="img-fluid rounded" alt="No image available" />
+              {% endif %}
+            </div>
+
+            <!-- Property Details -->
+            <div class="col-md-7">
+              <div class="row">
+                <div class="col-6 mb-2">
+                  <strong>City:</strong><br />{{ property.city }}
+                </div>
+                <div class="col-6 mb-2">
+                  <strong>Location:</strong><br />{{ property.location }}
+                </div>
+                <div class="col-6 mb-2">
+                  <strong>Plot Area:</strong><br />{{ property.area }} sqft
+                </div>
+                <div class="col-6 mb-2">
+                  <strong>Facing:</strong><br />{{ property.facing }}
+                </div>
+                <div class="col-6 mb-2">
+                  <strong>Ownership:</strong><br />{{ property.ownership }}
+                </div>
+                <div class="col-6 mb-2">
+                  <strong>Transaction Type:</strong><br />{{ property.transaction_type }}
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
-        <!-- Contact Buttons -->
-        <div class="d-flex gap-3 mt-4">
-          <a href="tel:+91{{ property.agent_phone }}" class="btn btn-primary">Contact Owner</a>
-          <a href="#" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#whatsappModal">Get Phone No.</a>
+        <!-- 📝 Property Description Section -->
+        <div class="mt-4 p-4 bg-white shadow rounded border">
+          <h5 class="mb-3 text-success">Property Description</h5>
+          <p class="text-dark">{{ property.description }}</p>
+        </div>
+      </div>
+
+      <!-- RIGHT: Contact Box -->
+      <div class="col-lg-4">
+        <div class="p-4 bg-white shadow border rounded">
+          <h5 class="mb-2">Contact Agent</h5>
+          <p><strong>Landmark Real Estate</strong></p>
+          <p class="text-muted">+91-96XXXXXXXX</p>
+          <a href="#" class="btn btn-outline-primary px-4 mb-2" data-bs-toggle="modal" data-bs-target="#whatsappModal">Get Phone No.</a>
+          <a href="https://wa.me/91{{ property.agent_phone }}?text=Hi, I'm interested in the property: {{ property.title }}" class="btn btn-success w-100" target="_blank">WhatsApp</a>
+        </div>
+
+        <!-- PDF Brochure -->
+        <div class="row mt-3">
+          <div class="col-lg-12">
+            <div class="p-4 bg-white shadow border rounded">
+              <h6 class="mb-2 text-dark">📄 Download Brochure (PDF)</h6>
+              {% if property.brochure %}
+                <iframe src="{{ property.brochure.url }}" width="100%" height="0px" style="border: 1px solid #ccc; border-radius: 6px;"></iframe>
+                <a href="{{ property.brochure.url }}" download class="btn btn-outline-primary mt-3" data-bs-toggle="modal" data-bs-target="#whatsappModal">
+                  Download Brochure
+                </a>
+              {% else %}
+                <p class="text-muted">No brochure uploaded.</p>
+              {% endif %}
+            </div>
+          </div>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- RIGHT: Contact Box -->
-    <div class="col-lg-4">
-      <div class="p-4 bg-white shadow border rounded">
-        <h5 class="mb-2">Contact Agent</h5>
-        <p><strong>Landmark Real Estate</strong></p>
-        <p class="text-muted">+91-96XXXXXXXX</p>
-        <a href="#" class="btn btn-outline-primary px-4 mb-2" data-bs-toggle="modal" data-bs-target="#whatsappModal">Get Phone No.</a>
-        <a href="https://wa.me/91{{ property.agent_phone }}?text=Hi, I'm interested in the property: {{ property.title }}" class="btn btn-success w-100" target="_blank">WhatsApp</a>
+  <!-- MODAL FOR LEAD REQUEST -->
+  <div class="modal fade" id="whatsappModal" tabindex="-1" aria-labelledby="whatsappModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-success" id="whatsappModalLabel">💬 Enter your details to get Contact Details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <!-- Django Form POST -->
+        <form method="POST">
+          {% csrf_token %}
+          {{ lead_form.as_p }}
+          <button type="submit" name="lead_form_submit" class="btn btn-primary">Request Contact</button>
+        </form>
       </div>
+    </div>
+  </div>
 
-
-
-      <!-- PDF Brochure -->
-      <div class="row mt-3">
-        <div class="col-lg-12 text-danger">
-          <div class="p-4 bg-white shadow border rounded">
-            <h6 class="mb-2 text-dark">Download Brochure (PDF)</h6>
-            {% if property.brochure %}
-              <embed src="{{ property.brochure.url }}" type="application/pdf" width="100%" height="50px" />
+  <!-- RELATED PROPERTIES -->
+  <div class="container mt-5">
+    <h4 class="text-success mb-4">Related Properties in {{ property.city.name }}</h4>
+    <div class="row">
+      {% for prop in related_properties %}
+        <div class="col-md-4 mb-4">
+          <div class="card h-100">
+            {% if prop.images.all %}
+              <img src="{{ prop.images.first.image.url }}" class="card-img-top" style="height: 200px; object-fit: cover;" />
             {% else %}
-              <p class="text-muted">No brochure uploaded.</p>
+              <img src="https://via.placeholder.com/400x250?text=No+Image" class="card-img-top" />
             {% endif %}
+            <div class="card-body">
+              <h5>{{ prop.title }}</h5>
+              <p>₹{{ prop.price }}</p>
+              <p><strong>Location:</strong> {{ prop.location.name }}</p>
+              <a href="{% url 'property_detail' prop.pk %}" class="btn btn-outline-primary btn-sm">View Details</a>
+            </div>
           </div>
         </div>
-      </div>
+      {% empty %}
+        <p class="text-muted">No related properties found.</p>
+      {% endfor %}
     </div>
   </div>
-</div>
 
-<!-- MODAL FOR LEAD REQUEST -->
-<div class="modal fade" id="whatsappModal" tabindex="-1" aria-labelledby="whatsappModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title text-success" id="whatsappModalLabel">💬 Enter your details to get Contact Details</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-
-      <!-- Django Form POST -->
-      <form method="POST">
-  {% csrf_token %}
-  {{ lead_form.as_p }}
-  <button type="submit" name="lead_form_submit" class="btn btn-primary">Request Contact</button>
-</form>
-    </div>
-  </div>
-</div>
-
-<!-- RELATED PROPERTIES -->
-<div class="container mt-5">
-  <h4 class="text-success mb-4">Related Properties in {{ property.city.name }}</h4>
-  <div class="row">
-    {% for prop in related_properties %}
-      <div class="col-md-4 mb-4">
-        <div class="card h-100">
-          {% if prop.images.all %}
-            <img src="{{ prop.images.first.image.url }}" class="card-img-top" style="height: 200px; object-fit: cover;" />
-          {% else %}
-            <img src="https://via.placeholder.com/400x250?text=No+Image" class="card-img-top" />
-          {% endif %}
-          <div class="card-body">
-            <h5>{{ prop.title }}</h5>
-            <p>₹{{ prop.price }}</p>
-            <p><strong>Location:</strong> {{ prop.location.name }}</p>
-            <a href="{% url 'property_detail' prop.pk %}" class="btn btn-outline-primary btn-sm">View Details</a>
-          </div>
-        </div>
-      </div>
-    {% empty %}
-      <p class="text-muted">No related properties found.</p>
-    {% endfor %}
-  </div>
-</div>
+  <!-- GLightbox JS -->
+  <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+  <script>
+    const lightbox = GLightbox({
+      selector: '.glightbox'
+    });
+  </script>
 {% endblock %}
