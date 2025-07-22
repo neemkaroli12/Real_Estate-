@@ -225,16 +225,6 @@
         <input type="number" name="area" value="{{ request.POST.area }}">
       </div>
 
-      <div class="form-group">
-        <label>Bedrooms</label>
-        <select name="bedrooms">
-          <option value="">Select</option>
-          {% for i in bedroom_choices %}
-            <option value="{{ i }}" {% if request.POST.bedrooms == i|stringformat:"s" %}selected{% endif %}>{{ i }}</option>
-          {% endfor %}
-        </select>
-      </div>
-    </div>
 
     <div class="form-group">
       <label>Description</label>
