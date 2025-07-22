@@ -97,7 +97,7 @@ class Lease(models.Model):
     contact_number = models.CharField(max_length=15, null=True)
     description = models.TextField(null=True, blank=True)  
     is_approved = models.BooleanField(default=False)
-    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE,null=True, blank=True)
 
     def __str__(self):
         return f"Lease in {self.location.name}, {self.city.name}"
