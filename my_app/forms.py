@@ -93,3 +93,11 @@ class LeaseForm(forms.ModelForm):
     class Meta:
         model = Lease
         fields = ['city', 'location', 'area', 'price', 'contact_name', 'contact_number', 'description']
+
+
+from .models import Sell
+
+class SellForm(forms.ModelForm):
+    class Meta:
+        model = Sell
+        fields = ['title', 'description', 'price', 'city', 'location']

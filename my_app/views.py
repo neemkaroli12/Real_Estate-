@@ -6,8 +6,8 @@ from django.conf import settings
 import requests
 import random
 from django.http import JsonResponse
-from .models import  Property, Purpose, City, newProject, PropertyImage, LeadRequest, Lease , PropertyType, Location, LeaseImage
-from .forms import PropertySearchForm, LeadRequestForm, PropertyForm, CustomUserCreationForm, LeaseForm
+from .models import  Property, Purpose, City, newProject, PropertyImage, LeadRequest, Lease , PropertyType, Location, LeaseImage, Sell
+from .forms import PropertySearchForm, LeadRequestForm, PropertyForm, CustomUserCreationForm, LeaseForm, SellForm
 from .utils import send_otp, generate_otp
 from django.http import JsonResponse
 
@@ -50,11 +50,11 @@ def home(request):
 def buy_properties(request):
     try:
         sell_purpose = Purpose.objects.get(name__iexact="Sell")
-        properties = Property.objects.filter(purpose=sell_purpose, is_approved=True).order_by('-id')
+        properties = Property.objects.filter(purpose=sell_purpose, is_approved=True).prefetch_related('images').order_by('-id')
     except Purpose.DoesNotExist:
         properties = Property.objects.none()
-    return render(request, 'buy.html', {'properties': properties})
 
+    return render(request, 'buy.html', {'properties': properties})
 
 def rent_properties(request):
     try:
@@ -280,28 +280,97 @@ def load_locations(request):
     city_id = request.GET.get('city_id')
     locations = Location.objects.filter(city_id=city_id).values('id', 'name')
     return JsonResponse(list(locations), safe=False)
+from django.shortcuts import get_object_or_404, redirect, render
+from django.http import HttpResponseForbidden
+from django.contrib.auth.decorators import login_required
+from .models import Lease, LeaseImage
+from .forms import LeaseForm
 
-
+@login_required
 def edit_lease(request, pk):
     lease = get_object_or_404(Lease, pk=pk)
+
+    
+    if request.user != lease.owner:
+        return HttpResponseForbidden("You are not allowed to edit this lease.")
+
     if request.method == 'POST':
-        form = LeaseForm(request.POST, instance=lease)
+        form = LeaseForm(request.POST, request.FILES, instance=lease)
         if form.is_valid():
             form.save()
-            return redirect('lease_properties')
+
+            images = request.FILES.getlist('images')
+            for img in images:
+                LeaseImage.objects.create(lease=lease, image=img)
+
+            return redirect('lease_properties')  # your success page
     else:
         form = LeaseForm(instance=lease)
+
     return render(request, 'edit_lease.html', {'form': form, 'lease': lease})
 
-
+@login_required
 def delete_lease(request, pk):
     lease = get_object_or_404(Lease, pk=pk)
+
+    if request.user != lease.owner:
+        return HttpResponseForbidden("You are not allowed to delete this lease.")
+
     if request.method == 'POST':
         lease.delete()
         return redirect('lease_properties')
-    return render(request, 'delete_confirm.html', {'lease': lease})
 
+    return render(request, 'delete_confirm.html', {'lease': lease})
 # projects 
 def newprojects(request):
     projects = newProject.objects.all()  # or apply filters if needed
     return render(request, 'projects.html', {'projects': projects})
+from .models import Sell, SellImage
+from .forms import SellForm
+
+@login_required(login_url='user-login')
+def sell_property(request):
+    if request.method == 'POST':
+        form = SellForm(request.POST)
+
+        city_id = request.POST.get('city')
+        new_location_name = request.POST.get('new_location', '').strip()
+
+        # Add new location if provided
+        if new_location_name and city_id:
+            city = City.objects.filter(id=city_id).first()
+            if city:
+                location, created = Location.objects.get_or_create(
+                    name__iexact=new_location_name,
+                    defaults={'name': new_location_name, 'city': city}
+                )
+                request.POST = request.POST.copy()
+                request.POST['location'] = location.id  # Set new location ID
+
+        form = SellForm(request.POST)
+
+        if form.is_valid():
+            sell = form.save(commit=False)
+            sell.owner = request.user
+            sell.save()
+
+            images = request.FILES.getlist('images')
+            for img in images:
+                SellImage.objects.create(sell=sell, image=img)
+
+            messages.success(request, "Your property has been listed! Buyers can now view it.")
+            return redirect('buy_properties')
+        else:
+            messages.error(request, "Please correct the form errors below.")
+    else:
+        form = SellForm()
+
+    context = {
+        'form': form,
+        'purposes': Purpose.objects.all(),
+        'property_types': PropertyType.objects.all(),
+        'cities': City.objects.all(),
+        'locations': Location.objects.all(),
+        'bedroom_choices': [1, 2, 3, 4, 5],
+    }
+    return render(request, 'sell_form.html', context)

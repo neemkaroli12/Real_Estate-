@@ -1,44 +1,69 @@
+/* Font Imports */
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Libertinus+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather&display=swap');
 
+/* Base Styles */
 body {
-   font-family: 'Merriweather', 'Georgia', serif !important;
+  font-family: Georgia, 'Times New Roman', Times, serif !important;
   margin: 0;
   padding: 0;
 }
 
-
-/*        NAVBAR STYLES     */
-/* Navbar background with smooth gradient */
-.navbar {
-  background: linear-gradient(to right, white, #2063c9);
-  padding: 0.5rem 1rem;
+/* Header */
+header {
+  background-color: #f0f0f0;
+  padding: 15px 0;
+  /
 }
 
-/* Brand logo */
-.navbar-brand img {
-  max-height: 70px;
-  width: auto;
+.header-container {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
-/* Navigation items spacing */
-.navbar-nav {
-  gap: 2rem;
+.contact-info {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
   align-items: center;
 }
 
-/* Nav links */
-.nav-link {
-  font-weight: 600;
-  color: #000000;  /* Visible on white and light blue */
-  transition: color 0.3s ease;
-  font-size: 1.8rem !important;
+.contact-info a {
+  text-decoration: none;
+  color: #000;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 500;
+  font-size: 1rem;
 }
 
+.social-icons {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.social-icon i {
+  font-size: 1.4em;
+  color: #333;
+  transition: color 0.3s ease;
+}
+
+.social-icon:hover i {
+  color: #007bff;
+}
+
+/* Navbar */
 .navbar {
   background: linear-gradient(to right, white, #2063c9);
-  padding: 0;
- 
+  padding: 0.5rem 1rem;
 }
 
 .navbar-brand img {
@@ -46,17 +71,24 @@ body {
   width: auto;
 }
 
+.navbar-nav {
+  gap: 2rem;
+  align-items: center;
+}
+
 .nav-link {
-  font-size: 1.2rem !important;
-  font-weight: bold !important;
+  font-size: 1.1rem;
+  font-weight: bold;
   color: black !important;
+  transition: color 0.3s ease;
 }
 
 .nav-link:hover {
-  color: rgb(12, 33, 156)!important;
-   text-decoration: underline;
+  color: rgb(249, 250, 252) !important;
+  text-decoration: underline;
 }
-/*        HERO SECTION      */
+
+/* Hero Section */
 .hero {
   background-image: url("https://assets.architecturaldesigns.com/plan_assets/349708664/original/12126JL_Render01_1_1707401229.png");
   background-position: center;
@@ -83,9 +115,11 @@ body {
 .hero-heading {
   font-size: 2.8rem;
   font-weight: bold;
+  color: white;
   text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
 }
 
+/* Glass Form */
 .glassmorphic {
   width: 100%;
   max-width: 450px;
@@ -101,14 +135,7 @@ body {
   font-weight: 500;
 }
 
-.form-select {
-  width: 100%;  /* mobile friendly */
-  line-height: 2 !important;
-  border-radius: 10px;
-  padding: 8px 12px;
-  font-size: 1rem;
-}
-
+/* Forms */
 form {
   background-color: rgba(255, 255, 255, 0.85);
   padding: 30px;
@@ -120,20 +147,19 @@ form {
 
 form label {
   font-weight: bold;
-  margin-bottom: 6px;
   display: block;
+  margin-bottom: 6px;
   color: #333;
-  font-size: 16px;
 }
 
-form select {
+form select,
+.form-select {
   width: 100%;
   padding: 12px;
   font-size: 15px;
   border: 1px solid #ccc;
   border-radius: 8px;
   background-color: #fff;
-  color: #333;
   margin-bottom: 18px;
   box-sizing: border-box;
 }
@@ -154,91 +180,58 @@ form button:hover {
   background-color: #007f5f;
 }
 
-/* Tablets and small desktops */
-@media (max-width: 768px) {
-  .hero-heading {
-    font-size: 2rem;
-    text-align: center;
-  }
-
-  .hero {
-    text-align: center;
-    padding: 30px 0;
-  }
+/* Footer */
+.footer {
+  background: white;
+  color: black;
+  padding: 40px 20px 20px;
+  font-size: 14px;
   
-  .form-select {
-    width: 100% !important;
-  }
 }
 
-.footer {
-    background: white;
-    color: black;
-    padding: 40px 20px 20px;
-    font-size: 14px;
-    font-family: "Open Sans", sans-serif;
-  }
+.footer h5 {
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
 
-  .footer a {
-    text-decoration: none;
-    color: black;
-  }
+.footer a {
+  text-decoration: none;
+  color: black;
+}
 
-  .footer a:hover {
-    color: #2063c9;
-  }
+.footer a:hover {
+  color: #2063c9;
+}
 
-  .footer h4,
-  .footer h5 {
-    margin-bottom: 15px;
-    font-weight: 600;
-  }
+.footer-contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 10px;
+  font-size: 15px;
+}
 
-  .footer ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
+.footer-contact-item i {
+  margin-top: 2px;
+  color: #555;
+}
 
-  .footer ul li {
-    margin-bottom: 8px;
-  }
+.footer-contact-item p {
+  margin: 0;
+  font-size: 1rem;
+}
 
-  .social-icons a {
-    margin-right: 10px;
-    display: inline-block;
-  }
+.footer-bottom {
+  text-align: center;
+  padding-top: 20px;
+  font-size: 13px;
+  color: #777;
+  border-top: 1px solid #ccc;
+  margin-top: 20px;
+}
 
-  .social-icons img {
-    width: 24px;
-    height: 24px;
-  }
-
-  .social-icons svg {
-    width: 24px;
-    height: 24px;
-  }
-
-  .footer p {
-    margin-bottom: 10px;
-  }
-
-  .footer .footer-address {
-    color: black;
-    line-height: 1.6;
-  }
-
-  .footer-bottom {
-    text-align: center;
-    padding-top: 20px;
-    font-size: 13px;
-    color: #777;
-    border-top: 1px solid #ccc;
-    margin-top: 20px;
-  }
-  
-  /*        SLIDER SECTION    */
-  .slider-container {
+/* Slider */
+.slider-container {
   position: relative;
   max-width: 100%;
   margin: auto;
@@ -263,7 +256,6 @@ form button:hover {
   border-radius: 8px;
   overflow: hidden;
   text-align: center;
-  
 }
 
 .slide img {
@@ -282,7 +274,7 @@ form button:hover {
   text-decoration: none;
 }
 
-/* Buttons */
+/* Slider Buttons */
 .slider-btn {
   position: absolute;
   top: 50%;
@@ -301,6 +293,7 @@ form button:hover {
 .prev-btn {
   left: 10px;
 }
+
 .next-btn {
   right: 10px;
 }
@@ -311,28 +304,100 @@ form button:hover {
 
 /* Responsive */
 @media (max-width: 768px) {
+  .header-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .contact-info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+
+  .social-icons {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .hero-heading {
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  .hero {
+    text-align: center;
+    padding: 30px 0;
+    height: auto;
+  }
+
+  form {
+    padding: 20px;
+  }
+
   .slide {
     width: 140px;
   }
 }
-
+/* Better responsive fixes for 232x554 and smaller */
 @media (max-width: 576px) {
-  .slider-wrapper {
-    padding: 0 20px;
+  header {
+    text-align: center;
   }
 
-  .slide {
-    width: 110px;
+  .header-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 10px;
   }
 
-  .slide img {
-    height: 80px;
+  .contact-info {
+    flex-direction: column;
+    align-items: center;
+    word-break: break-word;
   }
 
-  .slider-btn {
-    width: 28px;
-    height: 28px;
-    font-size: 14px;
+  .contact-info a {
+    font-size: 0.85rem;
+    word-wrap: break-word;
+    text-align: center;
+  }
+
+  .social-icons {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .navbar-nav {
+    gap: 0.8rem;
+  }
+
+  .navbar-brand img {
+    max-height: 70px;
+  }
+
+  /* Footer adjustments */
+  .footer {
+    text-align: center;
+    padding: 30px 10px 10px;
+  }
+
+  .footer-contact-item {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    font-size: 0.9rem;
+  }
+
+  .footer h5 {
+    font-size: 1.1rem;
+    margin-top: 20px;
+  }
+
+  .footer-bottom {
+    font-size: 0.8rem;
   }
 }
-
