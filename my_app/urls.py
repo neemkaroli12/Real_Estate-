@@ -23,7 +23,9 @@ urlpatterns = [
     path('user-login/', views.user_login, name='user-login'),
     path('user-logout/', views.user_logout, name='user-logout'),
     path('sell/', views.sell_property_view, name='sell_property'),
-    # path('get-locations/<int:city_id>/', views.get_locations, name='get_locations'),
+    path('about/', views.about, name='about'),
+    path('services/', views.service, name='services'),
+   
 ] 
 
 

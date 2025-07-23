@@ -26,7 +26,7 @@
           <a href="mailto:sales@neemkarolitechnologies.com"><i class="bi bi-envelope-fill me-2"></i> sales@uttarakhandrealtors.com</a>
         </div>
         <div class="social-icons">
-          <a href="https://www.facebook.com/profile.php?id=61577864141320" class="social-icon"><i class="bi bi-facebook"></i></a>
+          <a href="https://www.facebook.com/profile.php?id=61577587658083" class="social-icon"><i class="bi bi-facebook"></i></a>
           <a href="https://www.linkedin.com/company/neemkaroli-technologies/?viewAsMember=true" class="social-icon"><i class="bi bi-linkedin"></i></a>
           <a href="#" class="social-icon"><i class="bi bi-instagram"></i></a>
         </div>
@@ -41,14 +41,17 @@
         <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
           <ul class="navbar-nav mb-2 mb-lg-0 d-flex justify-content-center gap-3">
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="{% url 'index' %}" id="post_propertyDropdown" role="button" data-bs-toggle="dropdown">Home</a>
+              <a class="nav-link dropdown-toggle" href="#" id="post_propertyDropdown" role="button" data-bs-toggle="dropdown">Home</a>
               <ul class="dropdown-menu scrollable-dropdown" aria-labelledby="post_propertyDropdown">
-                {% comment %} <li>
-                  <a class="nav-link" href="{% url '#' %}">About Us</a>
+                <li>
+                  <a class="dropdown-item" href="{% url 'index' %}">Home</a>
                 </li>
                 <li>
-                  <a class="nav-link" href="{% url '#' %}">Services</a>
-                </li> {% endcomment %}
+                  <a class="dropdown-item" href="{% url 'about' %}">About Us</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="{% url 'services' %}">Services</a>
+                </li>
               </ul>
             </li>
             
@@ -84,10 +87,10 @@
               <a class="nav-link dropdown-toggle" href="#" id="post_propertyDropdown" role="button" data-bs-toggle="dropdown">Post Your Property</a>
               <ul class="dropdown-menu scrollable-dropdown" aria-labelledby="post_propertyDropdown">
                 <li>
-                  <a class="nav-link" href="{% url 'sell_property' %}">Sell</a>
+                  <a class="dropdown-item" href="{% url 'sell_property' %}">Sell</a>
                 </li>
                 <li>
-                  <a class="nav-link" href="{% url 'post_lease' %}">Lease</a>
+                  <a class="dropdown-item" href="{% url 'post_lease' %}">Lease</a>
                 </li>
               </ul>
             </li>

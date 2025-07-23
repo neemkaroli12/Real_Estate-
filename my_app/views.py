@@ -306,3 +306,10 @@ def sell_property_view(request):
         'locations': Location.objects.all()
     }
     return render(request, 'sell_form.html', context)
+
+# about 
+def about(request):
+    return render(request, "about.html")
+# services
+def service(request):
+    return render(request, "service.html")
