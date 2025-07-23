@@ -1,4 +1,6 @@
 {% extends 'common.html' %}
+{% load static %}
+
 {% block content %}
 
 <!-- Font Awesome for icons -->
@@ -6,14 +8,16 @@
 
 <style>
   .property-card {
-    max-width: 900px;
-    margin: 30px auto;
-    background: #fff;
-    padding: 40px;
-    border-radius: 12px;
-    box-shadow: 0 0 12px rgba(0, 0, 0, 0.08);
-    font-family: 'Segoe UI', sans-serif;
-  }
+  width: 90%;
+  max-width: 1000px;
+  margin: 30px auto;
+  background: #fff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.08);
+  font-family: 'Segoe UI', sans-serif;
+}
+
 
   h2 {
     text-align: center;
@@ -118,14 +122,29 @@
 <div class="property-card">
   <h2>Post Your Property</h2>
 
-  {% if messages %}
-    {% for message in messages %}
-      <div class="alert">{{ message }}</div>
-    {% endfor %}
-  {% endif %}
+  {% if form.errors %}
+  <div class="alert">
+    <strong>All Form Errors:</strong>
+    <ul>
+      {% for field, errors in form.errors.items %}
+        {% for error in errors %}
+          <li><strong>{{ field }}:</strong> {{ error }}</li>
+        {% endfor %}
+      {% endfor %}
+    </ul>
+  </div>
+{% endif %}
 
   <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
+
+    {% if form.non_field_errors %}
+      <div class="alert">
+        {% for error in form.non_field_errors %}
+          <p>{{ error }}</p>
+        {% endfor %}
+      </div>
+    {% endif %}
 
     <div class="form-group">
       <label>I am</label>
@@ -133,7 +152,12 @@
         <label><input type="radio" name="user_type" value="Owner" {% if request.POST.user_type == "Owner" %}checked{% endif %}> Owner</label>
         <label><input type="radio" name="user_type" value="Agent" {% if request.POST.user_type == "Agent" %}checked{% endif %}> Agent</label>
         <label><input type="radio" name="user_type" value="Builder" {% if request.POST.user_type == "Builder" %}checked{% endif %}> Builder</label>
+        {% if form.user_type.errors %}
+          <div class="field-error">{{ form.user_type.errors.0 }}</div>
+          {% endif %}
+
       </div>
+      
     </div>
 
     <div class="form-group">
@@ -141,64 +165,73 @@
       <div class="radio-group">
         {% for p in purposes %}
           <label>
-            <input type="radio" name="purpose" value="{{ p.id }}" {% if request.POST.purpose == p.id|stringformat:"s" %}checked{% endif %}>
+            <input type="radio" name="purpose" value="{{ p.id }}" {% if form.purpose.value|stringformat:"s" == p.id|stringformat:"s" %}checked{% endif %}>
             {{ p.name }}
           </label>
         {% endfor %}
       </div>
-      {% if form.errors.purpose %}
-        <div class="field-error">{{ form.errors.purpose.0 }}</div>
+      {% if form.purpose.errors %}
+        <div class="field-error">{{ form.purpose.errors.0 }}</div>
       {% endif %}
     </div>
 
     <div class="form-grid">
       <div class="form-group">
         <label><i class="fas fa-user"></i> Name</label>
-        <input type="text" name="name" value="{{ request.POST.name }}">
+        <input type="text" name="name" value="{{ form.name.value|default:'' }}">
+        {% if form.name.errors %}
+          <div class="field-error">{{ form.name.errors.0 }}</div>
+        {% endif %}
       </div>
 
       <div class="form-group">
         <label><i class="fas fa-phone"></i> Mobile</label>
-        <input type="tel" name="mobile" value="{{ request.POST.mobile }}">
+        <input type="tel" name="mobile" value="{{ form.mobile.value|default:'' }}">
+        {% if form.mobile.errors %}
+          <div class="field-error">{{ form.mobile.errors.0 }}</div>
+        {% endif %}
       </div>
 
       <div class="form-group">
         <label><i class="fas fa-envelope"></i> Email</label>
-        <input type="email" name="email" value="{{ request.POST.email }}">
+        <input type="email" name="email" value="{{ form.email.value|default:'' }}">
+        {% if form.email.errors %}
+          <div class="field-error">{{ form.email.errors.0 }}</div>
+        {% endif %}
       </div>
 
       <div class="form-group">
         <label>Property Type</label>
-        <select name="property_type" required>
+        <select name="property_type">
           <option value="">Select Property Type</option>
           {% for pt in property_types %}
-            <option value="{{ pt.id }}" {% if request.POST.property_type == pt.id|stringformat:"s" %}selected{% endif %}>{{ pt.name }}</option>
+            <option value="{{ pt.id }}" {% if form.property_type.value|stringformat:"s" == pt.id|stringformat:"s" %}selected{% endif %}>{{ pt.name }}</option>
           {% endfor %}
         </select>
-        {% if form.errors.property_type %}
-          <div class="field-error">{{ form.errors.property_type.0 }}</div>
+        {% if form.property_type.errors %}
+          <div class="field-error">{{ form.property_type.errors.0 }}</div>
         {% endif %}
       </div>
 
       <div class="form-group">
         <label>City</label>
-        <select name="city" id="city-select" required>
+        <select name="city" id="city-select">
           <option value="">Select City</option>
           {% for c in cities %}
-            <option value="{{ c.id }}" {% if request.POST.city == c.id|stringformat:"s" %}selected{% endif %}>{{ c.name }}</option>
+            <option value="{{ c.id }}" {% if form.city.value|stringformat:"s" == c.id|stringformat:"s" %}selected{% endif %}>{{ c.name }}</option>
           {% endfor %}
         </select>
-        {% if form.errors.city %}
-          <div class="field-error">{{ form.errors.city.0 }}</div>
+        {% if form.city.errors %}
+          <div class="field-error">{{ form.city.errors.0 }}</div>
         {% endif %}
       </div>
 
       <div class="form-group">
         <label>Location</label>
-        <select name="location" required id="location-select">
+        <select name="location" id="location-select">
           <option value="">Select Location</option>
           {% for l in locations %}
-            <option value="{{ l.id }}" {% if request.POST.location == l.id|stringformat:"s" %}selected{% endif %}>{{ l.name }}</option>
+            <option value="{{ l.id }}" {% if form.location.value|stringformat:"s" == l.id|stringformat:"s" %}selected{% endif %}>{{ l.name }}</option>
           {% endfor %}
         </select>
 
@@ -207,32 +240,33 @@
           <input type="text" name="new_location" placeholder="Enter new location" class="form-control" />
         </div>
 
-        {% if form.errors.location %}
-          <div class="field-error">{{ form.errors.location.0 }}</div>
+        {% if form.location.errors %}
+          <div class="field-error">{{ form.location.errors.0 }}</div>
         {% endif %}
       </div>
 
       <div class="form-group">
         <label>Price</label>
-        <input type="number" name="price" value="{{ request.POST.price }}">
-        {% if form.errors.price %}
-          <div class="field-error">{{ form.errors.price.0 }}</div>
+        <input type="number" name="price" value="{{ form.price.value|default:'' }}">
+        {% if form.price.errors %}
+          <div class="field-error">{{ form.price.errors.0 }}</div>
         {% endif %}
       </div>
 
       <div class="form-group">
         <label>Area (sq. ft.)</label>
-        <input type="number" name="area" value="{{ request.POST.area }}">
+        <input type="number" name="area" value="{{ form.area.value|default:'' }}">
+        {% if form.area.errors %}
+          <div class="field-error">{{ form.area.errors.0 }}</div>
+        {% endif %}
       </div>
-
-     
     </div>
 
     <div class="form-group">
       <label>Description</label>
-      <textarea name="description">{{ request.POST.description }}</textarea>
-      {% if form.errors.description %}
-        <div class="field-error">{{ form.errors.description.0 }}</div>
+      <textarea name="description">{{ form.description.value|default:'' }}</textarea>
+      {% if form.description.errors %}
+        <div class="field-error">{{ form.description.errors.0 }}</div>
       {% endif %}
     </div>
 
@@ -244,7 +278,6 @@
 
     <div class="form-group checkbox-group">
       <label><input type="checkbox" required> I agree to Terms & Conditions</label>
-      
     </div>
 
     <button type="submit" class="btn-submit">Post Property</button>

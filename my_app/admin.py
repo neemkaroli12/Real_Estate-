@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Purpose,PropertyType,City,Location,newProject,Property, PropertyImage,  LeadRequest , Lease, LeaseImage,Sell,SellImage
+from .models import Purpose,PropertyType,City,Location,newProject,Property, PropertyImage,  LeadRequest,Lease,LeaseImage
 from django.contrib.admin.views.decorators import staff_member_required
 from django.shortcuts import redirect
 
@@ -13,9 +13,8 @@ admin.site.register(newProject)
 admin.site.register(PropertyImage)
 admin.site.register(LeaseImage)
 admin.site.register(Lease)
-admin.site.register(Sell)
-admin.site.register(SellImage)
-
+# admin.site.register(Sell)
+# admin.site.register(SellImage)
 
 @admin.register(LeadRequest)
 class LeadAdmin(admin.ModelAdmin):
@@ -33,17 +32,14 @@ class PropertyAdmin(admin.ModelAdmin):
         queryset.update(is_approved=True)
 
 
-@staff_member_required
-def approve_lease(request, lease_id):
-    lease = Lease.objects.get(id=lease_id)
-    lease.is_approved = True
-    lease.save()
-    return redirect('lease_properties')
+class LeaseAdmin(admin.ModelAdmin):
+    list_display = ('id', 'city', 'location', 'price', 'owner_name', 'owner_user', 'is_approved')
+    list_filter = ('city', 'is_approved')
+    search_fields = ('owner_name', 'owner_user__username', 'location__name')
 
-
-@staff_member_required
-def approve_sell(request, sell_id):
-    sell = Sell.objects.get(id=sell_id)
-    sell.is_approved = True
-    sell.save()
-    return redirect('buy_properties')
+# @staff_member_required
+# def approve_sell(request, sell_id):
+#     sell = Sell.objects.get(id=sell_id)
+#     sell.is_approved = True
+#     sell.save()
+#     return redirect('buy_properties')

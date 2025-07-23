@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.html import format_html
+from django.utils import timezone
 
 
 # Purpose (e.g., Sell, Rent)
@@ -88,19 +89,20 @@ class newProject(models.Model):
 # Lease listing
 
 class Lease(models.Model):
-    property = models.ForeignKey(Property, on_delete=models.SET_NULL, null=True, blank=True, related_name="leases")
+    owner_user = models.ForeignKey(User, on_delete=models.CASCADE)
+    property_type = models.ForeignKey(PropertyType, on_delete=models.SET_NULL, null=True)
     city = models.ForeignKey(City, on_delete=models.CASCADE)
     location = models.ForeignKey(Location, on_delete=models.CASCADE)
     area = models.CharField(max_length=100, null=True)
     price = models.DecimalField(max_digits=10, decimal_places=2, null=True)
-    contact_name = models.CharField(max_length=100, null=True)
+    owner_name = models.CharField(max_length=100, null=True)
     contact_number = models.CharField(max_length=15, null=True)
     description = models.TextField(null=True, blank=True)  
+    terms_and_conditions = models.TextField(null=True, blank=True) 
     is_approved = models.BooleanField(default=False)
-    owner = models.ForeignKey(User, on_delete=models.CASCADE,null=True, blank=True)
 
     def __str__(self):
-        return f"Lease in {self.location.name}, {self.city.name}"
+        return f"Lease in {self.location.name}, {self.city.name} by {self.owner_name}"
 
 
 class LeaseImage(models.Model):
@@ -109,21 +111,3 @@ class LeaseImage(models.Model):
 
     def __str__(self):
         return f"Image for Lease #{self.lease.id}"
-    
-class Sell(models.Model):
-    title = models.CharField(max_length=255)
-    description = models.TextField()
-    price = models.DecimalField(max_digits=10, decimal_places=2)
-    city = models.ForeignKey(City, on_delete=models.CASCADE)
-    location = models.ForeignKey(Location, on_delete=models.CASCADE)
-    created_at = models.DateTimeField(auto_now_add=True)
-    purpose = models.ForeignKey(Purpose, on_delete=models.SET_NULL, null=True)
-    def __str__(self):
-        return self.title
-
-class SellImage(models.Model):
-    sell = models.ForeignKey(Sell, on_delete=models.CASCADE, related_name='images')
-    image = models.ImageField(upload_to='sell_images/')
-    
-    def __str__(self):
-        return f"Image for {self.sell.title}"

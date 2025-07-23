@@ -1,7 +1,8 @@
 from django import forms
+from django.forms import modelformset_factory
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import Purpose, PropertyType, City, LeadRequest, Property, PropertyImage,Lease, Location
+from .models import Purpose, PropertyType, City, LeadRequest, Property, PropertyImage, Lease
 
 # Property Search Filter Form
 class PropertySearchForm(forms.Form):
@@ -82,22 +83,56 @@ class CustomUserCreationForm(UserCreationForm):
             'password1': forms.PasswordInput(attrs={'class': 'form-control'}),
             'password2': forms.PasswordInput(attrs={'class': 'form-control'}),
         }
-
+OWNER_CHOICES = [
+    ('Owner', 'Owner'),
+    ('Agent', 'Agent'),
+    ('Builder', 'Builder'),
+]
 
 class LeaseForm(forms.ModelForm):
-    # images = forms.ImageField(
-    #     widget=forms.ClearableFileInput(attrs={'multiple': True, 'class': 'form-control'}),
-    #     required=False
-    # )
+    owner_name = forms.ChoiceField(choices=OWNER_CHOICES, label="I am")
 
     class Meta:
         model = Lease
-        fields = ['city', 'location', 'area', 'price', 'contact_name', 'contact_number', 'description']
+        fields = ['owner_name', 'property_type', 'city', 'location', 'area', 'price', 'contact_number', 'description', 'terms_and_conditions']
+        widgets = {
+            'description': forms.Textarea(attrs={'rows': 3}),
+            'terms_and_conditions': forms.Textarea(attrs={'rows': 3}),
+        }
+        
+        
+class SellPropertyForm(forms.ModelForm):
+    # your additional fields
+    name = forms.CharField(required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    email = forms.EmailField(required=False, widget=forms.EmailInput(attrs={'class': 'form-control'}))
+    mobile = forms.CharField(required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    user_type = forms.ChoiceField(
+        choices=[('Owner', 'Owner'), ('Agent', 'Agent'), ('Builder', 'Builder')],
+        widget=forms.RadioSelect
+    )
 
+    purpose = forms.ModelChoiceField(
+        queryset=Purpose.objects.filter(name__in=['Sell', 'Rent']),
+        widget=forms.Select(attrs={'class': 'form-select'})
+    )
 
-from .models import Sell
-
-class SellForm(forms.ModelForm):
     class Meta:
-        model = Sell
-        fields = ['title', 'description', 'price', 'city', 'location']
+        model = Property
+        fields = [
+            'description',
+            'price',
+            'purpose',
+            'property_type',
+            'city',
+            'location',
+            'area'
+        ]
+        widgets = {
+            'description': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
+            'price': forms.NumberInput(attrs={'class': 'form-control'}),
+            'purpose': forms.Select(attrs={'class': 'form-select'}),
+            'property_type': forms.Select(attrs={'class': 'form-select'}),
+            'city': forms.Select(attrs={'class': 'form-select'}),
+            'location': forms.Select(attrs={'class': 'form-select'}),
+            'area': forms.NumberInput(attrs={'class': 'form-control'}),
+        }
