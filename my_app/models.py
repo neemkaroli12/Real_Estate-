@@ -96,13 +96,14 @@ class Lease(models.Model):
     area = models.CharField(max_length=100, null=True)
     price = models.DecimalField(max_digits=10, decimal_places=2, null=True)
     owner_name = models.CharField(max_length=100, null=True)
+    contact_name = models.CharField(max_length=100, null=True)
     contact_number = models.CharField(max_length=15, null=True)
     description = models.TextField(null=True, blank=True)  
     terms_and_conditions = models.TextField(null=True, blank=True) 
     is_approved = models.BooleanField(default=False)
 
     def __str__(self):
-        return f"Lease in {self.location.name}, {self.city.name} by {self.owner_name}"
+        return f"{self.property_type} in {self.location} by {self.owner_user}"
 
 
 class LeaseImage(models.Model):

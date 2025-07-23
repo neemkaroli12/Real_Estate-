@@ -94,7 +94,7 @@ class LeaseForm(forms.ModelForm):
 
     class Meta:
         model = Lease
-        fields = ['owner_name', 'property_type', 'city', 'location', 'area', 'price', 'contact_number', 'description', 'terms_and_conditions']
+        fields = ['owner_name', 'contact_name','property_type', 'city', 'location', 'area', 'price', 'contact_number', 'description', 'terms_and_conditions']
         widgets = {
             'description': forms.Textarea(attrs={'rows': 3}),
             'terms_and_conditions': forms.Textarea(attrs={'rows': 3}),

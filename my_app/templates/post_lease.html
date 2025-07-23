@@ -5,10 +5,15 @@
 {% block content %}
   <div class="container my-5">
     <h2 class="mb-4 text-center">Post Lease Property</h2>
-
+    
     <form method="POST" enctype="multipart/form-data" class="p-4 bg-light border rounded shadow-sm">
       {% csrf_token %}
       <div class="row g-3">
+        <label for="id_owner_name" class="form-label">I am</label>
+        {{ form.owner_name|add_class:'form-control' }}
+        {% if form.owner_name.errors %}
+          <div class="text-danger">{{ form.owner_name.errors.0 }}</div>
+        {% endif %}
         <!-- Property Type -->
         <div class="col-md-6">
           <label for="id_property_type" class="form-label">Property Type</label>
@@ -23,7 +28,7 @@
           <label for="id_city" class="form-label">City</label>
           {{ form.city|add_class:'form-select' }}
           {% if form.city.errors %}
-            <div class="text-danger">{{ form.city.errors.0 }}</div>
+          <div class="text-danger">{{ form.city.errors.0 }}</div>
           {% endif %}
         </div>
 
@@ -36,6 +41,7 @@
           {% endif %}
         </div>
         <!-- Contact Name -->
+
         <div class="col-md-6">
           <label for="id_contact_name" class="form-label">Contact Name</label>
           {{ form.contact_name|add_class:'form-control' }}
