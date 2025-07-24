@@ -7,7 +7,7 @@
       <div class="col-md-4 mb-4">
         <div class="card">
           {% if property.images.all|length > 0 %}
-            <img src="{{ property.images.first.image.url }}" class="card-img-top" style="height: 250px; object-fit: cover;" alt="Property Image">
+            <img src="{{ image.image }}" class="card-img-top" style="height: 250px; object-fit: cover;" alt="Property Image">
           {% else %}
             <img src="https://via.placeholder.com/400x250?text=No+Image" class="card-img-top" alt="No image available">
           {% endif %}

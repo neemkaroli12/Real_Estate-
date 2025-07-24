@@ -57,7 +57,7 @@ class Property(models.Model):
 # Multiple images per property
 class PropertyImage(models.Model):
     property = models.ForeignKey(Property, related_name='images', on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='property_images/')
+    image = models.URLField()
     def __str__(self):
         return f"Image for {self.property.location.name}, {self.property.city.name} (ID: {self.property.id})"
 
@@ -108,7 +108,7 @@ class Lease(models.Model):
 
 class LeaseImage(models.Model):
     lease = models.ForeignKey(Lease, on_delete=models.CASCADE, related_name='images')
-    image = models.ImageField(upload_to='leases/')
+    image = models.URLField()
 
     def __str__(self):
         return f"Image for Lease #{self.lease.id}"
