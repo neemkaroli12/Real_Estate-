@@ -1,0 +1,2073 @@
+[
+{
+  "model": "my_app.purpose",
+  "pk": 1,
+  "fields": {
+    "name": "Buy"
+  }
+},
+{
+  "model": "my_app.purpose",
+  "pk": 2,
+  "fields": {
+    "name": "Rent"
+  }
+},
+{
+  "model": "my_app.purpose",
+  "pk": 3,
+  "fields": {
+    "name": "Lease"
+  }
+},
+{
+  "model": "my_app.purpose",
+  "pk": 4,
+  "fields": {
+    "name": "Sell"
+  }
+},
+{
+  "model": "my_app.propertytype",
+  "pk": 1,
+  "fields": {
+    "name": "Land"
+  }
+},
+{
+  "model": "my_app.propertytype",
+  "pk": 2,
+  "fields": {
+    "name": "Flat"
+  }
+},
+{
+  "model": "my_app.propertytype",
+  "pk": 3,
+  "fields": {
+    "name": "PG"
+  }
+},
+{
+  "model": "my_app.city",
+  "pk": 1,
+  "fields": {
+    "name": "Almora"
+  }
+},
+{
+  "model": "my_app.city",
+  "pk": 2,
+  "fields": {
+    "name": "Bageshwar"
+  }
+},
+{
+  "model": "my_app.city",
+  "pk": 3,
+  "fields": {
+    "name": "Bajpur"
+  }
+},
+{
+  "model": "my_app.city",
+  "pk": 4,
+  "fields": {
+    "name": "Barkot"
+  }
+},
+{
+  "model": "my_app.city",
+  "pk": 5,
+  "fields": {
+    "name": "Bhowali"
+  }
+},
+{
+  "model": "my_app.city",
+  "pk": 6,
+  "fields": {
+    "name": "Chakrata"
+  }
+},
+{
+  "model": "my_app.city",
+  "pk": 7,
+  "fields": {
+    "name": "Champawat"
+  }
+},
+{
+  "model": "my_app.city",
+  "pk": 8,
+  "fields": {
+    "name": "Chamoli (Gopeshwar)"
+  }
+},
+{
+  "model": "my_app.city",
+  "pk": 9,
+  "fields": {
+    "name": "Dehradun"
+  }
+},
+{
+  "model": "my_app.city",
+  "pk": 10,
+  "fields": {
+    "name": "Devprayag"
+  }
+},
+{
+  "model": "my_app.city",
+  "pk": 12,
+  "fields": {
+    "name": "Dharchula"
+  }
+},
+{
+  "model": "my_app.city",
+  "pk": 13,
+  "fields": {
+    "name": "Doiwala"
+  }
+},
+{
+  "model": "my_app.city",
+  "pk": 14,
+  "fields": {
+    "name": "Gadarpur"
+  }
+},
+{
+  "model": "my_app.city",
+  "pk": 15,
+  "fields": {
+    "name": "Haldwani"
+  }
+},
+{
+  "model": "my_app.city",
+  "pk": 16,
+  "fields": {
+    "name": "Haridwar"
+  }
+},
+{
+  "model": "my_app.city",
+  "pk": 17,
+  "fields": {
+    "name": "Jaspur"
+  }
+},
+{
+  "model": "my_app.city",
+  "pk": 18,
+  "fields": {
+    "name": "Joshimath"
+  }
+},
+{
+  "model": "my_app.city",
+  "pk": 19,
+  "fields": {
+    "name": "Karanprayag"
+  }
+},
+{
+  "model": "my_app.city",
+  "pk": 20,
+  "fields": {
+    "name": "Kashipur"
+  }
+},
+{
+  "model": "my_app.city",
+  "pk": 21,
+  "fields": {
+    "name": "Khatima"
+  }
+},
+{
+  "model": "my_app.city",
+  "pk": 22,
+  "fields": {
+    "name": "Kotdwar"
+  }
+},
+{
+  "model": "my_app.city",
+  "pk": 23,
+  "fields": {
+    "name": "Lohaghat"
+  }
+},
+{
+  "model": "my_app.city",
+  "pk": 24,
+  "fields": {
+    "name": "Manglaur"
+  }
+},
+{
+  "model": "my_app.city",
+  "pk": 25,
+  "fields": {
+    "name": "Mussoorie"
+  }
+},
+{
+  "model": "my_app.city",
+  "pk": 26,
+  "fields": {
+    "name": "Nainital"
+  }
+},
+{
+  "model": "my_app.city",
+  "pk": 27,
+  "fields": {
+    "name": "New Tehri (Tehri Garhwal)"
+  }
+},
+{
+  "model": "my_app.city",
+  "pk": 28,
+  "fields": {
+    "name": "Pauri"
+  }
+},
+{
+  "model": "my_app.city",
+  "pk": 29,
+  "fields": {
+    "name": "Pithoragarh"
+  }
+},
+{
+  "model": "my_app.city",
+  "pk": 30,
+  "fields": {
+    "name": "Ranikhet"
+  }
+},
+{
+  "model": "my_app.city",
+  "pk": 31,
+  "fields": {
+    "name": "Rishikesh"
+  }
+},
+{
+  "model": "my_app.city",
+  "pk": 32,
+  "fields": {
+    "name": "Roorkee"
+  }
+},
+{
+  "model": "my_app.city",
+  "pk": 33,
+  "fields": {
+    "name": "Rudraprayag"
+  }
+},
+{
+  "model": "my_app.city",
+  "pk": 34,
+  "fields": {
+    "name": "Rudrapur"
+  }
+},
+{
+  "model": "my_app.city",
+  "pk": 35,
+  "fields": {
+    "name": "Sitarganj"
+  }
+},
+{
+  "model": "my_app.city",
+  "pk": 36,
+  "fields": {
+    "name": "Srinagar (Garhwal)"
+  }
+},
+{
+  "model": "my_app.city",
+  "pk": 37,
+  "fields": {
+    "name": "Tanakpur"
+  }
+},
+{
+  "model": "my_app.city",
+  "pk": 38,
+  "fields": {
+    "name": "Uttarkashi"
+  }
+},
+{
+  "model": "my_app.city",
+  "pk": 39,
+  "fields": {
+    "name": "Vikasnagar"
+  }
+},
+{
+  "model": "my_app.city",
+  "pk": 40,
+  "fields": {
+    "name": "Kichha"
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 1,
+  "fields": {
+    "name": "Rajpur Road",
+    "city": 9
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 2,
+  "fields": {
+    "name": "Sahastradhara Road",
+    "city": 9
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 3,
+  "fields": {
+    "name": "Jakhan",
+    "city": 9
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 4,
+  "fields": {
+    "name": "Prem Nagar",
+    "city": 9
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 5,
+  "fields": {
+    "name": "Vasant Vihar",
+    "city": 9
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 6,
+  "fields": {
+    "name": "Clement Town",
+    "city": 9
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 7,
+  "fields": {
+    "name": "GMS Road",
+    "city": 9
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 8,
+  "fields": {
+    "name": "Dalanwala",
+    "city": 9
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 9,
+  "fields": {
+    "name": "Raipur",
+    "city": 9
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 10,
+  "fields": {
+    "name": "Nehru Colony",
+    "city": 9
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 12,
+  "fields": {
+    "name": "Shivalik Nagar",
+    "city": 16
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 13,
+  "fields": {
+    "name": "Bahadrabad",
+    "city": 16
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 14,
+  "fields": {
+    "name": "Jwalapur",
+    "city": 16
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 15,
+  "fields": {
+    "name": "Ranipur",
+    "city": 16
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 16,
+  "fields": {
+    "name": "Kankhal",
+    "city": 16
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 17,
+  "fields": {
+    "name": "Sidcul Industrial Area",
+    "city": 16
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 18,
+  "fields": {
+    "name": "Roshnabad",
+    "city": 16
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 19,
+  "fields": {
+    "name": "BHEL Township",
+    "city": 16
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 20,
+  "fields": {
+    "name": "Kathgodam",
+    "city": 15
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 21,
+  "fields": {
+    "name": "Heera Nagar",
+    "city": 15
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 22,
+  "fields": {
+    "name": "Kusumkhera",
+    "city": 15
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 23,
+  "fields": {
+    "name": "Mukhani",
+    "city": 15
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 24,
+  "fields": {
+    "name": "Pilikothi",
+    "city": 15
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 25,
+  "fields": {
+    "name": "Nainital Road",
+    "city": 15
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 26,
+  "fields": {
+    "name": "Transport Nagar",
+    "city": 15
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 27,
+  "fields": {
+    "name": "Sunder Nagar",
+    "city": 15
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 28,
+  "fields": {
+    "name": "Tikonia",
+    "city": 15
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 29,
+  "fields": {
+    "name": "Awas Vikas",
+    "city": 34
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 30,
+  "fields": {
+    "name": "Civil Lines",
+    "city": 34
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 31,
+  "fields": {
+    "name": "Kalyanpur",
+    "city": 34
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 32,
+  "fields": {
+    "name": "Transport Nagar",
+    "city": 34
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 33,
+  "fields": {
+    "name": "Indira Chowk",
+    "city": 34
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 34,
+  "fields": {
+    "name": "Triveni Nagar",
+    "city": 34
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 35,
+  "fields": {
+    "name": "Kashipur Bypass Road",
+    "city": 34
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 36,
+  "fields": {
+    "name": "Gole Market",
+    "city": 34
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 37,
+  "fields": {
+    "name": "SIDCUL Area",
+    "city": 34
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 38,
+  "fields": {
+    "name": "Civil Lines",
+    "city": 32
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 39,
+  "fields": {
+    "name": "IIT Roorkee Campus",
+    "city": 34
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 40,
+  "fields": {
+    "name": "Purvavali",
+    "city": 32
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 41,
+  "fields": {
+    "name": "Solani Park",
+    "city": 32
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 42,
+  "fields": {
+    "name": "Malviya Chowk",
+    "city": 32
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 43,
+  "fields": {
+    "name": "Ramnagar",
+    "city": 32
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 44,
+  "fields": {
+    "name": "Liberty Chowk",
+    "city": 32
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 45,
+  "fields": {
+    "name": "Tallital",
+    "city": 26
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 46,
+  "fields": {
+    "name": "Mallital",
+    "city": 26
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 47,
+  "fields": {
+    "name": "Ayarpatta",
+    "city": 26
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 48,
+  "fields": {
+    "name": "Bhowali",
+    "city": 26
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 49,
+  "fields": {
+    "name": "Bara Pathar",
+    "city": 26
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 50,
+  "fields": {
+    "name": "Pangot",
+    "city": 26
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 51,
+  "fields": {
+    "name": "Railway Road",
+    "city": 20
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 52,
+  "fields": {
+    "name": "Bazpur Road",
+    "city": 20
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 53,
+  "fields": {
+    "name": "Railway Bazar",
+    "city": 21
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 54,
+  "fields": {
+    "name": "Tanakpur Road",
+    "city": 21
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 55,
+  "fields": {
+    "name": "Subhash Chowk",
+    "city": 40
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 56,
+  "fields": {
+    "name": "Nanakmatta Road",
+    "city": 40
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 57,
+  "fields": {
+    "name": "Nanakmatta Road",
+    "city": 22
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 58,
+  "fields": {
+    "name": "Sindhi Colony",
+    "city": 22
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 59,
+  "fields": {
+    "name": "Library Chowk",
+    "city": 25
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 60,
+  "fields": {
+    "name": "Landour",
+    "city": 25
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 61,
+  "fields": {
+    "name": "Baurari",
+    "city": 27
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 62,
+  "fields": {
+    "name": "Koti Colony",
+    "city": 27
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 63,
+  "fields": {
+    "name": "Kandoliya",
+    "city": 28
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 64,
+  "fields": {
+    "name": "Agency Mohalla",
+    "city": 28
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 65,
+  "fields": {
+    "name": "Gandhi Chowk",
+    "city": 29
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 66,
+  "fields": {
+    "name": "Dharchula Road",
+    "city": 29
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 67,
+  "fields": {
+    "name": "Mall Road",
+    "city": 30
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 68,
+  "fields": {
+    "name": "Chiliyanaula",
+    "city": 30
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 69,
+  "fields": {
+    "name": "Tapovan",
+    "city": 31
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 70,
+  "fields": {
+    "name": "Ganga Nagar",
+    "city": 31
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 71,
+  "fields": {
+    "name": "Augustmuni",
+    "city": 33
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 72,
+  "fields": {
+    "name": "Tilwara",
+    "city": 33
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 73,
+  "fields": {
+    "name": "Lalkuan Road",
+    "city": 35
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 74,
+  "fields": {
+    "name": "Khurpia Farm",
+    "city": 35
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 75,
+  "fields": {
+    "name": "Srikot",
+    "city": 36
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 76,
+  "fields": {
+    "name": "Bageshwar Road",
+    "city": 36
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 77,
+  "fields": {
+    "name": "Banbasa Road",
+    "city": 37
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 78,
+  "fields": {
+    "name": "Ghat Road",
+    "city": 37
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 79,
+  "fields": {
+    "name": "Gyansu",
+    "city": 38
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 80,
+  "fields": {
+    "name": "Joshiyara",
+    "city": 38
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 81,
+  "fields": {
+    "name": "Kanda Road",
+    "city": 2
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 82,
+  "fields": {
+    "name": "Numaishkhet",
+    "city": 2
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 83,
+  "fields": {
+    "name": "Subhash Colony",
+    "city": 3
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 84,
+  "fields": {
+    "name": "Gandhi Nagar",
+    "city": 3
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 85,
+  "fields": {
+    "name": "Yamunotri Marg",
+    "city": 4
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 86,
+  "fields": {
+    "name": "Barkot Bazaar",
+    "city": 4
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 87,
+  "fields": {
+    "name": "Ramgarh Road",
+    "city": 5
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 88,
+  "fields": {
+    "name": "Mehra Gaon",
+    "city": 5
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 89,
+  "fields": {
+    "name": "Lakhamandal",
+    "city": 6
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 90,
+  "fields": {
+    "name": "Sadar Bazaar",
+    "city": 6
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 91,
+  "fields": {
+    "name": "Gopeshwar Main Market",
+    "city": 8
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 92,
+  "fields": {
+    "name": "Pipalkoti",
+    "city": 8
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 93,
+  "fields": {
+    "name": "Lohaghat Road",
+    "city": 7
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 94,
+  "fields": {
+    "name": "Tanakpur Road",
+    "city": 7
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 95,
+  "fields": {
+    "name": "Jauljibi Road",
+    "city": 12
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 96,
+  "fields": {
+    "name": "Dharchula Bazar",
+    "city": 12
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 97,
+  "fields": {
+    "name": "Bhaniyawala",
+    "city": 13
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 98,
+  "fields": {
+    "name": "Lachhiwala",
+    "city": 13
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 99,
+  "fields": {
+    "name": "Kalinagar",
+    "city": 14
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 100,
+  "fields": {
+    "name": "Dineshpur Road",
+    "city": 14
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 101,
+  "fields": {
+    "name": "Shiv Colony",
+    "city": 17
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 102,
+  "fields": {
+    "name": "Jaspur Bypass",
+    "city": 17
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 103,
+  "fields": {
+    "name": "TCP Market",
+    "city": 18
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 104,
+  "fields": {
+    "name": "Auli Road",
+    "city": 18
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 105,
+  "fields": {
+    "name": "Gauchar Road",
+    "city": 19
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 106,
+  "fields": {
+    "name": "Nauti Village",
+    "city": 19
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 107,
+  "fields": {
+    "name": "Mehtab Nagar",
+    "city": 24
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 108,
+  "fields": {
+    "name": "Qazi Patti",
+    "city": 24
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 109,
+  "fields": {
+    "name": "Herbertpur Road",
+    "city": 39
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 110,
+  "fields": {
+    "name": "Dakpathar",
+    "city": 39
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 111,
+  "fields": {
+    "name": "Dharanaula",
+    "city": 1
+  }
+},
+{
+  "model": "my_app.location",
+  "pk": 112,
+  "fields": {
+    "name": "Lala Bazar",
+    "city": 1
+  }
+},
+{
+  "model": "my_app.property",
+  "pk": 1,
+  "fields": {
+    "purpose": 4,
+    "property_type": 1,
+    "city": 1,
+    "location": 111,
+    "price": 12345,
+    "area": 125,
+    "description": "A land description in real estate is a detailed account of a piece of land, including its boundaries, location, and any unique features, used to identify and locate it for transactions. It serves as a crucial legal document, ensuring accuracy in property identification during sales and other legal processes.",
+    "facing": "South",
+    "ownership": "Freehold",
+    "transaction_type": "Ownership",
+    "agent_phone": "1234567891",
+    "brochure": "property/brochures/1671004647907Brochure---Adarsh-Greens_ghfGVen.pdf",
+    "posted_on": "2025-07-19T06:52:07.130Z",
+    "posted_by": 1,
+    "is_approved": true
+  }
+},
+{
+  "model": "my_app.property",
+  "pk": 2,
+  "fields": {
+    "purpose": 4,
+    "property_type": 2,
+    "city": 1,
+    "location": 112,
+    "price": 12345,
+    "area": 123,
+    "description": "1125 sq. ft is enough to build a 2 BHK flat comfortably.\r\n\r\nYou can have:\r\n\r\n2 Bedrooms\r\n\r\n1 Living Room (Hall)\r\n\r\n1 Kitchen\r\n\r\n2 Bathrooms (Attached/Common)\r\n\r\n1 Balcony or Store Room (optional)\r\n\r\nIf designed smartly, you can even have:\r\n\r\n2.5 BHK (2 bedrooms + 1 small study or guest room)",
+    "facing": "North",
+    "ownership": "Freehold",
+    "transaction_type": "Ownership",
+    "agent_phone": "1234567891",
+    "brochure": "property/brochures/1671004647907Brochure---Adarsh-Greens_ghfGVen_JRDSZl8.pdf",
+    "posted_on": "2025-07-19T07:26:21.218Z",
+    "posted_by": 1,
+    "is_approved": true
+  }
+},
+{
+  "model": "my_app.property",
+  "pk": 3,
+  "fields": {
+    "purpose": 4,
+    "property_type": 3,
+    "city": 2,
+    "location": 81,
+    "price": 12345,
+    "area": 125,
+    "description": "This well-maintained PG accommodation offers a comfortable and secure living experience for students and working professionals. Located in a prime area with easy access to public transport, markets, and educational institutions, the PG features fully furnished rooms with attached bathrooms, Wi-Fi, meals, laundry, and 24/7 security. Ideal for those seeking a peaceful and hygienic environment, this PG ensures a homely stay with all essential amenities included.\r\n\r\n\r\nGirls PG: \"Safe and secure Girls PG with CCTV, female-only staff, and healthy home-cooked meals.\"\r\n\r\nWorking Professionals: \"Spacious rooms with high-speed internet, work desk, and peaceful surroundings ideal for working professionals.\"\r\n\r\nStudent Friendly: \"Affordable student PG near coaching institutes and colleges with all basic facilities and study environment.\"",
+    "facing": "North",
+    "ownership": "Ownership",
+    "transaction_type": "Tenant",
+    "agent_phone": "7898456512",
+    "brochure": "property/brochures/1671004647907Brochure---Adarsh-Greens_ghfGVen_FqmL3VA.pdf",
+    "posted_on": "2025-07-19T07:47:52.757Z",
+    "posted_by": 1,
+    "is_approved": true
+  }
+},
+{
+  "model": "my_app.property",
+  "pk": 4,
+  "fields": {
+    "purpose": 4,
+    "property_type": 1,
+    "city": 2,
+    "location": 82,
+    "price": 12345,
+    "area": 147,
+    "description": "Residential plot available for sale in a peaceful and developing locality. Ideal for building your dream home or for future investment, the plot offers clear title, road access, and availability of basic utilities like water and electricity. Located close to schools, hospitals, and markets, this plot ensures both convenience and potential appreciation in value. Suitable for both individual buyers and builders.",
+    "facing": "East",
+    "ownership": "Freehold",
+    "transaction_type": "Ownership",
+    "agent_phone": "7898456512",
+    "brochure": "property/brochures/1671004647907Brochure---Adarsh-Greens_ghfGVen_3hcpXXb.pdf",
+    "posted_on": "2025-07-19T07:51:21.366Z",
+    "posted_by": 2,
+    "is_approved": true
+  }
+},
+{
+  "model": "my_app.property",
+  "pk": 5,
+  "fields": {
+    "purpose": 4,
+    "property_type": 2,
+    "city": 3,
+    "location": 83,
+    "price": 12345,
+    "area": 159,
+    "description": "Spacious and well-ventilated flat available for sale in a prime residential area. This beautifully designed apartment features modern interiors, ample natural light, and a comfortable layout with well-sized bedrooms, living room, kitchen, and attached bathrooms. Located near schools, hospitals, markets, and public transport, this flat offers a perfect blend of convenience and comfort. Suitable for families and working professionals. Secure premises with 24/7 water supply and parking facility.",
+    "facing": "East",
+    "ownership": "Ownership",
+    "transaction_type": "Ownership",
+    "agent_phone": "1234567891",
+    "brochure": "property/brochures/1671004647907Brochure---Adarsh-Greens_ghfGVen_6UkvHc5.pdf",
+    "posted_on": "2025-07-19T08:06:30.275Z",
+    "posted_by": 1,
+    "is_approved": true
+  }
+},
+{
+  "model": "my_app.property",
+  "pk": 6,
+  "fields": {
+    "purpose": 4,
+    "property_type": 1,
+    "city": 15,
+    "location": 25,
+    "price": 345678,
+    "area": 123,
+    "description": "Residential plot available for sale in a peaceful and developing locality. Ideal for building your dream home or for future investment, the plot offers clear title, road access, and availability of basic utilities like water and electricity. Located close to schools, hospitals, and markets, this plot ensures both convenience and potential appreciation in value. Suitable for both individual buyers and builders.",
+    "facing": "South",
+    "ownership": "Freehold",
+    "transaction_type": "Ownership",
+    "agent_phone": "1234567891",
+    "brochure": "property/brochures/1671004647907Brochure---Adarsh-Greens_1.pdf",
+    "posted_on": "2025-07-19T08:42:48.187Z",
+    "posted_by": 1,
+    "is_approved": true
+  }
+},
+{
+  "model": "my_app.property",
+  "pk": 7,
+  "fields": {
+    "purpose": 4,
+    "property_type": 2,
+    "city": 13,
+    "location": 97,
+    "price": 67890,
+    "area": 123,
+    "description": "Spacious and well-ventilated flat available for sale in a prime residential area. This beautifully designed apartment features modern interiors, ample natural light, and a comfortable layout with well-sized bedrooms, living room, kitchen, and attached bathrooms. Located near schools, hospitals, markets, and public transport, this flat offers a perfect blend of convenience and comfort. Suitable for families and working professionals. Secure premises with 24/7 water supply and parking facility.",
+    "facing": "north",
+    "ownership": "Freehold",
+    "transaction_type": "Ownership",
+    "agent_phone": "7898456512",
+    "brochure": "",
+    "posted_on": "2025-07-19T08:50:06.620Z",
+    "posted_by": 4,
+    "is_approved": true
+  }
+},
+{
+  "model": "my_app.property",
+  "pk": 8,
+  "fields": {
+    "purpose": 4,
+    "property_type": 2,
+    "city": 12,
+    "location": 95,
+    "price": 56789,
+    "area": 123,
+    "description": "Spacious and well-ventilated flat available for sale in a prime residential area. This beautifully designed apartment features modern interiors, ample natural light, and a comfortable layout with well-sized bedrooms, living room, kitchen, and attached bathrooms. Located near schools, hospitals, markets, and public transport, this flat offers a perfect blend of convenience and comfort. Suitable for families and working professionals. Secure premises with 24/7 water supply and parking facility.",
+    "facing": "north",
+    "ownership": "Freehold",
+    "transaction_type": "Ownership",
+    "agent_phone": "7898456512",
+    "brochure": "property/brochures/1671004647907Brochure---Adarsh-Greens_ghfGVen_ZqFLoXM.pdf",
+    "posted_on": "2025-07-19T08:52:35.803Z",
+    "posted_by": 3,
+    "is_approved": true
+  }
+},
+{
+  "model": "my_app.property",
+  "pk": 9,
+  "fields": {
+    "purpose": 4,
+    "property_type": 2,
+    "city": 29,
+    "location": 65,
+    "price": 556789,
+    "area": 345,
+    "description": "Spacious and well-ventilated flat available for sale in a prime residential area. This beautifully designed apartment features modern interiors, ample natural light, and a comfortable layout with well-sized bedrooms, living room, kitchen, and attached bathrooms. Located near schools, hospitals, markets, and public transport, this flat offers a perfect blend of convenience and comfort. Suitable for families and working professionals. Secure premises with 24/7 water supply and parking facility.",
+    "facing": "north",
+    "ownership": "Ownership",
+    "transaction_type": "Tenant",
+    "agent_phone": "1234567891",
+    "brochure": "property/brochures/1671004647907Brochure---Adarsh-Greens_ghfGVen_setYHNr.pdf",
+    "posted_on": "2025-07-19T08:55:01.812Z",
+    "posted_by": 3,
+    "is_approved": true
+  }
+},
+{
+  "model": "my_app.property",
+  "pk": 10,
+  "fields": {
+    "purpose": 4,
+    "property_type": 1,
+    "city": 40,
+    "location": 56,
+    "price": 89000,
+    "area": 567,
+    "description": "Residential plot available for sale in a peaceful and developing locality. Ideal for building your dream home or for future investment, the plot offers clear title, road access, and availability of basic utilities like water and electricity. Located close to schools, hospitals, and markets, this plot ensures both convenience and potential appreciation in value. Suitable for both individual buyers and builders.",
+    "facing": "South",
+    "ownership": "Freehold",
+    "transaction_type": "Ownership",
+    "agent_phone": "1234567891",
+    "brochure": "property/brochures/1671004647907Brochure---Adarsh-Greens_ghfGVen_AROfNn4.pdf",
+    "posted_on": "2025-07-19T08:58:38.079Z",
+    "posted_by": 3,
+    "is_approved": true
+  }
+},
+{
+  "model": "my_app.property",
+  "pk": 11,
+  "fields": {
+    "purpose": 4,
+    "property_type": 1,
+    "city": 9,
+    "location": 6,
+    "price": 970989,
+    "area": 435,
+    "description": "Residential plot available for sale in a peaceful and developing locality. Ideal for building your dream home or for future investment, the plot offers clear title, road access, and availability of basic utilities like water and electricity. Located close to schools, hospitals, and markets, this plot ensures both convenience and potential appreciation in value. Suitable for both individual buyers and builders.",
+    "facing": "north",
+    "ownership": "Ownership",
+    "transaction_type": "Tenant",
+    "agent_phone": "1234567891",
+    "brochure": "property/brochures/1671004647907Brochure---Adarsh-Greens_ghfGVen_3tr2S1G.pdf",
+    "posted_on": "2025-07-19T09:00:00.942Z",
+    "posted_by": 3,
+    "is_approved": true
+  }
+},
+{
+  "model": "my_app.property",
+  "pk": 12,
+  "fields": {
+    "purpose": 2,
+    "property_type": 1,
+    "city": 7,
+    "location": 93,
+    "price": 890000,
+    "area": 456,
+    "description": "Residential plot available for sale in a peaceful and developing locality. Ideal for building your dream home or for future investment, the plot offers clear title, road access, and availability of basic utilities like water and electricity. Located close to schools, hospitals, and markets, this plot ensures both convenience and potential appreciation in value. Suitable for both individual buyers and builders.",
+    "facing": "north",
+    "ownership": "Freehold",
+    "transaction_type": "Ownership",
+    "agent_phone": "1234567891",
+    "brochure": "property/brochures/1671004647907Brochure---Adarsh-Greens_ghfGVen_gnvTtci.pdf",
+    "posted_on": "2025-07-19T09:02:47.831Z",
+    "posted_by": 3,
+    "is_approved": true
+  }
+},
+{
+  "model": "my_app.property",
+  "pk": 13,
+  "fields": {
+    "purpose": 2,
+    "property_type": 1,
+    "city": 8,
+    "location": 91,
+    "price": 8909090,
+    "area": 345,
+    "description": "Residential plot available for sale in a peaceful and developing locality. Ideal for building your dream home or for future investment, the plot offers clear title, road access, and availability of basic utilities like water and electricity. Located close to schools, hospitals, and markets, this plot ensures both convenience and potential appreciation in value. Suitable for both individual buyers and builders.",
+    "facing": "North",
+    "ownership": "Ownership",
+    "transaction_type": "Tenant",
+    "agent_phone": "1234567891",
+    "brochure": "property/brochures/1671004647907Brochure---Adarsh-Greens_ghfGVen_27rWRBu.pdf",
+    "posted_on": "2025-07-19T09:09:14.619Z",
+    "posted_by": 2,
+    "is_approved": true
+  }
+},
+{
+  "model": "my_app.property",
+  "pk": 14,
+  "fields": {
+    "purpose": 3,
+    "property_type": 1,
+    "city": 9,
+    "location": 9,
+    "price": 6788899,
+    "area": 456,
+    "description": "Residential plot available for sale in a peaceful and developing locality. Ideal for building your dream home or for future investment, the plot offers clear title, road access, and availability of basic utilities like water and electricity. Located close to schools, hospitals, and markets, this plot ensures both convenience and potential appreciation in value. Suitable for both individual buyers and builders.",
+    "facing": "South",
+    "ownership": "Freehold",
+    "transaction_type": "Ownership",
+    "agent_phone": "1234567891",
+    "brochure": "property/brochures/1671004647907Brochure---Adarsh-Greens_ghfGVen_1zagtz1.pdf",
+    "posted_on": "2025-07-19T09:11:54.460Z",
+    "posted_by": 2,
+    "is_approved": true
+  }
+},
+{
+  "model": "my_app.property",
+  "pk": 15,
+  "fields": {
+    "purpose": 2,
+    "property_type": 2,
+    "city": 9,
+    "location": 4,
+    "price": 8990,
+    "area": 345,
+    "description": "Spacious and well-ventilated flat available for sale in a prime residential area. This beautifully designed apartment features modern interiors, ample natural light, and a comfortable layout with well-sized bedrooms, living room, kitchen, and attached bathrooms. Located near schools, hospitals, markets, and public transport, this flat offers a perfect blend of convenience and comfort. Suitable for families and working professionals. Secure premises with 24/7 water supply and parking facility.",
+    "facing": "North",
+    "ownership": "Freehold",
+    "transaction_type": "Ownership",
+    "agent_phone": "1234567891",
+    "brochure": "property/brochures/1671004647907Brochure---Adarsh-Greens_ghfGVen_cpn7XSp.pdf",
+    "posted_on": "2025-07-19T09:13:44.580Z",
+    "posted_by": 3,
+    "is_approved": true
+  }
+},
+{
+  "model": "my_app.property",
+  "pk": 18,
+  "fields": {
+    "purpose": 4,
+    "property_type": 2,
+    "city": 1,
+    "location": 10,
+    "price": 1111,
+    "area": 1125,
+    "description": "asdfgg",
+    "facing": null,
+    "ownership": null,
+    "transaction_type": null,
+    "agent_phone": null,
+    "brochure": "",
+    "posted_on": "2025-07-23T05:05:47.341Z",
+    "posted_by": 1,
+    "is_approved": true
+  }
+},
+{
+  "model": "my_app.property",
+  "pk": 19,
+  "fields": {
+    "purpose": 2,
+    "property_type": 2,
+    "city": 34,
+    "location": 30,
+    "price": 1111,
+    "area": 1125,
+    "description": "asdfgh",
+    "facing": null,
+    "ownership": null,
+    "transaction_type": null,
+    "agent_phone": null,
+    "brochure": "",
+    "posted_on": "2025-07-23T05:18:16.671Z",
+    "posted_by": 1,
+    "is_approved": true
+  }
+},
+{
+  "model": "my_app.property",
+  "pk": 20,
+  "fields": {
+    "purpose": 4,
+    "property_type": 2,
+    "city": 34,
+    "location": 30,
+    "price": 1111,
+    "area": 1125,
+    "description": "asdfgh",
+    "facing": null,
+    "ownership": null,
+    "transaction_type": null,
+    "agent_phone": null,
+    "brochure": "",
+    "posted_on": "2025-07-23T05:18:37.474Z",
+    "posted_by": 1,
+    "is_approved": true
+  }
+},
+{
+  "model": "my_app.property",
+  "pk": 21,
+  "fields": {
+    "purpose": 3,
+    "property_type": 2,
+    "city": 34,
+    "location": 34,
+    "price": 1111,
+    "area": 1125,
+    "description": "asdfghjkkl",
+    "facing": null,
+    "ownership": null,
+    "transaction_type": null,
+    "agent_phone": null,
+    "brochure": "",
+    "posted_on": "2025-07-23T05:47:37.185Z",
+    "posted_by": 1,
+    "is_approved": true
+  }
+},
+{
+  "model": "my_app.property",
+  "pk": 22,
+  "fields": {
+    "purpose": 2,
+    "property_type": 2,
+    "city": 34,
+    "location": 39,
+    "price": 1111,
+    "area": 1125,
+    "description": "asdfgnhk,mjhngbfdsadefgrthyjuki",
+    "facing": null,
+    "ownership": null,
+    "transaction_type": null,
+    "agent_phone": null,
+    "brochure": "",
+    "posted_on": "2025-07-23T10:29:04.747Z",
+    "posted_by": 1,
+    "is_approved": true
+  }
+},
+{
+  "model": "my_app.property",
+  "pk": 23,
+  "fields": {
+    "purpose": 4,
+    "property_type": 1,
+    "city": 34,
+    "location": 30,
+    "price": 1111,
+    "area": 1125,
+    "description": "fghxfbg",
+    "facing": null,
+    "ownership": null,
+    "transaction_type": null,
+    "agent_phone": null,
+    "brochure": "",
+    "posted_on": "2025-07-24T03:52:22.004Z",
+    "posted_by": 1,
+    "is_approved": true
+  }
+},
+{
+  "model": "my_app.propertyimage",
+  "pk": 1,
+  "fields": {
+    "property": 1,
+    "image": "property_images/land1.jpg"
+  }
+},
+{
+  "model": "my_app.propertyimage",
+  "pk": 2,
+  "fields": {
+    "property": 1,
+    "image": "property_images/land2.jpg"
+  }
+},
+{
+  "model": "my_app.propertyimage",
+  "pk": 3,
+  "fields": {
+    "property": 2,
+    "image": "property_images/flat3_BXINxrx.jpg"
+  }
+},
+{
+  "model": "my_app.propertyimage",
+  "pk": 4,
+  "fields": {
+    "property": 2,
+    "image": "property_images/flat2_g6yg1ZP.jpg"
+  }
+},
+{
+  "model": "my_app.propertyimage",
+  "pk": 5,
+  "fields": {
+    "property": 3,
+    "image": "property_images/pg_QeiY8CO.jpg"
+  }
+},
+{
+  "model": "my_app.propertyimage",
+  "pk": 6,
+  "fields": {
+    "property": 3,
+    "image": "property_images/apartment_Jj2JZM4.jpg"
+  }
+},
+{
+  "model": "my_app.propertyimage",
+  "pk": 7,
+  "fields": {
+    "property": 4,
+    "image": "property_images/land-for-sale1_3nmleQ9.jpg"
+  }
+},
+{
+  "model": "my_app.propertyimage",
+  "pk": 8,
+  "fields": {
+    "property": 4,
+    "image": "property_images/land_Gev3hlc.jpg"
+  }
+},
+{
+  "model": "my_app.propertyimage",
+  "pk": 9,
+  "fields": {
+    "property": 5,
+    "image": "property_images/flat2_tozc6Zu.jpg"
+  }
+},
+{
+  "model": "my_app.propertyimage",
+  "pk": 10,
+  "fields": {
+    "property": 5,
+    "image": "property_images/flat3_4kDrLDj.jpg"
+  }
+},
+{
+  "model": "my_app.propertyimage",
+  "pk": 11,
+  "fields": {
+    "property": 6,
+    "image": "property_images/land2_pvbnSef.jpg"
+  }
+},
+{
+  "model": "my_app.propertyimage",
+  "pk": 12,
+  "fields": {
+    "property": 7,
+    "image": "property_images/flat3_ZN90vEd.jpg"
+  }
+},
+{
+  "model": "my_app.propertyimage",
+  "pk": 13,
+  "fields": {
+    "property": 8,
+    "image": "property_images/flat2_7fxgjcI.jpg"
+  }
+},
+{
+  "model": "my_app.propertyimage",
+  "pk": 14,
+  "fields": {
+    "property": 9,
+    "image": "property_images/flat3_BkXQmBk.jpg"
+  }
+},
+{
+  "model": "my_app.propertyimage",
+  "pk": 15,
+  "fields": {
+    "property": 10,
+    "image": "property_images/land2_Eahn5Jb.jpg"
+  }
+},
+{
+  "model": "my_app.propertyimage",
+  "pk": 16,
+  "fields": {
+    "property": 11,
+    "image": "property_images/land2_nen7dBM.jpg"
+  }
+},
+{
+  "model": "my_app.propertyimage",
+  "pk": 17,
+  "fields": {
+    "property": 12,
+    "image": "property_images/land1_otMAfhz.jpg"
+  }
+},
+{
+  "model": "my_app.propertyimage",
+  "pk": 18,
+  "fields": {
+    "property": 12,
+    "image": "property_images/land2_0ZGqjHl.jpg"
+  }
+},
+{
+  "model": "my_app.propertyimage",
+  "pk": 19,
+  "fields": {
+    "property": 13,
+    "image": "property_images/land2_V9ZY70v.jpg"
+  }
+},
+{
+  "model": "my_app.propertyimage",
+  "pk": 20,
+  "fields": {
+    "property": 14,
+    "image": "property_images/land1_vNfcPxr.jpg"
+  }
+},
+{
+  "model": "my_app.propertyimage",
+  "pk": 21,
+  "fields": {
+    "property": 15,
+    "image": "property_images/flat3_2tRjysy.jpg"
+  }
+},
+{
+  "model": "my_app.propertyimage",
+  "pk": 22,
+  "fields": {
+    "property": 18,
+    "image": "property_images/travel.jpg"
+  }
+},
+{
+  "model": "my_app.propertyimage",
+  "pk": 23,
+  "fields": {
+    "property": 19,
+    "image": "property_images/land_3_f1YsYrN.jpeg"
+  }
+},
+{
+  "model": "my_app.propertyimage",
+  "pk": 24,
+  "fields": {
+    "property": 20,
+    "image": "property_images/land_3_32ywddf.jpeg"
+  }
+},
+{
+  "model": "my_app.propertyimage",
+  "pk": 25,
+  "fields": {
+    "property": 21,
+    "image": "property_images/class_diagram.png"
+  }
+},
+{
+  "model": "my_app.propertyimage",
+  "pk": 26,
+  "fields": {
+    "property": 22,
+    "image": "property_images/pg_FcUBDYM.jpg"
+  }
+},
+{
+  "model": "my_app.propertyimage",
+  "pk": 27,
+  "fields": {
+    "property": 22,
+    "image": "property_images/condo-vs-apartment.jpeg_-_Copy.jpg"
+  }
+},
+{
+  "model": "my_app.propertyimage",
+  "pk": 28,
+  "fields": {
+    "property": 22,
+    "image": "property_images/condo-vs-apartment_66PpH3m.jpeg.jpg"
+  }
+},
+{
+  "model": "my_app.propertyimage",
+  "pk": 29,
+  "fields": {
+    "property": 22,
+    "image": "property_images/block_of_flats_zASNF7t.jpg"
+  }
+},
+{
+  "model": "my_app.propertyimage",
+  "pk": 30,
+  "fields": {
+    "property": 22,
+    "image": "property_images/flat3_axBlRSd.jpg"
+  }
+},
+{
+  "model": "my_app.propertyimage",
+  "pk": 31,
+  "fields": {
+    "property": 23,
+    "image": "property_images/flat2_Zsz7Eac.jpg"
+  }
+},
+{
+  "model": "my_app.newproject",
+  "pk": 1,
+  "fields": {
+    "title": "Project 1",
+    "image": "new_projects/images/land1.jpg",
+    "summary": "Residential plot available for sale in a peaceful and developing locality. Ideal for building your dream home or for future investment, the plot offers clear title, road access, and availability of basic utilities like water and electricity. Located close to schools, hospitals, and markets, this plot ensures both convenience and potential appreciation in value. Suitable for both individual buyers and builders.",
+    "brochure": "new_projects/pdfs/Tapasya.pdf"
+  }
+},
+{
+  "model": "my_app.newproject",
+  "pk": 2,
+  "fields": {
+    "title": "Project 2",
+    "image": "new_projects/images/land2.jpg",
+    "summary": "Residential plot available for sale in a peaceful and developing locality. Ideal for building your dream home or for future investment, the plot offers clear title, road access, and availability of basic utilities like water and electricity. Located close to schools, hospitals, and markets, this plot ensures both convenience and potential appreciation in value. Suitable for both individual buyers and builders.",
+    "brochure": "new_projects/pdfs/Tapasya_4jSCBAL.pdf"
+  }
+},
+{
+  "model": "my_app.newproject",
+  "pk": 3,
+  "fields": {
+    "title": "Project 3",
+    "image": "new_projects/images/land_3.jpeg",
+    "summary": "Residential plot available for sale in a peaceful and developing locality. Ideal for building your dream home or for future investment, the plot offers clear title, road access, and availability of basic utilities like water and electricity. Located close to schools, hospitals, and markets, this plot ensures both convenience and potential appreciation in value. Suitable for both individual buyers and builders.",
+    "brochure": "new_projects/pdfs/Tapasya_zMmn7bp.pdf"
+  }
+},
+{
+  "model": "my_app.newproject",
+  "pk": 4,
+  "fields": {
+    "title": "Project 4",
+    "image": "new_projects/images/flat2.jpg",
+    "summary": "Residential plot available for sale in a peaceful and developing locality. Ideal for building your dream home or for future investment, the plot offers clear title, road access, and availability of basic utilities like water and electricity. Located close to schools, hospitals, and markets, this plot ensures both convenience and potential appreciation in value. Suitable for both individual buyers and builders.",
+    "brochure": "new_projects/pdfs/1671004647907Brochure---Adarsh-Greens_ghfGVen.pdf"
+  }
+},
+{
+  "model": "my_app.lease",
+  "pk": 1,
+  "fields": {
+    "owner_user": 1,
+    "property_type": 2,
+    "city": 12,
+    "location": 95,
+    "area": "dfghjkl;'",
+    "price": "21215.00",
+    "owner_name": "Owner",
+    "contact_name": null,
+    "contact_number": "dfthgyuiop[",
+    "description": "fghsvbvhgfsyd w8qncvgim",
+    "terms_and_conditions": "",
+    "is_approved": true
+  }
+},
+{
+  "model": "my_app.lease",
+  "pk": 2,
+  "fields": {
+    "owner_user": 1,
+    "property_type": 1,
+    "city": 18,
+    "location": 103,
+    "area": "1125",
+    "price": "1111.00",
+    "owner_name": "Owner",
+    "contact_name": "Anshika Chauhan",
+    "contact_number": "3456788995",
+    "description": "adfskjl;sdfghjtresrdghjgf",
+    "terms_and_conditions": "asdfghnjmbn cvxzszcfvbg,ml",
+    "is_approved": true
+  }
+},
+{
+  "model": "my_app.leaseimage",
+  "pk": 1,
+  "fields": {
+    "lease": 1,
+    "image": "leases/condo-vs-apartment_9KDuqJL.jpeg.jpg"
+  }
+},
+{
+  "model": "my_app.leaseimage",
+  "pk": 2,
+  "fields": {
+    "lease": 1,
+    "image": "leases/land2_UtMtN2g.jpg"
+  }
+},
+{
+  "model": "my_app.leaseimage",
+  "pk": 3,
+  "fields": {
+    "lease": 1,
+    "image": "leases/land1.jpg"
+  }
+},
+{
+  "model": "my_app.leaseimage",
+  "pk": 4,
+  "fields": {
+    "lease": 1,
+    "image": "leases/land-for-sale1_-_Copy.jpg"
+  }
+},
+{
+  "model": "my_app.leaseimage",
+  "pk": 5,
+  "fields": {
+    "lease": 1,
+    "image": "leases/ppppp_-_Copy.jpg"
+  }
+},
+{
+  "model": "my_app.leaseimage",
+  "pk": 6,
+  "fields": {
+    "lease": 1,
+    "image": "leases/apartment_-_Copy.jpg"
+  }
+},
+{
+  "model": "my_app.leaseimage",
+  "pk": 7,
+  "fields": {
+    "lease": 1,
+    "image": "leases/flat1_-_Copy.jpg"
+  }
+},
+{
+  "model": "my_app.leaseimage",
+  "pk": 8,
+  "fields": {
+    "lease": 1,
+    "image": "leases/flat_-_Copy.jpg"
+  }
+},
+{
+  "model": "my_app.leaseimage",
+  "pk": 9,
+  "fields": {
+    "lease": 2,
+    "image": "leases/pg_R2ZfIqi.jpg"
+  }
+},
+{
+  "model": "my_app.leaseimage",
+  "pk": 10,
+  "fields": {
+    "lease": 2,
+    "image": "leases/condo-vs-apartment.jpeg_-_Copy.jpg"
+  }
+},
+{
+  "model": "my_app.leaseimage",
+  "pk": 11,
+  "fields": {
+    "lease": 2,
+    "image": "leases/condo-vs-apartment_c28bc1F.jpeg.jpg"
+  }
+},
+{
+  "model": "my_app.leaseimage",
+  "pk": 12,
+  "fields": {
+    "lease": 2,
+    "image": "leases/block_of_flats_hQz2iAM.jpg"
+  }
+}
+]
