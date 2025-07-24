@@ -195,13 +195,27 @@ def user_logout(request):
 
 
 @login_required(login_url='user-login')
+@login_required(login_url='user-login')
 def post_lease(request):
     if request.method == 'POST':
-        form = LeaseForm(request.POST)
+        form = LeaseForm(request.POST, request.FILES)
         if form.is_valid():
             lease = form.save(commit=False)
-            lease.owner_user = request.user  # ✔ Secure ownership
+            lease.owner_user = request.user
+
+            # Handle new location
+            new_location_name = form.cleaned_data.get('new_location')
+            selected_location = form.cleaned_data.get('location')
+
+            if new_location_name and not selected_location:
+                city = form.cleaned_data.get('city')
+                selected_location, _ = Location.objects.get_or_create(name=new_location_name, city=city)
+                lease.location = selected_location
+            else:
+                lease.location = selected_location
+
             lease.save()
+
             for image in request.FILES.getlist('images'):
                 LeaseImage.objects.create(lease=lease, image=image)
             return redirect('lease_properties')
@@ -253,48 +267,38 @@ def delete_lease(request, pk):
 
     return render(request, 'delete_confirm.html', {'lease': lease})
 
+
 # projects 
 def newprojects(request):
     projects = newProject.objects.all()  # or apply filters if needed
     return render(request, 'projects.html', {'projects': projects})
 
-#  Sell Form View
 
+#  Sell Form View
 @login_required(login_url='user-login')
 def sell_property_view(request):
     if request.method == 'POST':
         form = SellPropertyForm(request.POST, request.FILES)
 
         if form.is_valid():
-            # Handle dynamic location creation
-            new_location_name = request.POST.get('new_location')
-            location = form.cleaned_data['location']
-
-            if new_location_name and not location:
-                city_id = request.POST.get('city')
-                if city_id:
-                    try:
-                        city = City.objects.get(id=city_id)
-                        location = Location.objects.create(name=new_location_name, city=city)
-                    except City.DoesNotExist:
-                        location = None  # Fallback
-                else:
-                    location = None
-
-            # Save Property instance
             property_instance = form.save(commit=False)
-            property_instance.posted_by = request.user if request.user.is_authenticated else None
-            property_instance.location = location
+            property_instance.posted_by = request.user
+
+            new_location_name = form.cleaned_data.get('new_location')
+            selected_location = form.cleaned_data.get('location')
+
+            if new_location_name and not selected_location:
+                city = form.cleaned_data.get('city')
+                selected_location, _ = Location.objects.get_or_create(name=new_location_name, city=city)
+
+            property_instance.location = selected_location
             property_instance.save()
 
-            # Save images
             images = request.FILES.getlist('images')
             for img in images:
                 PropertyImage.objects.create(property=property_instance, image=img)
 
-            # Redirect or success message
-            return redirect('buy_properties')  # or wherever
-
+            return redirect('buy_properties')
     else:
         form = SellPropertyForm()
 
@@ -312,4 +316,4 @@ def about(request):
     return render(request, "about.html")
 # services
 def service(request):
-    return render(request, "service.html")
+    return render(request,"services.html")

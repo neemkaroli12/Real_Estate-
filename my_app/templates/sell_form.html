@@ -8,16 +8,15 @@
 
 <style>
   .property-card {
-  width: 90%;
-  max-width: 1000px;
-  margin: 30px auto;
-  background: #fff;
-  padding: 40px;
-  border-radius: 12px;
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.08);
-  font-family: 'Segoe UI', sans-serif;
-}
-
+    width: 90%;
+    max-width: 1000px;
+    margin: 30px auto;
+    background: #fff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.08);
+    font-family: 'Segoe UI', sans-serif;
+  }
 
   h2 {
     text-align: center;
@@ -117,10 +116,17 @@
     margin-right: 10px;
     border-radius: 6px;
   }
+
+  /* Required asterisk style */
+  .required-asterisk {
+    color: red;
+    margin-left: 2px;
+  }
 </style>
 
 <div class="property-card">
   <h2>Post Your Property</h2>
+  <span class="text-danger text-center" style="display:block; margin-bottom: 15px;">* All fields are Required</span>
 
   {% if form.errors %}
   <div class="alert">
@@ -133,7 +139,7 @@
       {% endfor %}
     </ul>
   </div>
-{% endif %}
+  {% endif %}
 
   <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
@@ -147,21 +153,19 @@
     {% endif %}
 
     <div class="form-group">
-      <label>I am</label>
+      <label>I am<span class="required-asterisk">*</span></label>
       <div class="radio-group">
         <label><input type="radio" name="user_type" value="Owner" {% if request.POST.user_type == "Owner" %}checked{% endif %}> Owner</label>
         <label><input type="radio" name="user_type" value="Agent" {% if request.POST.user_type == "Agent" %}checked{% endif %}> Agent</label>
         <label><input type="radio" name="user_type" value="Builder" {% if request.POST.user_type == "Builder" %}checked{% endif %}> Builder</label>
         {% if form.user_type.errors %}
           <div class="field-error">{{ form.user_type.errors.0 }}</div>
-          {% endif %}
-
+        {% endif %}
       </div>
-      
     </div>
 
     <div class="form-group">
-      <label>Purpose</label>
+      <label>Purpose<span class="required-asterisk">*</span></label>
       <div class="radio-group">
         {% for p in purposes %}
           <label>
@@ -177,7 +181,7 @@
 
     <div class="form-grid">
       <div class="form-group">
-        <label><i class="fas fa-user"></i> Name</label>
+        <label><i class="fas fa-user"></i> Name<span class="required-asterisk">*</span></label>
         <input type="text" name="name" value="{{ form.name.value|default:'' }}">
         {% if form.name.errors %}
           <div class="field-error">{{ form.name.errors.0 }}</div>
@@ -185,7 +189,7 @@
       </div>
 
       <div class="form-group">
-        <label><i class="fas fa-phone"></i> Mobile</label>
+        <label><i class="fas fa-phone"></i> Mobile<span class="required-asterisk">*</span></label>
         <input type="tel" name="mobile" value="{{ form.mobile.value|default:'' }}">
         {% if form.mobile.errors %}
           <div class="field-error">{{ form.mobile.errors.0 }}</div>
@@ -193,7 +197,7 @@
       </div>
 
       <div class="form-group">
-        <label><i class="fas fa-envelope"></i> Email</label>
+        <label><i class="fas fa-envelope"></i> Email<span class="required-asterisk">*</span></label>
         <input type="email" name="email" value="{{ form.email.value|default:'' }}">
         {% if form.email.errors %}
           <div class="field-error">{{ form.email.errors.0 }}</div>
@@ -201,7 +205,7 @@
       </div>
 
       <div class="form-group">
-        <label>Property Type</label>
+        <label>Property Type<span class="required-asterisk">*</span></label>
         <select name="property_type">
           <option value="">Select Property Type</option>
           {% for pt in property_types %}
@@ -214,7 +218,7 @@
       </div>
 
       <div class="form-group">
-        <label>City</label>
+        <label>City<span class="required-asterisk">*</span></label>
         <select name="city" id="city-select">
           <option value="">Select City</option>
           {% for c in cities %}
@@ -227,7 +231,7 @@
       </div>
 
       <div class="form-group">
-        <label>Location</label>
+        <label>Location<span class="required-asterisk">*</span></label>
         <select name="location" id="location-select">
           <option value="">Select Location</option>
           {% for l in locations %}
@@ -235,10 +239,10 @@
           {% endfor %}
         </select>
 
-        <div id="new-location-div" style="display:none; margin-top: 10px;">
-          <label>Add New Location</label>
-          <input type="text" name="new_location" placeholder="Enter new location" class="form-control" />
-        </div>
+        <div id="new-location-div" style="margin-top: 10px; display: none;">
+  <label>Add New Location<span class="required-asterisk">*</span></label>
+  <input type="text" name="new_location" placeholder="Enter new location" class="form-control" />
+</div>
 
         {% if form.location.errors %}
           <div class="field-error">{{ form.location.errors.0 }}</div>
@@ -246,7 +250,7 @@
       </div>
 
       <div class="form-group">
-        <label>Price</label>
+        <label>Price<span class="required-asterisk">*</span></label>
         <input type="number" name="price" value="{{ form.price.value|default:'' }}">
         {% if form.price.errors %}
           <div class="field-error">{{ form.price.errors.0 }}</div>
@@ -254,7 +258,7 @@
       </div>
 
       <div class="form-group">
-        <label>Area (sq. ft.)</label>
+        <label>Area (sq. ft.)<span class="required-asterisk">*</span></label>
         <input type="number" name="area" value="{{ form.area.value|default:'' }}">
         {% if form.area.errors %}
           <div class="field-error">{{ form.area.errors.0 }}</div>
@@ -263,7 +267,7 @@
     </div>
 
     <div class="form-group">
-      <label>Description</label>
+      <label>Description<span class="required-asterisk">*</span></label>
       <textarea name="description">{{ form.description.value|default:'' }}</textarea>
       {% if form.description.errors %}
         <div class="field-error">{{ form.description.errors.0 }}</div>
@@ -271,13 +275,11 @@
     </div>
 
     <div class="form-group">
-      <label>Upload Images</label>
+      <label>Upload Images<span class="required-asterisk">*</span></label>
       <input type="file" name="images" multiple accept="image/*">
-      <div class="image-preview" id="preview"></div>
-    </div>
-
-    <div class="form-group checkbox-group">
-      <label><input type="checkbox" required> I agree to Terms & Conditions</label>
+      {% if form.images.errors %}
+        <div class="field-error">{{ form.images.errors.0 }}</div>
+      {% endif %}
     </div>
 
     <button type="submit" class="btn-submit">Post Property</button>
@@ -286,24 +288,6 @@
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {
-    // Preview uploaded images
-    const input = document.querySelector('input[name="images"]');
-    const preview = document.getElementById("preview");
-
-    input.addEventListener("change", function () {
-      preview.innerHTML = "";
-      Array.from(input.files).forEach(file => {
-        const reader = new FileReader();
-        reader.onload = function (e) {
-          const img = document.createElement("img");
-          img.src = e.target.result;
-          preview.appendChild(img);
-        };
-        reader.readAsDataURL(file);
-      });
-    });
-
-    // Load locations dynamically
     const citySelect = document.getElementById("city-select");
     const locationSelect = document.getElementById("location-select");
     const newLocationDiv = document.getElementById("new-location-div");
@@ -311,15 +295,19 @@
     citySelect.addEventListener("change", function () {
       const cityId = this.value;
       locationSelect.innerHTML = '<option value="">Loading...</option>';
-      newLocationDiv.style.display = 'none';
+      newLocationDiv.style.display = 'none'; // Hide initially
+
+      if (!cityId) {
+        locationSelect.innerHTML = '<option value="">Select Location</option>';
+        return;
+      }
 
       fetch(`/ajax/load-locations/?city_id=${cityId}`)
         .then(response => response.json())
         .then(data => {
           locationSelect.innerHTML = '<option value="">Select Location</option>';
-          if (data.length === 0) {
-            newLocationDiv.style.display = 'block';
-          } else {
+
+          if (data.length > 0) {
             data.forEach(location => {
               const option = document.createElement("option");
               option.value = location.id;
@@ -327,9 +315,22 @@
               locationSelect.appendChild(option);
             });
           }
+
+          // Always show the "Add New Location" field
+          newLocationDiv.style.display = 'block';
+        })
+        .catch(() => {
+          locationSelect.innerHTML = '<option value="">Select Location</option>';
+          newLocationDiv.style.display = 'block';
         });
     });
+
+    // If a city is already selected on page load, trigger the change
+    if (citySelect.value) {
+      citySelect.dispatchEvent(new Event('change'));
+    }
   });
 </script>
+
 
 {% endblock %}

@@ -2,7 +2,7 @@ from django import forms
 from django.forms import modelformset_factory
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import Purpose, PropertyType, City, LeadRequest, Property, PropertyImage, Lease
+from .models import Purpose, PropertyType, City, LeadRequest, Property, PropertyImage, Lease,Location
 
 # Property Search Filter Form
 class PropertySearchForm(forms.Form):
@@ -83,6 +83,8 @@ class CustomUserCreationForm(UserCreationForm):
             'password1': forms.PasswordInput(attrs={'class': 'form-control'}),
             'password2': forms.PasswordInput(attrs={'class': 'form-control'}),
         }
+        
+
 OWNER_CHOICES = [
     ('Owner', 'Owner'),
     ('Agent', 'Agent'),
@@ -90,30 +92,139 @@ OWNER_CHOICES = [
 ]
 
 class LeaseForm(forms.ModelForm):
-    owner_name = forms.ChoiceField(choices=OWNER_CHOICES, label="I am")
+    owner_name = forms.ChoiceField(
+        choices=OWNER_CHOICES,
+        label="I am *",
+        required=True
+    )
+    contact_name = forms.CharField(
+        required=True,
+        label="Contact Name *",
+        widget=forms.TextInput(attrs={'class': 'form-control'})
+    )
+    contact_number = forms.CharField(
+        required=True,
+        label="Contact Number *",
+        widget=forms.TextInput(attrs={'class': 'form-control'})
+    )
+    property_type = forms.ModelChoiceField(
+        queryset=PropertyType.objects.all(),
+        required=True,
+        label="Property Type *",
+        widget=forms.Select(attrs={'class': 'form-select'})
+    )
+    city = forms.ModelChoiceField(
+        queryset=City.objects.all(),
+        required=True,
+        label="City *",
+        widget=forms.Select(attrs={'class': 'form-select'})
+    )
+    location = forms.ModelChoiceField(
+        queryset=Location.objects.all(),
+        required=False,
+        label="Location",
+        widget=forms.Select(attrs={'class': 'form-select'})
+    )
+    new_location = forms.CharField(
+        required=False,
+        label="Add New Location",
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter new location if not listed'})
+    )
+    area = forms.CharField(
+        required=True,
+        label="Area (sq.ft) *",
+        widget=forms.TextInput(attrs={'class': 'form-control'})
+    )
+    price = forms.DecimalField(
+        required=True,
+        label="Price *",
+        widget=forms.NumberInput(attrs={'class': 'form-control'})
+    )
+    description = forms.CharField(
+        required=False,
+        label="Description",
+        widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 3})
+    )
+    terms_and_conditions = forms.CharField(
+        required=False,
+        label="Terms and Conditions",
+        widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 3})
+    )
 
     class Meta:
         model = Lease
-        fields = ['owner_name', 'contact_name','property_type', 'city', 'location', 'area', 'price', 'contact_number', 'description', 'terms_and_conditions']
-        widgets = {
-            'description': forms.Textarea(attrs={'rows': 3}),
-            'terms_and_conditions': forms.Textarea(attrs={'rows': 3}),
-        }
+        fields = [
+            'owner_name', 'contact_name', 'property_type', 'city',
+            'location', 'new_location', 'area', 'price', 'contact_number',
+            'description', 'terms_and_conditions'
+        ]
         
-        
+
 class SellPropertyForm(forms.ModelForm):
-    # your additional fields
-    name = forms.CharField(required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
-    email = forms.EmailField(required=False, widget=forms.EmailInput(attrs={'class': 'form-control'}))
-    mobile = forms.CharField(required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    name = forms.CharField(
+        required=True,
+        label="Your Name *",
+        widget=forms.TextInput(attrs={'class': 'form-control'})
+    )
+    email = forms.EmailField(
+        required=True,
+        label="Email *",
+        widget=forms.EmailInput(attrs={'class': 'form-control'})
+    )
+    mobile = forms.CharField(
+        required=True,
+        label="Mobile Number *",
+        widget=forms.TextInput(attrs={'class': 'form-control'})
+    )
     user_type = forms.ChoiceField(
+        required=True,
+        label="I am *",
         choices=[('Owner', 'Owner'), ('Agent', 'Agent'), ('Builder', 'Builder')],
         widget=forms.RadioSelect
     )
-
     purpose = forms.ModelChoiceField(
         queryset=Purpose.objects.filter(name__in=['Sell', 'Rent']),
+        required=True,
+        label="Purpose *",
         widget=forms.Select(attrs={'class': 'form-select'})
+    )
+    property_type = forms.ModelChoiceField(
+        queryset=PropertyType.objects.all(),
+        required=True,
+        label="Property Type *",
+        widget=forms.Select(attrs={'class': 'form-select'})
+    )
+    city = forms.ModelChoiceField(
+        queryset=City.objects.all(),
+        required=True,
+        label="City *",
+        widget=forms.Select(attrs={'class': 'form-select'})
+    )
+    location = forms.ModelChoiceField(
+        queryset=Location.objects.all(),
+        required=False,
+        label="Location",
+        widget=forms.Select(attrs={'class': 'form-select'})
+    )
+    new_location = forms.CharField(
+        required=False,
+        label="Add New Location",
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter new location if not listed'})
+    )
+    description = forms.CharField(
+        required=True,
+        label="Property Description *",
+        widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 3})
+    )
+    price = forms.IntegerField(
+        required=True,
+        label="Price *",
+        widget=forms.NumberInput(attrs={'class': 'form-control'})
+    )
+    area = forms.IntegerField(
+        required=True,
+        label="Area (sq.ft) *",
+        widget=forms.NumberInput(attrs={'class': 'form-control'})
     )
 
     class Meta:
@@ -125,14 +236,6 @@ class SellPropertyForm(forms.ModelForm):
             'property_type',
             'city',
             'location',
+            'new_location',
             'area'
         ]
-        widgets = {
-            'description': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
-            'price': forms.NumberInput(attrs={'class': 'form-control'}),
-            'purpose': forms.Select(attrs={'class': 'form-select'}),
-            'property_type': forms.Select(attrs={'class': 'form-select'}),
-            'city': forms.Select(attrs={'class': 'form-select'}),
-            'location': forms.Select(attrs={'class': 'form-select'}),
-            'area': forms.NumberInput(attrs={'class': 'form-control'}),
-        }

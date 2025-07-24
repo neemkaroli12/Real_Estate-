@@ -5,18 +5,22 @@
 {% block content %}
   <div class="container my-5">
     <h2 class="mb-4 text-center">Post Lease Property</h2>
+    <span class="text-danger text-center" style="display:block; margin-bottom: 15px;">* All fields are Required</span>
     
     <form method="POST" enctype="multipart/form-data" class="p-4 bg-light border rounded shadow-sm">
       {% csrf_token %}
       <div class="row g-3">
-        <label for="id_owner_name" class="form-label">I am</label>
+
+        <!-- I am -->
+        <label for="id_owner_name" class="form-label">I am <span class="text-danger">*</span></label>
         {{ form.owner_name|add_class:'form-control' }}
         {% if form.owner_name.errors %}
           <div class="text-danger">{{ form.owner_name.errors.0 }}</div>
         {% endif %}
+
         <!-- Property Type -->
         <div class="col-md-6">
-          <label for="id_property_type" class="form-label">Property Type</label>
+          <label for="id_property_type" class="form-label">Property Type <span class="text-danger">*</span></label>
           {{ form.property_type|add_class:'form-select' }}
           {% if form.property_type.errors %}
             <div class="text-danger">{{ form.property_type.errors.0 }}</div>
@@ -25,7 +29,7 @@
 
         <!-- City -->
         <div class="col-md-6">
-          <label for="id_city" class="form-label">City</label>
+          <label for="id_city" class="form-label">City <span class="text-danger">*</span></label>
           {{ form.city|add_class:'form-select' }}
           {% if form.city.errors %}
           <div class="text-danger">{{ form.city.errors.0 }}</div>
@@ -34,16 +38,22 @@
 
         <!-- Location -->
         <div class="col-md-6">
-          <label for="id_location" class="form-label">Location</label>
+          <label for="id_location" class="form-label">Location <span class="text-danger">*</span></label>
           {{ form.location|add_class:'form-select' }}
           {% if form.location.errors %}
             <div class="text-danger">{{ form.location.errors.0 }}</div>
           {% endif %}
         </div>
-        <!-- Contact Name -->
 
+        <!-- Add New Location input -->
+        <div class="col-md-6" id="new-location-div" style="display:none; margin-top: 30px;">
+          <label for="id_new_location" class="form-label">Add New Location <span class="text-danger">*</span></label>
+          <input type="text" name="new_location" id="id_new_location" class="form-control" placeholder="Enter new location">
+        </div>
+
+        <!-- Contact Name -->
         <div class="col-md-6">
-          <label for="id_contact_name" class="form-label">Contact Name</label>
+          <label for="id_contact_name" class="form-label">Contact Name <span class="text-danger">*</span></label>
           {{ form.contact_name|add_class:'form-control' }}
           {% if form.contact_name.errors %}
             <div class="text-danger">{{ form.contact_name.errors.0 }}</div>
@@ -52,7 +62,7 @@
 
         <!-- Contact Number -->
         <div class="col-md-6">
-          <label for="id_contact_number" class="form-label">Contact Number</label>
+          <label for="id_contact_number" class="form-label">Contact Number <span class="text-danger">*</span></label>
           {{ form.contact_number|add_class:'form-control' }}
           {% if form.contact_number.errors %}
             <div class="text-danger">{{ form.contact_number.errors.0 }}</div>
@@ -61,7 +71,7 @@
 
         <!-- Area -->
         <div class="col-md-6">
-          <label for="id_area" class="form-label">Area (sq ft)</label>
+          <label for="id_area" class="form-label">Area (sq ft) <span class="text-danger">*</span></label>
           {{ form.area|add_class:'form-control' }}
           {% if form.area.errors %}
             <div class="text-danger">{{ form.area.errors.0 }}</div>
@@ -70,7 +80,7 @@
 
         <!-- Price -->
         <div class="col-md-6">
-          <label for="id_price" class="form-label">Price (₹)</label>
+          <label for="id_price" class="form-label">Price (₹) <span class="text-danger">*</span></label>
           {{ form.price|add_class:'form-control' }}
           {% if form.price.errors %}
             <div class="text-danger">{{ form.price.errors.0 }}</div>
@@ -79,7 +89,7 @@
 
         <!-- Description -->
         <div class="col-12">
-          <label for="id_description" class="form-label">Description</label>
+          <label for="id_description" class="form-label">Description <span class="text-danger">*</span></label>
           {{ form.description|add_class:'form-control' }}
           {% if form.description.errors %}
             <div class="text-danger">{{ form.description.errors.0 }}</div>
@@ -88,13 +98,13 @@
 
         <!-- Upload Images -->
         <div class="col-12">
-          <label for="images">Upload Images:</label>
+          <label for="images" class="form-label">Upload Images <span class="text-danger">*</span></label>
           <input type="file" name="images" multiple class="form-control mb-3" accept="image/*" />
         </div>
 
         <!-- Terms and Conditions -->
         <div class="col-12">
-          <label for="id_terms_and_conditions" class="form-label">Terms and Conditions</label>
+          <label for="id_terms_and_conditions" class="form-label">Terms and Conditions <span class="text-danger">*</span></label>
           {{ form.terms_and_conditions|add_class:'form-control' }}
           {% if form.terms_and_conditions.errors %}
             <div class="text-danger">{{ form.terms_and_conditions.errors.0 }}</div>
@@ -109,22 +119,34 @@
     </form>
   </div>
 
-  <!-- JS for dynamic location loading -->
+  <!-- JS for dynamic location loading and showing Add New Location -->
   <script>
     document.getElementById('id_city').addEventListener('change', function () {
-      let cityId = this.value
+      let cityId = this.value;
+      const locationSelect = document.getElementById('id_location');
+      const newLocationDiv = document.getElementById('new-location-div');
+
+      if (!cityId) {
+        locationSelect.innerHTML = '<option value="">Select Location</option>';
+        newLocationDiv.style.display = 'none';
+        return;
+      }
+
       fetch(`/ajax/load-locations/?city_id=${cityId}`)
-        .then((response) => response.json())
-        .then((data) => {
-          const locationSelect = document.getElementById('id_location')
-          locationSelect.innerHTML = '<option value="">Select Location</option>'
-          data.forEach(function (loc) {
-            const option = document.createElement('option')
-            option.value = loc.id
-            option.text = loc.name
-            locationSelect.add(option)
-          })
+        .then(response => response.json())
+        .then(data => {
+          locationSelect.innerHTML = '<option value="">Select Location</option>';
+          data.forEach(location => {
+            const option = document.createElement('option');
+            option.value = location.id;
+            option.textContent = location.name;
+            locationSelect.appendChild(option);
+          });
+          newLocationDiv.style.display = 'block';
         })
-    })
+        .catch(() => {
+          newLocationDiv.style.display = 'block';
+        });
+    });
   </script>
 {% endblock %}
