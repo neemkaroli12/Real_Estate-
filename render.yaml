@@ -10,3 +10,7 @@ services:
         value: "False"
       - key: SECRET_KEY
         generateValue: true
+
+static:
+  - name: media
+    path: media
