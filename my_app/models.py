@@ -45,7 +45,7 @@ class Property(models.Model):
     ownership = models.CharField(max_length=100, null=True, blank=True)
     transaction_type = models.CharField(max_length=100, null=True, blank=True)
     agent_phone = models.CharField(max_length=15, null=True, blank=True)
-    brochure = CloudinaryField('file', folder='property/brochures/')
+    brochure = CloudinaryField(resource_type='raw', folder='property/brochures/') 
     posted_on = models.DateTimeField(auto_now_add=True)
     posted_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
     is_approved = models.BooleanField(default=False)
@@ -80,7 +80,7 @@ class newProject(models.Model):
     title = models.CharField(max_length=200, null=True, blank=True)
     image = CloudinaryField('image', folder='newprojects/')
     summary = models.TextField(max_length=500, null=True, blank=True)
-    brochure = CloudinaryField('file', folder='newprojects/brochures/')
+    brochure = CloudinaryField(resource_type='raw', folder='newprojects/brochures/') 
 
     def __str__(self):
         return self.title or "Unnamed Project"

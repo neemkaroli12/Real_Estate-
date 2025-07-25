@@ -13,10 +13,10 @@
           {% endif %}
 
             <div class="card-body">
-              <h5>{{ property.title }}</h5>
-              <p>{{ property.city }}</p>
-              <p>{{ property.location }}</p>
-              <p>{{ property.description|truncatewords:15 }}</p>
+              <h6><strong>Property_Type : </strong>{{ property.property_type}}</h6>
+              <p><strong>City</strong> : {{ property.city }}</p>
+              <p><strong>Location</strong> : {{ property.location }}</p>
+              <p><strong>Description</strong> : {{ property.description|truncatewords:15 }}</p>
               <a href="{% url 'property_detail' property.pk %}" class="btn btn-primary">View Details</a>
             </div>
           </div>
