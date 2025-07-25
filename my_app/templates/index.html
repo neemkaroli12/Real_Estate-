@@ -1,4 +1,5 @@
 {% extends 'common.html' %}
+
 {% block content %}
   <section class="hero">
     <div class="overlay"></div>
@@ -165,10 +166,11 @@
               <div class="card-body">
                 <h5 class="card-title">{{ project.title }}</h5>
                 <p class="card-text">{{ project.summary|truncatewords:20 }}</p>
-                {% if project.brochure %}
-                  <a href="{{ project.brochure.url }}" class="btn btn-primary btn-sm w-100" target="_blank">Know More</a>
-                {% else %}
-                  <button class="btn btn-secondary btn-sm w-100" disabled>No PDF</button>
+               {% if project.brochure %}
+                  {% if project.fixed_brochure_url %}
+                      <a href="{{ project.fixed_brochure_url }}" class="btn btn-primary btn-sm w-100" target="_blank">Know More</a>
+                  {% else %}
+                 <button class="btn btn-secondary btn-sm w-100" disabled>No PDF</button>
                 {% endif %}
               </div>
             </div>
