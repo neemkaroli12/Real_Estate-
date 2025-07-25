@@ -60,7 +60,7 @@ class PropertyImage(models.Model):
    
        
     def __str__(self):
-       return f"Image for Lease #{self.property.id}"
+       return f"Image for {self.property} #{self.property.id}"
 
 
 
@@ -111,4 +111,4 @@ class LeaseImage(models.Model):
     lease = models.ForeignKey(Lease, on_delete=models.CASCADE, related_name='images')
     image = CloudinaryField('image')
     def __str__(self):
-        return f"Image for Lease #{self.lease.id}"
+        return f"Image for #{self.lease.id}"
