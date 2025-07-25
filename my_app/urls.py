@@ -8,7 +8,7 @@ from django.conf import settings
 
 urlpatterns = [
     path('', views.home, name="index"),  
-    path('projects/', views.newProject, name="projects"),  
+    path('projects/', views.newprojects, name="projects"),  
     path('city/<int:city_id>/', views.city_detail, name='city_detail'),
     path('property/<int:pk>/', views.property_detail, name='property_detail'),
     path('verify-otp/<int:pk>/', views.verify_otp_view, name='verify_otp'),

@@ -269,14 +269,16 @@ def delete_lease(request, pk):
 
 
 # projects 
-projects = newProject.objects.all()
+def newprojects(request):
+    projects = newProject.objects.all()
 
-for project in projects:
-    if project.brochure:
-        project.fixed_brochure_url = project.brochure.url.replace("/image/", "/raw/")
-    else:
-        project.fixed_brochure_url = None
+    for project in projects:
+        if project.brochure:
+            project.fixed_brochure_url = project.brochure.url.replace("/image/", "/raw/")
+        else:
+            project.fixed_brochure_url = None
 
+    return render(request, 'projects.html', {'projects': projects})
 
 #  Sell Form View
 @login_required(login_url='user-login')
