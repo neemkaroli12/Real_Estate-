@@ -1,28 +1,29 @@
 {% extends 'common.html' %}
 {% block content %}
-<div class="container mt-5">
-  <h2>Available Properties for Rent</h2>
-  <div class="row">
-    {% for property in properties %}
+  <div class="container mt-5">
+    <h2>Available Properties for Rent</h2>
+    <div class="row">
+      {% for property in properties %}
       <div class="col-md-4 mb-4">
         <div class="card">
           {% if property.images.all|length > 0 %}
-            <img src="{{ image.image }}" class="card-img-top" style="height: 250px; object-fit: cover;" alt="Property Image">
+            <img src="{{ property.images.first.image.url }}" class="card-img-top" style="height: 250px; object-fit: cover;" alt="Property Image">
           {% else %}
             <img src="https://via.placeholder.com/400x250?text=No+Image" class="card-img-top" alt="No image available">
           {% endif %}
-          <div class="card-body">
-            <h5>{{ property.title }}</h5>
-            <p>{{property.city}}</p>
-            <p>{{property.location}}</p>
-            <p>{{ property.description|truncatewords:15 }}</p>
-            <a href="{% url 'property_detail' property.pk %}" class="btn btn-primary">View Details</a>
+
+            <div class="card-body">
+              <h5>{{ property.title }}</h5>
+              <p>{{ property.city }}</p>
+              <p>{{ property.location }}</p>
+              <p>{{ property.description|truncatewords:15 }}</p>
+              <a href="{% url 'property_detail' property.pk %}" class="btn btn-primary">View Details</a>
+            </div>
           </div>
         </div>
-      </div>
-    {% empty %}
-      <p>No rental properties available.</p>
-    {% endfor %}
+      {% empty %}
+        <p>No rental properties available.</p>
+      {% endfor %}
+    </div>
   </div>
-</div>
 {% endblock %}

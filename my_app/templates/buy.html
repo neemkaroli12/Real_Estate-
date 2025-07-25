@@ -23,11 +23,11 @@
   <div class="container py-5">
     <h2 class="mb-4">Buy Properties</h2>
     <div class="row">
-      {% for property in properties %}
+       {% for property in properties %}
         <div class="col-md-4 mb-4">
           <div class="card h-100 shadow-sm " style="border: 3px solid lightgray;">
             {% if property.images.all %}
-              <img src="{{ image.image }}" class="img rounded " style="height: 200px; object-fit: cover;" alt="Property Image" />
+              <img src="{{ property.images.all.0.image.url }}" class="img rounded " style="height: 200px; object-fit: cover;" alt="Property Image" />
             {% else %}
               <img src="https://via.placeholder.com/400x300?text=No+Image" class="img-fluid rounded" alt="No image available" />
             {% endif %}
