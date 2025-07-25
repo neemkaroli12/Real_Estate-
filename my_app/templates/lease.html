@@ -27,7 +27,7 @@
               {% else %}
                 {% with image=lease.images.first %}
                   {% if image %}
-                    <a href="{{ image.image }}" class="glightbox" data-gallery="gallery{{ lease.id }}" data-title="{{ lease.title }}"><img src="{{ image.image.url }}" class="d-block w-100 lease-carousel-img" alt="Lease Image" /></a>
+                    <a href="{{ image.image.url }}" class="glightbox" data-gallery="gallery{{ lease.id }}" data-title="{{ lease.title }}"><img src="{{ image.image.url }}" class="d-block w-100 lease-carousel-img" alt="Lease Image" /></a>
                   {% endif %}
                 {% endwith %}
               {% endif %}
