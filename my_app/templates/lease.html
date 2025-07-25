@@ -10,47 +10,76 @@
 
     {% if properties %}
       <div class="row">
-        {% for property in properties %}
+        {% for lease in properties %}
           <div class="col-md-4 mb-4">
-            <div class="card">
-              {% if property.images.all %}
-                <a href="{{ property.images.first.image.url }}" class="glightbox" data-gallery="gallery1">
-                  <img src="{{ property.images.first.image.url }}" class="card-img-top" style="height: 250px; object-fit: cover;" alt="Lease Property Image" />
-                </a>
+            <div class="card shadow-sm w-100">
+              {% if lease.images.all|length > 1 %}
+                <div id="carousel{{ lease.id }}" class="carousel slide w-100" data-bs-ride="carousel">
+                  <div class="carousel-inner w-100">
+                    {% for image in lease.images.all %}
+                      <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                        <a href="{{ image.image.url }}" class="glightbox" data-gallery="gallery{{ lease.id }}" data-title="{{ lease.title }}"><img src="{{ image.image.url }}" class="d-block w-100 lease-carousel-img" alt="Lease Image" /></a>
+                      </div>
+                    {% endfor %}
+                  </div>
+                  <button class="carousel-control-prev" type="button" data-bs-target="#carousel{{ lease.id }}" data-bs-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span></button>
+                  <button class="carousel-control-next" type="button" data-bs-target="#carousel{{ lease.id }}" data-bs-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span></button>
+                </div>
               {% else %}
-                <img src="https://via.placeholder.com/400x250?text=No+Image" class="card-img-top" alt="No image available" />
+                {% with image=lease.images.first %}
+                  {% if image %}
+                    <a href="{{ image.image }}" class="glightbox" data-gallery="gallery{{ lease.id }}" data-title="{{ lease.title }}"><img src="{{ image.image.url }}" class="d-block w-100 lease-carousel-img" alt="Lease Image" /></a>
+                  {% endif %}
+                {% endwith %}
               {% endif %}
+
               <div class="card-body">
-                <h5>{{ property.title }}</h5>
-                <p>{{ property.description|truncatewords:15 }}</p>
-                <a href="{% url 'property_detail' property.pk %}" class="btn btn-primary">View Details</a>
+                <h5 class="card-title">{{ lease.title }}</h5>
+                <p class="card-text">{{ lease.description|truncatewords:25 }}</p>
+                <p class="card-text">
+                  <strong>City:</strong> {{ lease.city.name }}<br />
+                  <strong>Location:</strong> {{ lease.location.name }}<br />
+                  <strong>Price:</strong> ₹{{ lease.price }}<br />
+                </p>
+               
+              </div>
+
+              <div class="card-footer bg-light">
+                <div class="accordion" id="termsAccordion{{ lease.id }}">
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="heading{{ lease.id }}"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ lease.id }}" aria-expanded="false" aria-controls="collapse{{ lease.id }}">Terms & Conditions</button></h2>
+                    <div id="collapse{{ lease.id }}" class="accordion-collapse collapse" aria-labelledby="heading{{ lease.id }}">
+                      <div class="accordion-body">
+                        <ul>
+                          {% for line in lease.terms_list %}
+                            {% if line.strip %}
+                              <li>{{ line }}</li>
+                            {% endif %}
+                          {% endfor %}
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         {% endfor %}
       </div>
     {% else %}
-      <p class="text-muted">No lease properties available at the moment.</p>
+      <p>No lease properties found.</p>
     {% endif %}
   </div>
 
   <!-- GLightbox JS -->
   <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
-  try {
-    var lightbox = GLightbox({
+    const lightbox = GLightbox({
       selector: '.glightbox',
       loop: true,
       zoomable: true,
-      draggable: true,
-    });
-    console.log('GLightbox initialized');
-  } catch (e) {
-    console.error('GLightbox initialization error:', e);
-  }
-});
-
+      draggable: true
+    })
   </script>
 
   <style>
@@ -62,9 +91,41 @@
       border-top-right-radius: 0.375rem;
       transition: transform 0.3s ease;
     }
-
+    
     .lease-carousel-img:hover {
       transform: scale(1.03);
+    }
+    
+    .carousel-inner {
+      border-top-left-radius: 0.375rem;
+      border-top-right-radius: 0.375rem;
+      overflow: hidden;
+    }
+    
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+      background-color: rgba(0, 0, 0, 0.5);
+      border-radius: 50%;
+    }
+    
+    .card {
+      width: 100%;
+    }
+    
+    .glightbox-container .gslide-media img {
+      max-width: 500px !important;
+      max-height: 500px !important;
+      width: 500px !important;
+      height: 500px !important;
+      object-fit: contain;
+      margin: auto;
+    }
+    
+    /* Optional: center content inside lightbox */
+    .glightbox-container .gslide {
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
   </style>
 {% endblock %}
