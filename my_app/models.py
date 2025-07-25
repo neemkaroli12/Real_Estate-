@@ -61,7 +61,7 @@ class PropertyImage(models.Model):
    
        
     def __str__(self):
-        return f"Lead by {self.name} for {self.property.property_type} at {self.property.location}"
+       return f"Image for Lease #{self.property.id}"
 
 
 
