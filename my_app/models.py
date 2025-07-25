@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.utils.html import format_html
-from django.utils import timezone
+from cloudinary.models import CloudinaryField
 
 
 # Purpose (e.g., Sell, Rent)
@@ -46,7 +45,7 @@ class Property(models.Model):
     ownership = models.CharField(max_length=100, null=True, blank=True)
     transaction_type = models.CharField(max_length=100, null=True, blank=True)
     agent_phone = models.CharField(max_length=15, null=True, blank=True)
-    brochure = models.FileField(upload_to='property/brochures/', null=True, blank=True)
+    brochure = CloudinaryField('file', null=True, blank=True)
     posted_on = models.DateTimeField(auto_now_add=True)
     posted_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
     is_approved = models.BooleanField(default=False)
@@ -57,7 +56,7 @@ class Property(models.Model):
 # Multiple images per property
 class PropertyImage(models.Model):
     property = models.ForeignKey(Property, related_name='images', on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='property_images/')
+    image = CloudinaryField('image') 
    
        
     def __str__(self):
@@ -81,9 +80,9 @@ class LeadRequest(models.Model):
 # Projects section
 class newProject(models.Model):
     title = models.CharField(max_length=200, null=True, blank=True)
-    image = models.ImageField(upload_to="new_projects/images", null=True, blank=True)
+    image = CloudinaryField('image', null=True, blank=True)
     summary = models.TextField(max_length=500, null=True, blank=True)
-    brochure = models.FileField(upload_to="new_projects/pdfs", null=True, blank=True)
+    brochure = CloudinaryField('file', null=True, blank=True)
 
     def __str__(self):
         return self.title or "Unnamed Project"
@@ -110,7 +109,6 @@ class Lease(models.Model):
 
 class LeaseImage(models.Model):
     lease = models.ForeignKey(Lease, on_delete=models.CASCADE, related_name='images')
-    image = models.ImageField(upload_to='leases/')
-
+    image = CloudinaryField('image')
     def __str__(self):
         return f"Image for Lease #{self.lease.id}"
