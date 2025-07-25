@@ -56,7 +56,7 @@ class Property(models.Model):
 # Multiple images per property
 class PropertyImage(models.Model):
     property = models.ForeignKey(Property, related_name='images', on_delete=models.CASCADE)
-    image = CloudinaryField('image', folder='leases/')
+    image = CloudinaryField('image', folder='property/')
     def __str__(self):
        return f"Image for {self.property} #{self.property.id}"
 

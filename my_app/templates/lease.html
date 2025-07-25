@@ -33,13 +33,12 @@
               {% endif %}
 
               <div class="card-body">
-                <h5 class="card-title">{{ lease.title }}</h5>
-                <p class="card-text">{{ lease.description|truncatewords:25 }}</p>
                 <p class="card-text">
                   <strong>City:</strong> {{ lease.city.name }}<br />
                   <strong>Location:</strong> {{ lease.location.name }}<br />
                   <strong>Price:</strong> ₹{{ lease.price }}<br />
                 </p>
+                <p class="card-text">{{ lease.description|truncatewords:25 }}</p>
                
               </div>
 
@@ -49,6 +48,7 @@
                     <h2 class="accordion-header" id="heading{{ lease.id }}"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ lease.id }}" aria-expanded="false" aria-controls="collapse{{ lease.id }}">Terms & Conditions</button></h2>
                     <div id="collapse{{ lease.id }}" class="accordion-collapse collapse" aria-labelledby="heading{{ lease.id }}">
                       <div class="accordion-body">
+                        
                         <ul>
                           {% for line in lease.terms_list %}
                             {% if line.strip %}
