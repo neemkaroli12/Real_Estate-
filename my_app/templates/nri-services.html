@@ -2,32 +2,162 @@
 {% load static %}
 
 {% block content %}
+
+<style>
+  .pattern-bg {
+    background-color: antiquewhite;
+    padding: 60px 0;
+  }
+  .info-icon {
+    font-size: 2.5rem;
+    margin-right: 15px;
+  }
+  .card-text h5 {
+    font-weight: 600;
+    font-size: 1.25rem;
+    margin-top: 15px;
+  }
+  .card-text p {
+    font-size: 0.95rem;
+    color: #555;
+  }
+</style>
+
+<!-- First Section: Intro -->
 <div class="container py-5">
   <div class="row align-items-center">
-    
-    <!-- Image Column -->
     <div class="col-lg-6 col-md-12 mb-4 mb-lg-0 text-center">
-      <img src="{% static 'images/businesman-relaxing-his-desk.jpg' %}" alt="NRI Services"
-           class="img-fluid rounded shadow"
-           style="max-height: 550px; width: 100%; object-fit: cover;">
+      <img src="{% static 'images/businesman-relaxing-his-desk.jpg' %}" alt="NRI Services" class="img-fluid rounded shadow" style="max-height: 550px; width: 100%; object-fit: cover;" />
     </div>
-
-    <!-- Text Column -->
     <div class="col-lg-6 col-md-12">
       <h2 class="mb-4 fw-bold" style="color: #333;">NRI Property Management Services</h2>
-      <p style="text-align: justify; line-height: 1.8; color: #555;">
-        Are you living abroad and looking for a <strong>reliable, transparent, and professional</strong> property management partner in India? We understand the challenges of managing property from a distance—and that’s why we’re here.
-        <br><br>
-        At <strong>NRI Property Managers</strong>, we bring over <strong>25 years of experience</strong> in assisting NRIs with buying, selling, maintaining, and managing real estate across India. We’re not just a service provider—we’re your eyes, ears, and hands on the ground.
-        <br><br>
-        Whether you're planning to sell your ancestral home, invest in new property, or need trusted support for ongoing property care, our dedicated team offers <strong>personalized and ethical solutions</strong> tailored to your needs.
-        <br><br>
-        Our goal is simple: to offer <strong>peace of mind</strong> through end-to-end property management so you can stay connected to your roots—no matter where in the world you live.
-        <br><br>
-        👉 <strong>Contact us today</strong> to learn how we can assist you with professional property management solutions that are rooted in trust, integrity, and care.
+      <p style="text-align: justify; line-height: 1.8;">
+        Living abroad and need a <strong>reliable, transparent, and professional</strong> property partner in India? We understand the unique challenges of managing property from afar—and that’s exactly why we exist.
+        <br /><br />
+        At <strong>NRI Property Managers</strong>, we offer more than <strong>25 years of experience</strong> helping NRIs buy, sell, maintain, and oversee real estate across India. We act as your eyes and ears on the ground—ensuring your property is in safe and capable hands.
+        <br /><br />
+        Whether you're looking to sell your ancestral property, purchase an investment, or need dependable management support, our team provides <strong>honest, personalized solutions</strong> designed for your needs.
+        <br /><br />
+        Our promise is simple: deliver <strong>peace of mind</strong> through trustworthy, end-to-end property care—so you can stay close to your roots, wherever you are in the world.
       </p>
     </div>
+  </div>
+</div>
+
+<!-- Second Section: Highlights + Service Cards -->
+<div class="container-fluid pattern-bg">
+  <div class="container">
+    <div class="row align-items-start">
+      <div class="col-lg-6 mb-4">
+        <h1 class="fw-bold mb-4">Professional Support Means Peace of Mind</h1>
+        <p style="text-align: justify;">
+          At NRI Property Managers, we believe real estate services for NRIs must be structured, transparent, and stress-free. With our strategic methods, in-depth market understanding, and firm accountability, we ensure your property is managed with care—giving you full peace of mind, wherever you are.
+        </p>
+        <img src="{% static 'images/image.png' %}" alt="NRI Management" class="img-fluid mt-4 shadow rounded" width="350" />
+      </div>
+
+      <div class="col-lg-6">
+        <div class="d-flex align-items-start mb-4">
+          <i class="fas fa-home info-icon"></i>
+          <div>
+            <h4 class="fw-semibold">Domain Expertise</h4>
+            <p>
+              With over 25 years in real estate, we offer unmatched knowledge of the market, legal guidance, and negotiation strategies—helping you make confident property decisions in India.
+            </p>
+          </div>
+        </div>
+        <div class="d-flex align-items-start mb-4">
+          <i class="fas fa-cogs info-icon"></i>
+          <div>
+            <h4 class="fw-semibold">System-Driven Processes</h4>
+            <p>
+              Our structured systems and step-by-step processes guarantee that every transaction and task is managed with accuracy, efficiency, and timely updates.
+            </p>
+          </div>
+        </div>
+        <div class="d-flex align-items-start">
+          <i class="fas fa-clipboard-check info-icon"></i>
+          <div>
+            <h4 class="fw-semibold">Accountable & Transparent</h4>
+            <p>
+              We take full responsibility for your property. Through open communication, detailed updates, and full transparency, we manage your property like you would—if you were here yourself.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Service Cards -->
+    <div class="row mt-5">
+      <!-- Card 1 -->
+      <div class="col-lg-4 mt-4">
+        <div class="card shadow p-3 h-100">
+          <img src="{% static 'images/home-inte.jpg' %}" alt="Improvement" class="w-100 shadow" height="250" />
+          <div class="card-text text-center p-3">
+            <h2>Home Improvement & Renovation</h2>
+            <p style="text-align: justify;">Whether it's repairs, renovations, or modern upgrades, we collaborate with trusted professionals and manage the entire process to ensure your property remains in top-notch condition.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="col-lg-4 mt-4">
+        <div class="card shadow p-3 h-100">
+          <img src="{% static 'images/plot-monitoring.jpg' %}" alt="Tenant Management" class="w-100 shadow" height="250" />
+          <div class="card-text text-center p-3">
+            <h2>Plot Monitoring  Services</h2>
+            <p style="text-align: justify;">We closely monitor your vacant land or plots, providing timely updates, photographs, and proactively addressing any maintenance or encroachment issues that may arise.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="col-lg-4 mt-4">
+        <div class="card shadow p-3 h-100">
+          <img src="{% static 'images/preleased asset management.jpg' %}" alt="Legal Assistance" class="w-100 shadow" height="250" />
+          <div class="card-text text-center p-3">
+            <h2>Preleased Asset  Management</h2>
+            <p style="text-align: justify;">Interested in generating consistent rental income? We help you acquire and manage pre-leased properties—taking care of tenant coordination, lease agreements, and rental returns with ease.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="col-lg-4 mt-4">
+        <div class="card shadow p-3 h-100">
+          <img src="{% static 'images/property-management.jpg' %}" alt="Security" class="w-100 shadow" height="250" />
+          <div class="card-text text-center p-3">
+            <h2>Property Management Services in India</h2>
+            <p style="text-align: justify;">Imagine this—your property expertly managed in your absence. From tenant placement and rent collection to regular maintenance, we handle everything with complete transparency and genuine care.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="col-lg-4 mt-4">
+        <div class="card shadow p-3 h-100">
+          <img src="{% static 'images/buying.jpeg' %}" alt="Investment Advisory" class="w-100 shadow" height="250" />
+          <div class="card-text text-center p-3">
+            <h2>Buying Property in India Assistance Services</h2>
+            <p style="text-align: justify;">We guide you through every step of purchasing property in India—shortlisting, legal checks, documentation, and handover—making it stress-free and secure.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="col-lg-4 mt-4">
+        <div class="card shadow-lg p-3 h-100">
+          <img src="{% static 'images/selling.jpg' %}" alt="Buy Sell Assist" class="w-100 shadow" height="250" />
+          <div class="card-text text-center p-3">
+           <h2>Selling Property in India Assistance Services</h2>
+            <p style="text-align: justify;">From precise market valuation and strategic marketing to skilled negotiations and legal compliance—we ensure your property sale in India is smooth, secure, and successful./p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
 
   </div>
 </div>
+
 {% endblock %}
