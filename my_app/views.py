@@ -16,7 +16,17 @@ from django.http import HttpResponseForbidden
 def home(request):
     form = PropertySearchForm(request.GET or None)
     results = None
-    projects = newProject.objects.all()
+    projects = newProject.objects.all().order_by('-id')  # or 'title'
+
+
+    # 💡 Add brochure logic for each project
+    for project in projects:
+        if hasattr(project, 'brochure') and project.brochure and hasattr(project.brochure, 'url'):
+            project.fixed_brochure_url = project.brochure.url.replace('/image/upload/', '/raw/upload/')
+        elif project.brochure_url:
+            project.fixed_brochure_url = project.brochure_url
+        else:
+            project.fixed_brochure_url = None
 
     if form.is_valid():
         purpose = form.cleaned_data['purpose']
@@ -268,17 +278,25 @@ def delete_lease(request, pk):
     return render(request, 'delete_confirm.html', {'lease': lease})
 
 
-# projects 
 def newprojects(request):
-    projects = newProject.objects.all()
-    
+    projects = newProject.objects.all().order_by('-id')
     for project in projects:
-        if project.brochure and project.brochure.url.lower().endswith(".pdf"):
-            project.fixed_brochure_url = project.brochure.url.replace("/image/upload/", "/raw/upload/")
+        print("Project Title:", project.title)
+        print("Admin Panel URL (brochure_url):", project.brochure_url)
+
+        if hasattr(project, 'brochure') and project.brochure and hasattr(project.brochure, 'url'):
+            project.fixed_brochure_url = project.brochure.url.replace('/image/upload/', '/raw/upload/')
+        elif project.brochure_url:
+            project.fixed_brochure_url = project.brochure_url
         else:
             project.fixed_brochure_url = None
-    
-    return render(request, "projects.html", {"projects": projects})
+
+        print(" Final URL used in template:", project.fixed_brochure_url)
+        print("-" * 50)
+
+    return render(request, 'projects.html', {'projects': projects})
+
+
 
 
 #  Sell Form View
