@@ -342,3 +342,10 @@ def about(request):
 # services
 def service(request):
     return render(request,"services.html")
+
+# nri guide
+def nri_Guide(request):
+    return redirect('https://www.nriguides.com/category/nri-property/')
+
+def nri_Services(request):
+    return render(request, "nri-services.html")

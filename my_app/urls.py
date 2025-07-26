@@ -23,6 +23,8 @@ urlpatterns = [
     path('sell/', views.sell_property_view, name='sell_property'),
     path('about/', views.about, name='about'),
     path('services/', views.service, name='services'),
+    path('nri-guide/', views.nri_Guide, name='nri-guide'),
+    path('nri-services/', views.nri_Services, name='nri-services'),
    
 ] 
 

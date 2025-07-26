@@ -54,7 +54,7 @@
                 </li>
               </ul>
             </li>
-            
+
             <li class="nav-item">
               <a class="nav-link" href="{% url 'buy_properties' %}">Buy</a>
             </li>
@@ -105,6 +105,24 @@
                 <a class="nav-link" href="{% url 'user-login' %}">Login</a>
               </li>
             {% endif %}
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle  position-relative" href="#" id="post_propertyDropdown" role="button" data-bs-toggle="dropdown">
+                NRI Services
+                <span class="new-badge">new</span>
+              </a>
+              <ul class="dropdown-menu scrollable-dropdown" aria-labelledby="post_propertyDropdown">
+                <li>
+                  <a class="dropdown-item" href="{% url 'nri-guide' %}">NRI Guide</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="{% url 'nri-services' %}">NRI Services</a>
+                </li>
+              </ul>
+            </li>
+            <style>
+
+            </style>
           </ul>
         </div>
       </div>
