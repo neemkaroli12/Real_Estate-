@@ -2,10 +2,10 @@
 {% block content %}
 <div class="container mt-5">
   <div class="col-md-8 offset-md-2 bg-white shadow rounded p-5 text-center">
-    <h4 class="text-success">✅ OTP Verified Successfully!</h4>
+    <h4 class="text-success">OTP Verified Successfully!</h4>
     <p>The property owner will contact you shortly.</p>
     
-    <h5 class="mt-4">📞 Owner Contact:</h5>
+    <h5 class="mt-4"> Owner Contact:</h5>
     <p class="fw-bold text-danger">+91 {{ property.agent_phone }}</p>
 
     <a href="https://wa.me/91{{ property.agent_phone }}?text=Hi! I'm interested in your property '{{ property.title }}'" class="btn btn-success mt-2" target="_blank">

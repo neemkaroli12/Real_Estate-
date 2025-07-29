@@ -9,35 +9,6 @@
           <h1 class="hero-heading">Finding Roots in the Land of Dev Bhoomi</h1>
         </div>
         <div class="col-lg-5">
-          {% comment %} <form class="search-box glassmorphic p-4" method="GET" action="#">
-            <div class="btn-group w-100 mb-3" role="group">
-              <input type="radio" class="btn-check" name="purpose" id="buy" value="buy" checked />
-              <label class="btn btn-outline-success text-white" for="buy">Buy</label>
-              <input type="radio" class="btn-check" name="purpose" id="rent" value="rent" />
-              <label class="btn btn-outline-success text-white" for="rent">Rent</label>
-            </div>
-            <div class="mb-3">
-              <label for="propertyType" class="form-label text-white">Property Type</label>
-              <select class="form-select" id="propertyType" name="propertyType" required>
-                <option selected disabled>Select Property</option>
-                <option value="apartment">Apartment</option>
-                <option value="house">House</option>
-                <option value="villa">Villa</option>
-              </select>
-            </div>
-            <div class="mb-3">
-              <label for="city" class="form-label text-white">Select City</label>
-              <select class="form-select" id="city" name="city" required>
-                <option selected disabled>Select City</option>
-                <option value="delhi">Delhi</option>
-                <option value="mumbai">Mumbai</option>
-                <option value="lucknow">Lucknow</option>
-                <option value="noida">Noida</option>
-                <option value="gurgaon">Gurgaon</option>
-              </select>
-            </div>
-            <button type="submit" class="btn btn-success w-100">Search</button>
-          </form> {% endcomment %}
           <form method="get" class="search-box glassmorphic p-4">
             <div class="mb-3">
               <label class="form-label text-white" for="{{ form.purpose.id_for_label }}">Purpose</label>

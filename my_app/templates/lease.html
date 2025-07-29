@@ -3,7 +3,6 @@
 
 {% block content %}
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
-
   <div class="container mt-5">
     <h2 class="mb-4">Lease Listings</h2>
 
@@ -118,12 +117,55 @@
       object-fit: contain;
       margin: auto;
     }
-    
-    /* Optional: center content inside lightbox */
     .glightbox-container .gslide {
       display: flex;
       align-items: center;
       justify-content: center;
     }
+    
+    .glightbox-clean .gprev,
+.glightbox-clean .gnext {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  background-color: rgba(0, 0, 0, 0.4);
+  color: white;
+  font-size: 22px;
+  border-radius: 50%;
+  z-index: 10000;
+  transition: background 0.3s ease;
+}
+
+.glightbox-clean .gprev:hover,
+.glightbox-clean .gnext:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.glightbox-clean .gprev {
+  left: 10px;
+}
+
+.glightbox-clean .gnext {
+  right: 10px;
+}
+
+.glightbox-clean .gprev,
+.glightbox-clean .gnext {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+@media (max-width: 576px) {
+  .glightbox-clean .gprev,
+  .glightbox-clean .gnext {
+    width: 36px;
+    height: 36px;
+    font-size: 18px;
+  }
+}
+
   </style>
 {% endblock %}

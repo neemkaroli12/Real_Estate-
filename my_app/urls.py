@@ -25,7 +25,7 @@ urlpatterns = [
     path('services/', views.service, name='services'),
     path('nri-guide/', views.nri_Guide, name='nri-guide'),
     path('nri-services/', views.nri_Services, name='nri-services'),
-   
+    path('contact/', views.contact, name='contact'),
 ] 
 
 

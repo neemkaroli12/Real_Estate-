@@ -2,7 +2,7 @@ from django import forms
 from django.forms import modelformset_factory
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import Purpose, PropertyType, City, LeadRequest, Property, PropertyImage, Lease,Location
+from .models import Purpose, PropertyType, City, LeadRequest, Property, PropertyImage, Lease,Location, Contact
 
 # Property Search Filter Form
 class PropertySearchForm(forms.Form):
@@ -61,7 +61,7 @@ class PropertyForm(forms.ModelForm):
             'agent_phone': forms.TextInput(attrs={'class': 'form-control'}),
             'brochure': forms.ClearableFileInput(attrs={'class': 'form-control'}),
             'is_approved': forms.CheckboxInput(),
-        }
+}
 
 # Property Image Upload Form
 class PropertyImageForm(forms.ModelForm):
@@ -159,7 +159,7 @@ class LeaseForm(forms.ModelForm):
             'description', 'terms_and_conditions'
         ]
         
-
+# sell form
 class SellPropertyForm(forms.ModelForm):
     name = forms.CharField(
         required=True,
@@ -239,3 +239,10 @@ class SellPropertyForm(forms.ModelForm):
             'new_location',
             'area'
         ]
+        
+        
+        
+class ContactForm(forms.ModelForm):
+    class Meta:
+        model = Contact
+        fields = ['name', 'email', 'subject', 'message']

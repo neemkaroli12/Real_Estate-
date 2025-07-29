@@ -7,11 +7,11 @@ import requests
 import random
 from django.http import JsonResponse
 from .models import  Property, Purpose, City, newProject, PropertyImage, LeadRequest,PropertyType, Location, Lease, LeaseImage
-from .forms import PropertySearchForm, LeadRequestForm, PropertyForm, CustomUserCreationForm,  SellPropertyForm, LeaseForm
+from .forms import PropertySearchForm, LeadRequestForm, PropertyForm, CustomUserCreationForm,  SellPropertyForm, LeaseForm,ContactForm
 from .utils import send_otp, generate_otp
-from django.http import HttpResponseForbidden
+from django.core.mail import send_mail
 
-# ======================= Home & Search =======================
+# Home & Search 
 
 def home(request):
     form = PropertySearchForm(request.GET or None)
@@ -19,7 +19,7 @@ def home(request):
     projects = newProject.objects.all().order_by('-id')  # or 'title'
 
 
-    # 💡 Add brochure logic for each project
+    # Add brochure logic for each project
     for project in projects:
         if hasattr(project, 'brochure') and project.brochure and hasattr(project.brochure, 'url'):
             project.fixed_brochure_url = project.brochure.url.replace('/image/upload/', '/raw/upload/')
@@ -55,7 +55,7 @@ def home(request):
     })
 
 
-# ======================= Property Listings =======================
+# Property Listings
 
 def buy_properties(request):
     try:
@@ -80,7 +80,7 @@ def lease_properties(request):
     return render(request, 'lease.html', {'properties': properties})
 
 
-# ======================= City & Property Details =======================
+#  City & Property Details 
 
 def city_detail(request, city_id):
     city = get_object_or_404(City, id=city_id)
@@ -129,7 +129,7 @@ def property_detail(request, pk):
     })
 
 
-# ======================= OTP Verification =======================
+#  OTP Verification 
 
 def verify_otp_view(request, pk):
     lead_id = request.session.get('lead_id')
@@ -171,7 +171,7 @@ def send_sms_otp(phone_number):
     print("SMS response:", response.text)
     return otp
 
-# ------------ Authentication ---------------
+# Authentication 
 
 def signup(request):
     if request.method == 'POST':
@@ -204,7 +204,7 @@ def user_logout(request):
     return redirect('user-login')
 
 
-@login_required(login_url='user-login')
+# post lease form
 @login_required(login_url='user-login')
 def post_lease(request):
     if request.method == 'POST':
@@ -228,6 +228,8 @@ def post_lease(request):
 
             for image in request.FILES.getlist('images'):
                 LeaseImage.objects.create(lease=lease, image=image)
+                
+            messages.success(request, 'Your property has been submitted successfully and will be visible on the Buy page after admin approval.')
             return redirect('lease_properties')
     else:
         form = LeaseForm()
@@ -242,42 +244,7 @@ def load_locations(request):
     locations = Location.objects.filter(city_id=city_id).values('id', 'name')
     return JsonResponse(list(locations), safe=False)
 
-@login_required
-def edit_lease(request, pk):
-    lease = get_object_or_404(Lease, pk=pk)
-
-    if request.user != lease.owner_user:
-        return HttpResponseForbidden("You are not allowed to edit this lease.")
-
-    if request.method == 'POST':
-        form = LeaseForm(request.POST, request.FILES, instance=lease)
-        if form.is_valid():
-            lease = form.save()
-            images = request.FILES.getlist('images')
-            for img in images:
-                LeaseImage.objects.create(lease=lease, image=img)
-            return redirect('lease_properties')
-        else:
-            print("Form errors:", form.errors)
-    else:
-        form = LeaseForm(instance=lease)
-
-    return render(request, 'edit_lease.html', {'form': form, 'lease': lease})
-
-@login_required
-def delete_lease(request, pk):
-    lease = get_object_or_404(Lease, pk=pk)
-
-    if request.user != lease.owner_user:
-        return HttpResponseForbidden("You are not allowed to delete this lease.")
-
-    if request.method == 'POST':
-        lease.delete()
-        return redirect('lease_properties')
-
-    return render(request, 'delete_confirm.html', {'lease': lease})
-
-
+# new projects
 def newprojects(request):
     projects = newProject.objects.all().order_by('-id')
     for project in projects:
@@ -295,9 +262,6 @@ def newprojects(request):
         print("-" * 50)
 
     return render(request, 'projects.html', {'projects': projects})
-
-
-
 
 #  Sell Form View
 @login_required(login_url='user-login')
@@ -322,6 +286,8 @@ def sell_property_view(request):
             images = request.FILES.getlist('images')
             for img in images:
                 PropertyImage.objects.create(property=property_instance, image=img)
+            
+            messages.success(request, 'Your property has been submitted successfully and will be visible on the Buy page after admin approval.')
 
             return redirect('buy_properties')
     else:
@@ -349,3 +315,40 @@ def nri_Guide(request):
 
 def nri_Services(request):
     return render(request, "nri-services.html")
+
+# contact 
+from django.core.mail import send_mail
+from django.conf import settings
+from django.contrib import messages
+from .forms import ContactForm
+
+def contact(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            contact = form.save()
+
+            subject = f"New message from {contact.name}"
+            message = f"""
+Name: {contact.name}
+Email: {contact.email}
+Subject: {contact.subject}
+
+Message:
+{contact.message}
+"""
+
+            send_mail(
+                subject,
+                message,
+                settings.EMAIL_HOST_USER,        
+                [settings.EMAIL_HOST_USER],     
+                fail_silently=False,
+            )
+
+            messages.success(request, 'Message sent successfully!')
+            return redirect('contact')
+    else:
+        form = ContactForm()
+    
+    return render(request, 'contact.html', {'form': form})

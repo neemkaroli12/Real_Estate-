@@ -24,7 +24,6 @@
             {% if project.image %}
               <img src="{{ project.image.url }}" class="card-img-top" alt="{{ project.title }}" />
             {% else %}
-              {% comment %} <img src="{% static 'images/no-image.png' %}" class="card-img-top" alt="No Image" /> {% endcomment %}
             {% endif %}
             <div class="card-body d-flex flex-column">
               <h5 class="card-title">{{ project.title }}</h5>

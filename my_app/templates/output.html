@@ -25,9 +25,6 @@
               </p>
               <p class="card-text">{{ property.description|truncatewords:20 }}</p>
               <a href="{% url 'property_detail' property.id %}" class="btn btn-primary btn-sm">View Details</a>
-
-              <!-- If you have a detail page later -->
-              {% comment %} <!-- <a href="{% url 'property_detail' property.id %}" class="btn btn-primary btn-sm w-100">View Details</a> --> {% endcomment %}
             </div>
           </div>
         </div>
@@ -35,7 +32,7 @@
     </div>
   {% else %}
     <div class="alert alert-warning text-center">
-      😕 Sorry! No properties found matching your search.
+       Sorry! No properties found matching your search.
     </div>
   {% endif %}
 </div>

@@ -1,11 +1,11 @@
-/* Font Imports */
+/* === Font Imports === */
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Libertinus+Mono&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Merriweather&display=swap');
 
-/* Base Styles */
+/* === Base Styles === */
 body {
-  font-family: Georgia, 'Times New Roman', Times, serif !important;
+  font-family: Georgia, 'Times New Roman', Times, serif !important;
   margin: 0;
   padding: 0;
 }
@@ -14,12 +14,10 @@ html {
   scroll-behavior: smooth;
 }
 
-
-/* Header */
+/* === Header === */
 header {
   background-color: #f0f0f0;
   padding: 15px 0;
-  /
 }
 
 .header-container {
@@ -65,9 +63,9 @@ header {
   color: #007bff;
 }
 
-/* Navbar */
+/* === Navbar === */
 .navbar {
-  background: linear-gradient(to right, white, #5793ec);
+ background: linear-gradient(to right, white, #5793ec); 
   padding: 0.5rem 1rem;
 }
 
@@ -89,11 +87,11 @@ header {
 }
 
 .nav-link:hover {
-  color: rgb(249, 250, 252) !important;
+  color: #490688 !important;
   text-decoration: underline;
 }
 
-              .new-badge {
+.new-badge {
   position: absolute;
   top: -8px;
   right: 10px;
@@ -112,8 +110,7 @@ header {
   50% { opacity: 0; }
 }
 
-
-/* Hero Section */
+/* === Hero Section === */
 .hero {
   background-image: url("https://assets.architecturaldesigns.com/plan_assets/349708664/original/12126JL_Render01_1_1707401229.png");
   background-position: center;
@@ -144,7 +141,7 @@ header {
   text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
 }
 
-/* Glass Form */
+/* === Glassmorphic Form === */
 .glassmorphic {
   width: 100%;
   max-width: 450px;
@@ -160,7 +157,7 @@ header {
   font-weight: 500;
 }
 
-/* Forms */
+/* === General Form === */
 form {
   background-color: rgba(255, 255, 255, 0.85);
   padding: 30px;
@@ -172,7 +169,6 @@ form {
 
 form label {
   font-weight: bold;
-  display: block;
   margin-bottom: 6px;
   color: #333;
 }
@@ -205,13 +201,12 @@ form button:hover {
   background-color: #007f5f;
 }
 
-/* Footer */
+/* === Footer === */
 .footer {
   background: white;
   color: black;
   padding: 40px 20px 20px;
   font-size: 14px;
-  
 }
 
 .footer h5 {
@@ -255,7 +250,7 @@ form button:hover {
   margin-top: 20px;
 }
 
-/* Slider */
+/* === Slider === */
 .slider-container {
   position: relative;
   max-width: 100%;
@@ -299,7 +294,7 @@ form button:hover {
   text-decoration: none;
 }
 
-/* Slider Buttons */
+/* === Slider Buttons === */
 .slider-btn {
   position: absolute;
   top: 50%;
@@ -327,7 +322,7 @@ form button:hover {
   background: black;
 }
 
-/* Responsive */
+/* === Responsive: Tablet & Mobile === */
 @media (max-width: 768px) {
   .header-container {
     flex-direction: column;
@@ -365,35 +360,31 @@ form button:hover {
     width: 140px;
   }
 }
-/* Better responsive fixes for 232x554 and smaller */
-@media (max-width: 576px) {
-  header {
-    text-align: center;
-  }
 
+/* === Responsive: Small Mobile (≤576px) === */
+@media (max-width: 576px) {
   .header-container {
     flex-direction: column;
     align-items: center;
     gap: 8px;
     padding: 10px;
+    text-align: center;
   }
 
   .contact-info {
     flex-direction: column;
     align-items: center;
-    word-break: break-word;
+    text-align: center;
   }
 
   .contact-info a {
     font-size: 0.85rem;
-    word-wrap: break-word;
-    text-align: center;
   }
 
   .social-icons {
     justify-content: center;
-    flex-wrap: wrap;
     gap: 10px;
+    flex-wrap: wrap;
   }
 
   .navbar-nav {
@@ -404,25 +395,62 @@ form button:hover {
     max-height: 70px;
   }
 
-  /* Footer adjustments */
   .footer {
-    text-align: center;
+    text-align: left;
     padding: 30px 10px 10px;
   }
 
+  .footer .row > div {
+    text-align: left;
+  }
+
+  .footer-logo {
+    display: flex !important;
+    justify-content: flex-start !important;
+    align-items: flex-start !important;
+    text-align: left !important;
+  }
+
+  .footer-logo a {
+    display: inline-block !important;
+  }
+
+  .footer-logo img {
+    display: inline-block !important;
+    margin: 0 !important;
+  }
+
   .footer-contact-item {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    font-size: 0.9rem;
+    flex-direction: row;
+    align-items: flex-start;
+    text-align: left;
   }
 
   .footer h5 {
     font-size: 1.1rem;
     margin-top: 20px;
+    text-align: left;
   }
 
   .footer-bottom {
     font-size: 0.8rem;
+    text-align: center;
+  }
+
+   
+
+  .navbar-brand img {
+    max-height: 60px;
+    margin-bottom: 10px;
+  }
+
+  .navbar-nav {
+    flex-direction: column;
+    align-items: flex-start; /* ALIGN LEFT */
+    gap: 0.7rem;
+  }
+
+  .nav-link {
+    font-size: 1rem;
   }
 }

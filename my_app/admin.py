@@ -1,9 +1,6 @@
 from django.contrib import admin
-from .models import (
-    Purpose, PropertyType, City, Location, newProject,
-    Property, PropertyImage, LeadRequest,
-    Lease, LeaseImage
-)
+from .models import Purpose, PropertyType, City, Location, newProject, Property, PropertyImage, LeadRequest, Lease, LeaseImage, Contact
+
 
 # Basic model registrations
 admin.site.register(Purpose)
@@ -13,6 +10,7 @@ admin.site.register(Location)
 admin.site.register(newProject)
 admin.site.register(PropertyImage)
 admin.site.register(LeaseImage)
+admin.site.register(Contact)
 
 @admin.register(LeadRequest)
 class LeadAdmin(admin.ModelAdmin):
