@@ -1,6 +1,5 @@
 {% extends "common.html" %}
 {% block content %}
-
 <style>
   .signup-container {
     max-width: 500px;
@@ -45,11 +44,9 @@
 
 <div class="signup-container">
   <h2>Create Your Account</h2>
-
   <form method="POST">
   {% csrf_token %}
   {{ form.non_field_errors }}
-
   <div>
     {{ form.username.label_tag }}
     {{ form.username }}
@@ -57,7 +54,6 @@
       <small class="text-danger">{{ error }}</small>
     {% endfor %}
   </div>
-
   <div>
     {{ form.email.label_tag }}
     {{ form.email }}
@@ -65,7 +61,6 @@
       <small class="text-danger">{{ error }}</small>
     {% endfor %}
   </div>
-
   <div>
     {{ form.password1.label_tag }}
     {{ form.password1 }}
@@ -73,7 +68,6 @@
       <small class="text-danger">{{ error }}</small>
     {% endfor %}
   </div>
-
   <div>
     {{ form.password2.label_tag }}
     {{ form.password2 }}
@@ -81,14 +75,10 @@
       <small class="text-danger">{{ error }}</small>
     {% endfor %}
   </div>
-
   <button type="submit">Sign Up</button>
 </form>
-
-
   <p style="text-align:center; margin-top: 15px;">
      Already registered? <a href="{% url 'user-login' %}" style="color:#d63384;">Login here</a> 
   </p>
 </div>
-
 {% endblock %}

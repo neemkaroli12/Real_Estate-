@@ -10,15 +10,11 @@ from .models import  Property, Purpose, City, newProject, PropertyImage, LeadReq
 from .forms import PropertySearchForm, LeadRequestForm, PropertyForm, CustomUserCreationForm,  SellPropertyForm, LeaseForm,ContactForm
 from .utils import send_otp, generate_otp
 from django.core.mail import EmailMessage, send_mail
-
 # Home & Search 
-
 def home(request):
     form = PropertySearchForm(request.GET or None)
     results = None
     projects = newProject.objects.all().order_by('-id')  # or 'title'
-
-
     # Add brochure logic for each project
     for project in projects:
         if hasattr(project, 'brochure') and project.brochure and hasattr(project.brochure, 'url'):
@@ -27,36 +23,28 @@ def home(request):
             project.fixed_brochure_url = project.brochure_url
         else:
             project.fixed_brochure_url = None
-
     if form.is_valid():
         purpose = form.cleaned_data['purpose']
         property_type = form.cleaned_data['property_type']
         city = form.cleaned_data['city']
-
         if purpose.name.lower() == "buy":
             try:
                 purpose = Purpose.objects.get(name__iexact="Sell")
             except Purpose.DoesNotExist:
                 purpose = None
-
         results = Property.objects.filter(
             purpose=purpose,
             property_type=property_type,
             city=city
         )
-
         return render(request, 'output.html', {
             'result': results,
         })
-
     return render(request, 'index.html', {
         'form': form,
         'projects': projects
     })
-
-
 # Property Listings
-
 def buy_properties(request):
     try:
         sell_purpose = Purpose.objects.get(name__iexact="Sell")
@@ -65,7 +53,6 @@ def buy_properties(request):
         properties = Property.objects.none()
 
     return render(request, 'buy.html', {'properties': properties})
-
 def rent_properties(request):
     try:
         rent_purpose = Purpose.objects.get(name__iexact="Rent")
@@ -74,18 +61,14 @@ def rent_properties(request):
         properties = Property.objects.none()
     return render(request, 'rent.html', {'properties': properties})
 
-
 def lease_properties(request):
     properties = Lease.objects.all().order_by('-id')
     return render(request, 'lease.html', {'properties': properties})
 
-
 #  City & Property Details 
-
 def city_detail(request, city_id):
     city = get_object_or_404(City, id=city_id)
     locations = city.locations.all()
-
     location_properties = []
     for location in locations:
         properties = Property.objects.filter(location=location)
@@ -94,47 +77,36 @@ def city_detail(request, city_id):
                 'location': location,
                 'properties': properties
             })
-
     return render(request, 'city_detail.html', {
         'city': city,
         'location_properties': location_properties
     })
-
-
+# property detail page view
 def property_detail(request, pk):
     property_obj = get_object_or_404(Property, pk=pk)
     related_properties = Property.objects.filter(city=property_obj.city).exclude(pk=pk)[:3]
     lead_form = LeadRequestForm()
-
     if request.method == 'POST' and 'lead_form_submit' in request.POST:
         lead_form = LeadRequestForm(request.POST)
         if lead_form.is_valid():
             lead = lead_form.save(commit=False)
             lead.property = property_obj
-
             otp = generate_otp()
             lead.otp = otp
             lead.save()
-
             phone = '91' + lead.whatsapp
             send_otp(phone, otp)
-
             request.session['lead_id'] = lead.id
             return redirect('verify_otp', pk=pk)
-
     return render(request, 'property_detail.html', {
         'property': property_obj,
         'lead_form': lead_form,
         'related_properties': related_properties
     })
-
-
 #  OTP Verification 
-
 def verify_otp_view(request, pk):
     lead_id = request.session.get('lead_id')
     lead = get_object_or_404(LeadRequest, id=lead_id)
-
     if request.method == 'POST':
         entered_otp = request.POST.get('otp')
         if entered_otp == lead.otp:
@@ -149,13 +121,11 @@ def verify_otp_view(request, pk):
                 'property': lead.property,
                 'error': 'Invalid OTP'
             })
-
     return render(request, 'verify_otp.html', {'property': lead.property})
 
 
 def send_sms_otp(phone_number):
     otp = str(random.randint(100000, 999999))
-    
     url = "https://www.fast2sms.com/dev/bulkV2"
     payload = {
         'variables_values': otp,
@@ -166,7 +136,6 @@ def send_sms_otp(phone_number):
         'authorization': settings.FAST2SMS_API_KEY,
         'Content-Type': "application/x-www-form-urlencoded"
     }
-
     response = requests.post(url, data=payload, headers=headers)
     print("SMS response:", response.text)
     return otp
@@ -183,8 +152,7 @@ def signup(request):
     else:
         form = CustomUserCreationForm()
     return render(request, 'signup.html', {'form': form})
-
-
+# login
 def user_login(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -197,13 +165,10 @@ def user_login(request):
         else:
             messages.error(request, 'Invalid username or password.')
     return render(request, 'login.html')
-
-
+# logout
 def user_logout(request):
     logout(request)
     return redirect('user-login')
-
-
 # post lease form
 @login_required(login_url='user-login')
 def post_lease(request):
@@ -212,23 +177,18 @@ def post_lease(request):
         if form.is_valid():
             lease = form.save(commit=False)
             lease.owner_user = request.user
-
             # Handle new location
             new_location_name = form.cleaned_data.get('new_location')
             selected_location = form.cleaned_data.get('location')
-
             if new_location_name and not selected_location:
                 city = form.cleaned_data.get('city')
                 selected_location, _ = Location.objects.get_or_create(name=new_location_name, city=city)
                 lease.location = selected_location
             else:
                 lease.location = selected_location
-
             lease.save()
-
             for image in request.FILES.getlist('images'):
-                LeaseImage.objects.create(lease=lease, image=image)
-                
+                LeaseImage.objects.create(lease=lease, image=image)  
             messages.success(request, 'Your property has been submitted successfully and will be visible on the Buy page after admin approval.')
             return redirect('lease_properties')
     else:
@@ -312,27 +272,21 @@ def service(request):
 # nri guide
 def nri_Guide(request):
     return redirect('https://www.nriguides.com/category/nri-property/')
-
 # nri services
-
-
 def nri_Services(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
             contact = form.save()
-
             # Email details
             subject = f"New message from {contact.name}"
             body = f"""
 Name: {contact.name}
 Email: {contact.email}
 Subject: {contact.subject}
-
 Message:
 {contact.message}
 """
-
             email = EmailMessage(
                 subject=subject,
                 body=body,
@@ -341,12 +295,10 @@ Message:
                 reply_to=[contact.email]        # Reply will go to user's email ✅
             )
             email.send(fail_silently=False)
-
             messages.success(request, 'Message sent successfully!')
             return redirect('nri-services')  # change if needed
     else:
         form = ContactForm()
-
     return render(request, 'nri-services.html', {'form': form})
 
 # contact 
@@ -355,17 +307,14 @@ def contact(request):
         form = ContactForm(request.POST)
         if form.is_valid():
             contact = form.save()
-
             subject = f"New message from {contact.name}"
             message = f"""
 Name: {contact.name}
 Email: {contact.email}
 Subject: {contact.subject}
-
 Message:
 {contact.message}
 """
-
             send_mail(
                 subject,
                 message,
@@ -373,10 +322,8 @@ Message:
                 [settings.EMAIL_HOST_USER],     
                 fail_silently=False,
             )
-
             messages.success(request, 'Message sent successfully!')
             return redirect('contact')
     else:
         form = ContactForm()
-    
     return render(request, 'contact.html', {'form': form})

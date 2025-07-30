@@ -3,7 +3,6 @@ from django.forms import modelformset_factory
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from .models import Purpose, PropertyType, City, LeadRequest, Property, PropertyImage, Lease,Location, Contact
-
 # Property Search Filter Form
 class PropertySearchForm(forms.Form):
     purpose = forms.ModelChoiceField(
@@ -21,7 +20,6 @@ class PropertySearchForm(forms.Form):
         empty_label="Please select city",
         widget=forms.Select(attrs={'class': 'form-select'})
     )
-
 # Lead Inquiry Form
 class LeadRequestForm(forms.ModelForm):
     class Meta:
@@ -37,7 +35,6 @@ class LeadRequestForm(forms.ModelForm):
                 'title': 'Enter 10-digit WhatsApp number'
             }),
         }
-
 # Property Submission Form
 class PropertyForm(forms.ModelForm):
     class Meta:
@@ -62,7 +59,6 @@ class PropertyForm(forms.ModelForm):
             'brochure': forms.ClearableFileInput(attrs={'class': 'form-control'}),
             'is_approved': forms.CheckboxInput(),
 }
-
 # Property Image Upload Form
 class PropertyImageForm(forms.ModelForm):
     image = forms.ImageField(label='Image', widget=forms.ClearableFileInput(attrs={'class': 'form-control'}))
@@ -70,7 +66,6 @@ class PropertyImageForm(forms.ModelForm):
     class Meta:
         model = PropertyImage
         fields = ['image']
-
 # Custom User Registration Form
 class CustomUserCreationForm(UserCreationForm):
     email = forms.EmailField(required=True, widget=forms.EmailInput(attrs={'class': 'form-control'}))
@@ -82,15 +77,13 @@ class CustomUserCreationForm(UserCreationForm):
             'username': forms.TextInput(attrs={'class': 'form-control'}),
             'password1': forms.PasswordInput(attrs={'class': 'form-control'}),
             'password2': forms.PasswordInput(attrs={'class': 'form-control'}),
-        }
-        
-
+        }        
+# LEase form
 OWNER_CHOICES = [
     ('Owner', 'Owner'),
     ('Agent', 'Agent'),
     ('Builder', 'Builder'),
 ]
-
 class LeaseForm(forms.ModelForm):
     owner_name = forms.ChoiceField(
         choices=OWNER_CHOICES,

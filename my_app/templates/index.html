@@ -1,5 +1,4 @@
 {% extends 'common.html' %}
-
 {% block content %}
   <section class="hero">
     <div class="overlay"></div>
@@ -14,24 +13,20 @@
               <label class="form-label text-white" for="{{ form.purpose.id_for_label }}">Purpose</label>
               {{ form.purpose }}
             </div>
-
             <div class="mb-3">
               <label class="form-label text-white" for="{{ form.property_type.id_for_label }}">Property Type</label>
               {{ form.property_type }}
             </div>
-
             <div class="mb-3">
               <label class="form-label text-white" for="{{ form.city.id_for_label }}">Select City</label>
               {{ form.city }}
             </div>
-
             <button type="submit" class="btn btn-success w-100">Search</button>
           </form>
         </div>
       </div>
     </div>
   </section>
-
   <div class="container mt-5">
     <h3 class="text-center">Explore Properties</h3>
     <div class="slider-container">
@@ -125,7 +120,6 @@
         border-bottom: 1px solid #ddd;
       }
     </style>
-
     <div class="container mt-5">
       <h2 class="mb-4">New Projects</h2>
       <h5>Projects Found: {{ projects|length }}</h5>

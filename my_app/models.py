@@ -1,24 +1,19 @@
 from django.db import models
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
-
 from cloudinary_storage.storage import RawMediaCloudinaryStorage
-
-
 # Purpose (e.g., Sell, Rent)
 class Purpose(models.Model):
     name = models.CharField(max_length=50)
 
     def __str__(self):
         return self.name
-
 # Property Type (e.g., Apartment, Villa, Commercial)
 class PropertyType(models.Model):
     name = models.CharField(max_length=50)
 
     def __str__(self):
         return self.name
-
 # City
 class City(models.Model):
     name = models.CharField(max_length=50)
@@ -33,7 +28,6 @@ class Location(models.Model):
 
     def __str__(self):
         return f"{self.name} ({self.city.name})"
-
 # Property Listing
 class Property(models.Model):
     purpose = models.ForeignKey(Purpose, on_delete=models.SET_NULL, null=True)
@@ -54,17 +48,12 @@ class Property(models.Model):
 
     def __str__(self):
         return f"{self.property_type} in {self.location} by {self.posted_by}"
-
 # Multiple images per property
 class PropertyImage(models.Model):
     property = models.ForeignKey(Property, related_name='images', on_delete=models.CASCADE)
     image = CloudinaryField('image', folder='property/')
     def __str__(self):
        return f"Image for {self.property} #{self.property.id}"
-
-
-
-
 # Inquiries / Lead Requests
 class LeadRequest(models.Model):
     property = models.ForeignKey(Property, on_delete=models.CASCADE, related_name='leads')
@@ -92,7 +81,6 @@ class newProject(models.Model):
         return self.title or "Unnamed Project"
 
 # Lease listing
-
 class Lease(models.Model):
     owner_user = models.ForeignKey(User, on_delete=models.CASCADE)
     property_type = models.ForeignKey(PropertyType, on_delete=models.SET_NULL, null=True)
@@ -109,14 +97,12 @@ class Lease(models.Model):
 
     def __str__(self):
         return f"{self.property_type} in {self.location} by {self.owner_user}"
-
-
+    
 class LeaseImage(models.Model):
     lease = models.ForeignKey(Lease, on_delete=models.CASCADE, related_name='images')
     image = CloudinaryField('image', folder='leases/')
     def __str__(self):
         return f"Image for #{self.lease.id}"
-
 # contact us model
 class Contact(models.Model):
     name = models.CharField(max_length=100)

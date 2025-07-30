@@ -1,9 +1,7 @@
 {% extends 'common.html' %}
-
 {% block content %}
 <div class="container my-5">
   <h2 class="text-center mb-4">Search Results</h2>
-
   {% if result %}
     <div class="row">
       {% for property in result %}
@@ -14,7 +12,6 @@
             {% else %}
               <img src="https://via.placeholder.com/400x200?text=No+Image" class="card-img-top" alt="No Image">
             {% endif %}
-
             <div class="card-body">
               <h5 class="card-title">{{ property.title }}</h5>
               <p class="card-text">

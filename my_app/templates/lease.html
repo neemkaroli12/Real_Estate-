@@ -1,11 +1,9 @@
 {% extends 'common.html' %}
 {% load static %}
-
 {% block content %}
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
   <div class="container mt-5">
     <h2 class="mb-4">Lease Listings</h2>
-
     {% if properties %}
       <div class="row">
         {% for lease in properties %}
@@ -30,24 +28,20 @@
                   {% endif %}
                 {% endwith %}
               {% endif %}
-
               <div class="card-body">
                 <p class="card-text">
                   <strong>City:</strong> {{ lease.city.name }}<br />
                   <strong>Location:</strong> {{ lease.location.name }}<br />
                   <strong>Price:</strong> ₹{{ lease.price }}<br />
                 </p>
-                <p class="card-text">{{ lease.description|truncatewords:25 }}</p>
-               
+                <p class="card-text">{{ lease.description|truncatewords:25 }}</p>               
               </div>
-
               <div class="card-footer bg-light">
                 <div class="accordion" id="termsAccordion{{ lease.id }}">
                   <div class="accordion-item">
                     <h2 class="accordion-header" id="heading{{ lease.id }}"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ lease.id }}" aria-expanded="false" aria-controls="collapse{{ lease.id }}">Terms & Conditions</button></h2>
                     <div id="collapse{{ lease.id }}" class="accordion-collapse collapse" aria-labelledby="heading{{ lease.id }}">
-                      <div class="accordion-body">
-                        
+                      <div class="accordion-body">                       
                         <ul>
                           {% for line in lease.terms_list %}
                             {% if line.strip %}
@@ -68,7 +62,6 @@
       <p>No lease properties found.</p>
     {% endif %}
   </div>
-
   <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
   <script>
     const lightbox = GLightbox({
@@ -78,7 +71,6 @@
       draggable: true
     })
   </script>
-
   <style>
     .lease-carousel-img {
       height: 250px !important;
