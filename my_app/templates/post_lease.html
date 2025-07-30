@@ -3,142 +3,202 @@
 {% load widget_tweaks %}
 
 {% block content %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+<style>
+  .form-heading {
+    font-weight: 600;
+    color: #0d6efd;
+  }
 
-  <div class="container my-5">
-    <h2 class="mb-4 text-center">Post Lease Property</h2>
-    <span class="text-danger text-center" style="display:block; margin-bottom: 15px;">* All fields are Required</span>
-    
-    <form method="POST" enctype="multipart/form-data" class="p-4 bg-light border rounded shadow-sm">
+  .form-label {
+    font-weight: 500;
+  }
+
+  .form-control, .form-select {
+    transition: border 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .form-control:focus, .form-select:focus {
+    border-color: #0d6efd;
+    box-shadow: 0 0 0 0.2rem rgba(13,110,253,.15);
+  }
+
+  .preview-img {
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    margin: 5px;
+  }
+
+  .card-custom {
+    border-left: 6px solid #0d6efd;
+    border-radius: 8px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  }
+
+  .btn-custom {
+    background-color: #0d6efd;
+    border: none;
+    padding: 10px 30px;
+    font-size: 1.1rem;
+  }
+
+  .btn-custom:hover {
+    background-color: #094db1;
+  }
+
+  .required-star {
+    color: red;
+  }
+</style>
+
+<div class="container my-5">
+  <div class="card card-custom p-5">
+    <h2 class="text-center mb-4 form-heading">Post Lease Property</h2>
+    <span class="text-danger text-center d-block mb-3">* All fields are required</span>
+
+    <form method="POST" enctype="multipart/form-data" novalidate>
       {% csrf_token %}
       <div class="row g-3">
 
-        {% comment %} I am  {% endcomment %}
-        <label for="id_owner_name" class="form-label">I am <span class="text-danger">*</span></label>
-        {{ form.owner_name|add_class:'form-control' }}
-        {% if form.owner_name.errors %}
-          <div class="text-danger">{{ form.owner_name.errors.0 }}</div>
-        {% endif %}
-
-        {% comment %} Property Type  {% endcomment %}
         <div class="col-md-6">
-          <label for="id_property_type" class="form-label">Property Type <span class="text-danger">*</span></label>
+          <label class="form-label">I am <span class="required-star">*</span></label>
+          {{ form.owner_name|add_class:'form-control' }}
+          {% if form.owner_name.errors %}
+            <div class="text-danger">{{ form.owner_name.errors.0 }}</div>
+          {% endif %}
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label">Property Type <span class="required-star">*</span></label>
           {{ form.property_type|add_class:'form-select' }}
           {% if form.property_type.errors %}
             <div class="text-danger">{{ form.property_type.errors.0 }}</div>
           {% endif %}
         </div>
 
-        {% comment %}  City  {% endcomment %}
         <div class="col-md-6">
-          <label for="id_city" class="form-label">City <span class="text-danger">*</span></label>
+          <label class="form-label">City <span class="required-star">*</span></label>
           {{ form.city|add_class:'form-select' }}
           {% if form.city.errors %}
-          <div class="text-danger">{{ form.city.errors.0 }}</div>
+            <div class="text-danger">{{ form.city.errors.0 }}</div>
           {% endif %}
         </div>
 
-        {% comment%} Location  {% endcomment %}
         <div class="col-md-6">
-          <label for="id_location" class="form-label">Location <span class="text-danger">*</span></label>
+          <label class="form-label">Location <span class="required-star">*</span></label>
           {{ form.location|add_class:'form-select' }}
           {% if form.location.errors %}
             <div class="text-danger">{{ form.location.errors.0 }}</div>
           {% endif %}
         </div>
 
-        {% comment %} < Add location input  {% endcomment %}
-        <div class="col-md-6" id="new-location-div" style="display:none; margin-top: 30px;">
-          <label for="id_new_location" class="form-label">Add New Location <span class="text-danger">*</span></label>
-          <input type="text" name="new_location" id="id_new_location" class="form-control" placeholder="Enter new location">
+        <div class="col-md-6" id="new-location-div" style="display: none;">
+          <label class="form-label">Add New Location <span class="required-star">*</span></label>
+          <input type="text" name="new_location" class="form-control" placeholder="Enter new location">
         </div>
 
-        {% comment %}  Contact Name  {% endcomment %}
         <div class="col-md-6">
-          <label for="id_contact_name" class="form-label">Owner Name <span class="text-danger">*</span></label>
+          <label class="form-label">Owner Name <span class="required-star">*</span></label>
           {{ form.contact_name|add_class:'form-control' }}
           {% if form.contact_name.errors %}
             <div class="text-danger">{{ form.contact_name.errors.0 }}</div>
           {% endif %}
         </div>
 
-        {% comment %} Contact Number {% endcomment %}
         <div class="col-md-6">
-          <label for="id_contact_number" class="form-label">Contact Number <span class="text-danger">*</span></label>
+          <label class="form-label">Contact Number <span class="required-star">*</span></label>
           {{ form.contact_number|add_class:'form-control' }}
           {% if form.contact_number.errors %}
             <div class="text-danger">{{ form.contact_number.errors.0 }}</div>
           {% endif %}
         </div>
 
-        {% comment %}  Area  {% endcomment %}
         <div class="col-md-6">
-          <label for="id_area" class="form-label">Area (sq ft) <span class="text-danger">*</span></label>
+          <label class="form-label">Area (sq ft) <span class="required-star">*</span></label>
           {{ form.area|add_class:'form-control' }}
           {% if form.area.errors %}
             <div class="text-danger">{{ form.area.errors.0 }}</div>
           {% endif %}
         </div>
 
-        {% comment %}  Price  {% endcomment %}
         <div class="col-md-6">
-          <label for="id_price" class="form-label">Price (₹) <span class="text-danger">*</span></label>
+          <label class="form-label">Price (₹) <span class="required-star">*</span></label>
           {{ form.price|add_class:'form-control' }}
           {% if form.price.errors %}
             <div class="text-danger">{{ form.price.errors.0 }}</div>
           {% endif %}
         </div>
 
-        {% comment %}  Description  {% endcomment %}
         <div class="col-12">
-          <label for="id_description" class="form-label">Description <span class="text-danger">*</span></label>
+          <label class="form-label">Description <span class="required-star">*</span></label>
           {{ form.description|add_class:'form-control' }}
           {% if form.description.errors %}
             <div class="text-danger">{{ form.description.errors.0 }}</div>
           {% endif %}
         </div>
 
-        {% comment %}  Upload Images  {% endcomment %}
         <div class="col-12">
-          <label for="images" class="form-label">Upload Images <span class="text-danger">*</span></label>
-          <input type="file" name="images" multiple class="form-control mb-3" accept="image/*" />
+          <label class="form-label">Upload Images <span class="required-star">*</span></label>
+          <input type="file" name="images" multiple accept="image/*" class="form-control" id="imageInput">
+          <div id="imagePreview" class="d-flex flex-wrap mt-2"></div>
         </div>
-        {% comment %} Submit button {% endcomment %}
-        <div class="col-12 text-center">
-          <button type="submit" class="btn btn-primary px-4">Submit Lease</button>
+
+        <div class="col-12 text-center mt-4">
+          <button type="submit" class="btn btn-custom">
+            Submit Lease
+          </button>
         </div>
       </div>
     </form>
   </div>
+</div>
 
-  {% comment %} JS for dynamic location loading and showing Add New Location{% endcomment %}
-  <script>
-    document.getElementById('id_city').addEventListener('change', function () {
-      let cityId = this.value;
-      const locationSelect = document.getElementById('id_location');
-      const newLocationDiv = document.getElementById('new-location-div');
+<script>
+  document.getElementById('id_city').addEventListener('change', function () {
+    const cityId = this.value;
+    const locationSelect = document.getElementById('id_location');
+    const newLocationDiv = document.getElementById('new-location-div');
 
-      if (!cityId) {
+    if (!cityId) {
+      locationSelect.innerHTML = '<option value="">Select Location</option>';
+      newLocationDiv.style.display = 'none';
+      return;
+    }
+
+    fetch(`/ajax/load-locations/?city_id=${cityId}`)
+      .then(res => res.json())
+      .then(data => {
         locationSelect.innerHTML = '<option value="">Select Location</option>';
-        newLocationDiv.style.display = 'none';
-        return;
-      }
-
-      fetch(`/ajax/load-locations/?city_id=${cityId}`)
-        .then(response => response.json())
-        .then(data => {
-          locationSelect.innerHTML = '<option value="">Select Location</option>';
-          data.forEach(location => {
-            const option = document.createElement('option');
-            option.value = location.id;
-            option.textContent = location.name;
-            locationSelect.appendChild(option);
-          });
-          newLocationDiv.style.display = 'block';
-        })
-        .catch(() => {
-          newLocationDiv.style.display = 'block';
+        data.forEach(location => {
+          const opt = document.createElement('option');
+          opt.value = location.id;
+          opt.textContent = location.name;
+          locationSelect.appendChild(opt);
         });
+        newLocationDiv.style.display = 'block';
+      })
+      .catch(() => {
+        newLocationDiv.style.display = 'block';
+      });
+  });
+
+  document.getElementById('imageInput').addEventListener('change', function () {
+    const preview = document.getElementById('imagePreview');
+    preview.innerHTML = '';
+    Array.from(this.files).forEach(file => {
+      const reader = new FileReader();
+      reader.onload = e => {
+        const img = document.createElement('img');
+        img.src = e.target.result;
+        img.className = 'preview-img';
+        preview.appendChild(img);
+      };
+      reader.readAsDataURL(file);
     });
-  </script>
+  });
+</script>
 {% endblock %}
