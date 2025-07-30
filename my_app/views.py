@@ -9,7 +9,7 @@ from django.http import JsonResponse
 from .models import  Property, Purpose, City, newProject, PropertyImage, LeadRequest,PropertyType, Location, Lease, LeaseImage
 from .forms import PropertySearchForm, LeadRequestForm, PropertyForm, CustomUserCreationForm,  SellPropertyForm, LeaseForm,ContactForm
 from .utils import send_otp, generate_otp
-from django.core.mail import send_mail
+from django.core.mail import EmailMessage, send_mail
 
 # Home & Search 
 
@@ -313,15 +313,43 @@ def service(request):
 def nri_Guide(request):
     return redirect('https://www.nriguides.com/category/nri-property/')
 
+# nri services
+
+
 def nri_Services(request):
-    return render(request, "nri-services.html")
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            contact = form.save()
+
+            # Email details
+            subject = f"New message from {contact.name}"
+            body = f"""
+Name: {contact.name}
+Email: {contact.email}
+Subject: {contact.subject}
+
+Message:
+{contact.message}
+"""
+
+            email = EmailMessage(
+                subject=subject,
+                body=body,
+                from_email=f"{contact.name} <{settings.EMAIL_HOST_USER}>",  # From shows your Zoho
+                to=[settings.EMAIL_HOST_USER],  # Your own email where you receive
+                reply_to=[contact.email]        # Reply will go to user's email ✅
+            )
+            email.send(fail_silently=False)
+
+            messages.success(request, 'Message sent successfully!')
+            return redirect('nri-services')  # change if needed
+    else:
+        form = ContactForm()
+
+    return render(request, 'nri-services.html', {'form': form})
 
 # contact 
-from django.core.mail import send_mail
-from django.conf import settings
-from django.contrib import messages
-from .forms import ContactForm
-
 def contact(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
