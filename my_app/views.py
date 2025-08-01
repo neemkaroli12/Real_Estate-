@@ -207,18 +207,17 @@ def load_locations(request):
 # new projects
 def newprojects(request):
     projects = newProject.objects.all().order_by('-id')
+    
     for project in projects:
         print("Project Title:", project.title)
-        print("Admin Panel URL (brochure_url):", project.brochure_url)
 
-        if hasattr(project, 'brochure') and project.brochure and hasattr(project.brochure, 'url'):
+        # Fix: Remove reference to non-existent 'brochure_url'
+        if project.brochure and hasattr(project.brochure, 'url'):
             project.fixed_brochure_url = project.brochure.url.replace('/image/upload/', '/raw/upload/')
-        elif project.brochure_url:
-            project.fixed_brochure_url = project.brochure_url
         else:
             project.fixed_brochure_url = None
 
-        print(" Final URL used in template:", project.fixed_brochure_url)
+        print("Final URL used in template:", project.fixed_brochure_url)
         print("-" * 50)
 
     return render(request, 'projects.html', {'projects': projects})
@@ -292,7 +291,7 @@ Message:
                 body=body,
                 from_email=f"{contact.name} <{settings.EMAIL_HOST_USER}>",  # From shows your Zoho
                 to=[settings.EMAIL_HOST_USER],  # Your own email where you receive
-                reply_to=[contact.email]        # Reply will go to user's email ✅
+                reply_to=[contact.email]        # Reply will go to user's email 
             )
             email.send(fail_silently=False)
             messages.success(request, 'Message sent successfully!')
