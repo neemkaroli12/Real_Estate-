@@ -50,16 +50,16 @@ html {
   color: #007bff;
 }
 
-/* .custom-header .social-icon {
+.custom-header .social-icon {
   display: flex;
   gap: 15px;
   align-items: center;
-} */
+}
 
 .custom-header .social-icon a {
-  /* display: flex;
+  display: flex;
   align-items: center;
-  justify-content: center; */
+  justify-content: center;
   font-size: 1.4em;
   color: #333;
   transition: color 0.3s ease;
