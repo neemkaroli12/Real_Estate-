@@ -67,48 +67,6 @@ header {
   padding: 15px 0;
 }
 
-.header-container {
-  max-width: 1320px;
-  margin: 0 auto;
-  padding: 0 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-.contact-info {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-  align-items: center;
-}
-
-.contact-info a {
-  text-decoration: none;
-  color: #000;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-weight: 500;
-  font-size: 1rem;
-}
-
-.social-icons {
-  display: flex;
-  gap: 15px;
-  align-items: center;
-}
-
-.social-icon i {
-  font-size: 1.4em;
-  color: #333;
-  transition: color 0.3s ease;
-}
-
-.social-icon:hover i {
-  color: #007bff;
-}
 
 
 /*Navbar*/
