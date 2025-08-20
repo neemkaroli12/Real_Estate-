@@ -16,7 +16,7 @@ html {
 /*Header*/
 .custom-header {
   background-color: #f0f0f0;
-  padding: 15px 0;
+  padding: 12px 0;
 }
 
 .custom-header .header-container {
@@ -46,29 +46,29 @@ html {
   font-size: 1rem;
 }
 
-.custom-header .contact-info a :hover{
+.custom-header .contact-info a:hover {
   color: #007bff;
 }
+
 .custom-header .social-icon {
   display: flex;
   gap: 15px;
   align-items: center;
 }
 
-.custom-header .social-icon i {
+.custom-header .social-icon a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 1.4em;
   color: #333;
   transition: color 0.3s ease;
 }
 
-.custom-header .social-icon:hover i {
+.custom-header .social-icon a:hover {
   color: #007bff;
 }
 
-header {
-  background-color: #f0f0f0;
-  padding: 15px 0;
-}
 
 
 
