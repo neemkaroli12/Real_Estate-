@@ -50,11 +50,11 @@ html {
   color: #007bff;
 }
 
-.custom-header .social-icon {
+/* .custom-header .social-icon {
   display: flex;
   gap: 15px;
   align-items: center;
-}
+} */
 
 .custom-header .social-icon a {
   display: flex;
@@ -394,7 +394,7 @@ form button:hover {
 /*  Responsive: Small Mobile (≤576px)  */
 @media (max-width: 576px) {
   .header-container {
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     gap: 8px;
     padding: 10px;
