@@ -61,6 +61,7 @@ header {
   color: #007bff;
 }
 
+
 /*Navbar*/
 .navbar {
  background: linear-gradient(to right, white, #5793ec); 
@@ -108,6 +109,26 @@ header {
   0%, 100% { opacity: 1; }
   50% { opacity: 0; }
 }
+/* Scrollable dropdown */
+.scrollable-dropdown {
+  max-height: 250px; /* adjust as needed */
+  overflow-y: auto;
+}
+
+/* Optional: smooth scrolling for better UX */
+.scrollable-dropdown::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scrollable-dropdown::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 3px;
+}
+
+.scrollable-dropdown::-webkit-scrollbar-track {
+  background: white;
+}
+
 
 /*  Hero Section */
 .hero {
