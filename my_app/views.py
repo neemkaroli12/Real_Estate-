@@ -211,10 +211,21 @@ def newprojects(request):
     for project in projects:
         print("Project Title:", project.title)
 
-        # Fix: Remove reference to non-existent 'brochure_url'
-        if project.brochure and hasattr(project.brochure, 'url'):
-            project.fixed_brochure_url = project.brochure.url.replace('/image/upload/', '/raw/upload/')
-        else:
+        # Safe handling of brochure file
+        try:
+            if project.brochure and hasattr(project.brochure, 'url'):
+                # Optional: check if file actually exists on server
+                file_path = project.brochure.path
+                import os
+                if os.path.exists(file_path):
+                    project.fixed_brochure_url = project.brochure.url.replace('/image/upload/', '/raw/upload/')
+                else:
+                    print("Brochure missing for project:", project.title)
+                    project.fixed_brochure_url = None
+            else:
+                project.fixed_brochure_url = None
+        except OSError as e:
+            print("I/O error for project", project.title, ":", e)
             project.fixed_brochure_url = None
 
         print("Final URL used in template:", project.fixed_brochure_url)
