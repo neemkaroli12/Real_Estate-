@@ -14,19 +14,19 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
   </head>
   <body>
-    <header>
-      <div class="header-container">
-        <div class="contact-info" style=" font-family: 'Open Sans', sans-serif;">
-          <a href="tel:+919389149580"><i class="bi bi-telephone me-2"></i> +91 93891 49580</a>
-          <a href="mailto:sales@neemkarolitechnologies.com"><i class="bi bi-envelope-fill me-2"></i> sales@uttarakhandrealtors.com</a>
-        </div>
-        <div class="social-icons">
-          <a href="https://www.facebook.com/profile.php?id=61577587658083" class="social-icon"><i class="bi bi-facebook"></i></a>
-          <a href="https://www.linkedin.com/company/neemkaroli-technologies/?viewAsMember=true" class="social-icon"><i class="bi bi-linkedin"></i></a>
-          <a href="https://www.instagram.com/uttarakhand.realtors/" class="social-icon"><i class="bi bi-instagram"></i></a>
-        </div>
+    <header class="custom-header">
+    <div class="header-container">
+      <div class="contact-info">
+        <a href="tel:+919389149580"><i class="bi bi-telephone me-2"></i> +91 93891 49580</a>
+        <a href="mailto:sales@neemkarolitechnologies.com"><i class="bi bi-envelope-fill me-2"></i> sales@uttarakhandrealtors.com</a>
       </div>
-    </header>
+      <div class="social-icons">
+        <a href="https://www.facebook.com/profile.php?id=61577587658083" class="social-icon"><i class="bi bi-facebook"></i></a>
+        <a href="https://www.linkedin.com/company/neemkaroli-technologies/?viewAsMember=true" class="social-icon"><i class="bi bi-linkedin"></i></a>
+        <a href="https://www.instagram.com/uttarakhand.realtors/" class="social-icon"><i class="bi bi-instagram"></i></a>
+      </div>
+    </div>
+  </header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow-sm">
       <div class="container-fluid d-flex justify-content-between align-items-center">
         <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static 'images/haldwani nk.png' %}" alt="Logo" width="250" /></a>
