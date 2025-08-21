@@ -77,7 +77,7 @@ DATABASES = {
         'USER': 'realestate_user',
         'PASSWORD': 'anshika978',
         'HOST': 'localhost',
-        'PORT': '5432',
+        'PORT': '5433',  # naya port jo aapne second instance ke liye set kiya
     }
 }
 
