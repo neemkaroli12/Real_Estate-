@@ -1,0 +1,21 @@
+[0;1;32m●[0m gunicorn.service - gunicorn daemon for Django project
+     Loaded: loaded (]8;;file://srv963258.hstgr.cloud/etc/systemd/system/gunicorn.service/etc/systemd/system/gunicorn.service]8;;; [0;1;32menabled[0m; preset: [0;1;38;5;185mdisabled[0m)
+     Active: [0;1;32mactive (running)[0m since Thu 2025-08-21 07:45:27 UTC; 11min ago
+   Main PID: 917106 (gunicorn)
+      Tasks: 4 (limit: 48643)
+     Memory: 129.4M
+        CPU: 837ms
+     CGroup: /system.slice/gunicorn.service
+             ├─[0;38;5;245m917106 /var/www/Real_Estate-/testvenv311/bin/python3.11 /var/www/Real_Estate-/testvenv311/bin/gunicorn --workers 3 --bind 127.0.0.1:8001 my_project.wsgi:application[0m
+             ├─[0;38;5;245m917108 /var/www/Real_Estate-/testvenv311/bin/python3.11 /var/www/Real_Estate-/testvenv311/bin/gunicorn --workers 3 --bind 127.0.0.1:8001 my_project.wsgi:application[0m
+             ├─[0;38;5;245m917109 /var/www/Real_Estate-/testvenv311/bin/python3.11 /var/www/Real_Estate-/testvenv311/bin/gunicorn --workers 3 --bind 127.0.0.1:8001 my_project.wsgi:application[0m
+             └─[0;38;5;245m917110 /var/www/Real_Estate-/testvenv311/bin/python3.11 /var/www/Real_Estate-/testvenv311/bin/gunicorn --workers 3 --bind 127.0.0.1:8001 my_project.wsgi:application[0m
+
+Aug 21 07:45:27 srv963258.hstgr.cloud systemd[1]: Started gunicorn daemon for Django project.
+Aug 21 07:45:27 srv963258.hstgr.cloud gunicorn[917106]: [2025-08-21 07:45:27 +0000] [917106] [INFO] Starting gunicorn 23.0.0
+Aug 21 07:45:27 srv963258.hstgr.cloud gunicorn[917106]: [2025-08-21 07:45:27 +0000] [917106] [INFO] Listening at: http://127.0.0.1:8001 (917106)
+Aug 21 07:45:27 srv963258.hstgr.cloud gunicorn[917106]: [2025-08-21 07:45:27 +0000] [917106] [INFO] Using worker: sync
+Aug 21 07:45:27 srv963258.hstgr.cloud gunicorn[917108]: [2025-08-21 07:45:27 +0000] [917108] [INFO] Booting worker with pid: 917108
+Aug 21 07:45:27 srv963258.hstgr.cloud gunicorn[917109]: [2025-08-21 07:45:27 +0000] [917109] [INFO] Booting worker with pid: 917109
+Aug 21 07:45:27 srv963258.hstgr.cloud gunicorn[917110]: [2025-08-21 07:45:27 +0000] [917110] [INFO] Booting worker with pid: 917110
+Aug 21 07:48:31 srv963258.hstgr.cloud gunicorn[917110]: Not Found: /robots.txt

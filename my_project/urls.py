@@ -14,15 +14,26 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-import os
 from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.views.static import serve
+from django.urls import re_path
+import os
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include("my_app.urls")), 
-] 
+    path('admin/', admin.site.urls),      # 1️⃣ Admin sabse upar
+    path('', include("my_app.urls")),     # 2️⃣ App URLs
+]
+
+# 3️⃣ Media / catch-all static
 if settings.DEBUG or os.environ.get('RENDER') == 'true':
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+# Agar aapko catch-all static serve karna hai (sirf DEBUG me)
+urlpatterns += [
+    # ye last me add kare
+    # re_path(r'^(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT}),
+]
+

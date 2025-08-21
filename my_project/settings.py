@@ -71,13 +71,15 @@ WSGI_APPLICATION = 'my_project.wsgi.application'
 # }
 
 DATABASES = {
-    'default': dj_database_url.config(
-        default=os.getenv("DATABASE_URL"),
-        conn_max_age=600,
-        ssl_require=True
-    )
+   'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'realestate_db',
+        'USER': 'realestate_user',
+        'PASSWORD': 'anshika978',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
 }
-
 
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -142,3 +144,4 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD') # App password (not Gmail login password)
+
