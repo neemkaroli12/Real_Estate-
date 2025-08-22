@@ -10,6 +10,7 @@ from .models import  Property, Purpose, City, newProject, PropertyImage, LeadReq
 from .forms import PropertySearchForm, LeadRequestForm, PropertyForm, CustomUserCreationForm,  SellPropertyForm, LeaseForm,ContactForm
 from .utils import send_otp, generate_otp
 from django.core.mail import EmailMessage, send_mail
+import os
 # Home & Search 
 def home(request):
     form = PropertySearchForm(request.GET or None)
