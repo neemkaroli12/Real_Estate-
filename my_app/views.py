@@ -48,12 +48,18 @@ def home(request):
 # Property Listings
 def buy_properties(request):
     try:
+        buy_purpose = Purpose.objects.get(name__iexact="Buy")
         sell_purpose = Purpose.objects.get(name__iexact="Sell")
-        properties = Property.objects.filter(purpose=sell_purpose, is_approved=True).prefetch_related('images').order_by('-id')
+        properties = Property.objects.filter(
+            Q(purpose=buy_purpose) | Q(purpose=sell_purpose),
+            is_approved=True
+        ).prefetch_related('images').order_by('-id')
     except Purpose.DoesNotExist:
         properties = Property.objects.none()
+    
+    return render(request, 'buy_properties.html', {'properties': properties})
 
-    return render(request, 'buy.html', {'properties': properties})
+    
 def rent_properties(request):
     try:
         rent_purpose = Purpose.objects.get(name__iexact="Rent")
