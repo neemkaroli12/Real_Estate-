@@ -149,6 +149,7 @@ else:
     # Production: Optional, Cloudinary will still handle it
     MEDIA_URL = f'https://res.cloudinary.com/{config("CLOUDINARY_CLOUD_NAME")}/image/upload/'
 
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.zoho.in'
 EMAIL_PORT = 587
