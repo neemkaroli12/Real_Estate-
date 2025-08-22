@@ -2,6 +2,21 @@ from django.db import models
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
 from cloudinary_storage.storage import RawMediaCloudinaryStorage
+from django.core.validators import RegexValidator, FileExtensionValidator, MinValueValidator, MaxValueValidator, EmailValidator
+from django.core.exceptions import ValidationError
+
+
+# --- Validators ---
+phone_validator = RegexValidator(
+    regex=r'^\+?\d{10,15}$',
+    message="Phone number must be entered in the format: '+9999999999'. Up to 15 digits allowed."
+)
+
+def file_size_validator(file):
+    max_size_kb = 2048  # 2MB limit
+    if file.size > max_size_kb * 1024:
+        raise ValidationError(f"File size should not exceed {max_size_kb} KB.")
+    
 # Purpose (e.g., Sell, Rent)
 class Purpose(models.Model):
     name = models.CharField(max_length=50)
@@ -58,7 +73,7 @@ class PropertyImage(models.Model):
 class LeadRequest(models.Model):
     property = models.ForeignKey(Property, on_delete=models.CASCADE, related_name='leads')
     name = models.CharField(max_length=100)
-    email = models.EmailField()
+    email = models.EmailField(validators=[EmailValidator()])
     whatsapp = models.CharField(max_length=15)
     is_verified = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -106,7 +121,7 @@ class LeaseImage(models.Model):
 # contact us model
 class Contact(models.Model):
     name = models.CharField(max_length=100)
-    email = models.EmailField()
+    email = models.EmailField(validators=[EmailValidator()])
     subject = models.CharField(max_length=200)
     message = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
