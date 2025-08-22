@@ -14,46 +14,36 @@ from django.core.mail import EmailMessage, send_mail
 def home(request):
     form = PropertySearchForm(request.GET or None)
     results = None
-
-    # Fetch projects and handle brochure URLs safely
-    projects = newProject.objects.all().order_by('-id')
+    projects = newProject.objects.all().order_by('-id')  # or 'title'
+    # Add brochure logic for each project
     for project in projects:
-        try:
-            if project.brochure and hasattr(project.brochure, 'url'):
-                if os.path.exists(project.brochure.path):
-                    project.fixed_brochure_url = project.brochure.url.replace('/image/upload/', '/raw/upload/')
-                else:
-                    print("Brochure missing for project:", project.title)
-                    project.fixed_brochure_url = None
-            elif hasattr(project, 'brochure_url') and project.brochure_url:
-                project.fixed_brochure_url = project.brochure_url
-            else:
-                project.fixed_brochure_url = None
-        except OSError as e:
-            print("I/O error for project", project.title, ":", e)
+        if hasattr(project, 'brochure') and project.brochure and hasattr(project.brochure, 'url'):
+            project.fixed_brochure_url = project.brochure.url.replace('/image/upload/', '/raw/upload/')
+        elif project.brochure_url:
+            project.fixed_brochure_url = project.brochure_url
+        else:
             project.fixed_brochure_url = None
-
-    # Handle property search form
     if form.is_valid():
         purpose = form.cleaned_data['purpose']
         property_type = form.cleaned_data['property_type']
         city = form.cleaned_data['city']
-
         if purpose.name.lower() == "buy":
             try:
                 purpose = Purpose.objects.get(name__iexact="Sell")
             except Purpose.DoesNotExist:
                 purpose = None
-
         results = Property.objects.filter(
             purpose=purpose,
             property_type=property_type,
             city=city
         )
-
-        return render(request, 'output.html', {'result': results})
-
-    return render(request, 'index.html', {'form': form, 'projects': projects})
+        return render(request, 'output.html', {
+            'result': results,
+        })
+    return render(request, 'index.html', {
+        'form': form,
+        'projects': projects
+    })
 # Property Listings
 def buy_properties(request):
     try:
@@ -217,22 +207,14 @@ def load_locations(request):
 # new projects
 def newprojects(request):
     projects = newProject.objects.all().order_by('-id')
-
+    
     for project in projects:
         print("Project Title:", project.title)
 
-        # Safe handling of brochure file
-        try:
-            if project.brochure and hasattr(project.brochure, 'url'):
-                if os.path.exists(project.brochure.path):
-                    project.fixed_brochure_url = project.brochure.url.replace('/image/upload/', '/raw/upload/')
-                else:
-                    print("Brochure missing for project:", project.title)
-                    project.fixed_brochure_url = None
-            else:
-                project.fixed_brochure_url = None
-        except OSError as e:
-            print("I/O error for project", project.title, ":", e)
+        # Fix: Remove reference to non-existent 'brochure_url'
+        if project.brochure and hasattr(project.brochure, 'url'):
+            project.fixed_brochure_url = project.brochure.url.replace('/image/upload/', '/raw/upload/')
+        else:
             project.fixed_brochure_url = None
 
         print("Final URL used in template:", project.fixed_brochure_url)
