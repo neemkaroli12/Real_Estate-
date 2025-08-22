@@ -208,18 +208,15 @@ def load_locations(request):
 # new projects
 def newprojects(request):
     projects = newProject.objects.all().order_by('-id')
-    
+    projects = newProject.objects.all().order_by('-id')  # or 'title'
+    # Add brochure logic for each project
     for project in projects:
-        print("Project Title:", project.title)
-
-        # Fix: Remove reference to non-existent 'brochure_url'
-        if project.brochure and hasattr(project.brochure, 'url'):
+        if hasattr(project, 'brochure') and project.brochure and hasattr(project.brochure, 'url'):
             project.fixed_brochure_url = project.brochure.url.replace('/image/upload/', '/raw/upload/')
+        elif project.brochure_url:
+            project.fixed_brochure_url = project.brochure_url
         else:
             project.fixed_brochure_url = None
-
-        print("Final URL used in template:", project.fixed_brochure_url)
-        print("-" * 50)
 
     return render(request, 'projects.html', {'projects': projects})
 
