@@ -215,7 +215,6 @@ def load_locations(request):
 def newprojects(request):
     projects = newProject.objects.all().order_by('-id')
     projects = newProject.objects.all().order_by('-id')  # or 'title'
-    # Add brochure logic for each project
     for project in projects:
         if hasattr(project, 'brochure') and project.brochure and hasattr(project.brochure, 'url'):
             project.fixed_brochure_url = project.brochure.url.replace('/image/upload/', '/raw/upload/')
