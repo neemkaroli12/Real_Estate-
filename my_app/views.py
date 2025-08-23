@@ -212,23 +212,17 @@ def load_locations(request):
     return JsonResponse(list(locations), safe=False)
 
 # new projects
-from django.shortcuts import render
-from .models import newProject
-
 def newprojects(request):
-    # Get all projects ordered by newest first
     projects = newProject.objects.all().order_by('-id')
 
-    # Set fixed_brochure_url for each project (Cloudinary compatible)
     for project in projects:
-        if project.brochure:  # Cloudinary FileField
-            project.fixed_brochure_url = project.brochure.url  # direct Cloudinary URL
-        elif project.brochure_url:  # fallback if direct URL is stored
+        if hasattr(project, 'brochure') and project.brochure and hasattr(project.brochure, 'url'):
+            project.fixed_brochure_url = project.brochure.url.replace('/image/upload/', '/raw/upload/')
+        elif project.brochure_url:
             project.fixed_brochure_url = project.brochure_url
         else:
             project.fixed_brochure_url = None
 
-    # Render projects.html template with projects context
     return render(request, 'projects.html', {'projects': projects})
 
 
