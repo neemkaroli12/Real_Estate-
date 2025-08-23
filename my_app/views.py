@@ -212,18 +212,27 @@ def load_locations(request):
     return JsonResponse(list(locations), safe=False)
 
 # new projects
-def newprojects(request):
-    projects = newProject.objects.all().order_by('-id')
-    projects = newProject.objects.all().order_by('-id')  # or 'title'
-    for project in projects:
+def newprojects(request, pk=None):
+    if pk:  # Detail page
+        project = newProject.objects.get(pk=pk)
         if hasattr(project, 'brochure') and project.brochure and hasattr(project.brochure, 'url'):
             project.fixed_brochure_url = project.brochure.url.replace('/image/upload/', '/raw/upload/')
         elif project.brochure_url:
             project.fixed_brochure_url = project.brochure_url
         else:
             project.fixed_brochure_url = None
+        return render(request, 'detail.html', {'project': project})
+    else:  # List of projects
+        projects = newProject.objects.all().order_by('-id')
+        for project in projects:
+            if hasattr(project, 'brochure') and project.brochure and hasattr(project.brochure, 'url'):
+                project.fixed_brochure_url = project.brochure.url.replace('/image/upload/', '/raw/upload/')
+            elif project.brochure_url:
+                project.fixed_brochure_url = project.brochure_url
+            else:
+                project.fixed_brochure_url = None
+        return render(request, 'projects.html', {'projects': projects})
 
-    return render(request, 'projects.html', {'projects': projects})
 
 #  Sell Form View
 @login_required(login_url='user-login')
