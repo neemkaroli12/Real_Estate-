@@ -70,16 +70,44 @@ WSGI_APPLICATION = 'my_project.wsgi.application'
 #     }
 # }
 
-DATABASES = {
-   'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'realestate_db',
-        'USER': 'realestate_user',
-        'PASSWORD': 'anshika978',
-        'HOST': 'localhost',
-        'PORT': '5432',  # naya port jo aapne second instance ke liye set kiya
+# DATABASES = {
+#    'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'realestate_db',
+#         'USER': 'realestate_user',
+#         'PASSWORD': 'anshika978',
+#         'HOST': 'localhost',
+#         'PORT': '5432',  # naya port jo aapne second instance ke liye set kiya
+#     }
+# }
+
+from decouple import config
+
+LOCAL_DEV = config('LOCAL_DEV', default=True, cast=bool)
+
+if LOCAL_DEV:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': config('DB_NAME', default='realestate'),
+            'USER': config('DB_USER', default='postgres'),
+            'PASSWORD': config('DB_PASSWORD', default='password'),
+            'HOST': '127.0.0.1',
+            'PORT': config('DB_PORT', default='5433'),
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': config('DB_NAME', default='realestate'),
+            'USER': config('DB_USER', default='postgres'),
+            'PASSWORD': config('DB_PASSWORD', default='password'),
+            'HOST': '127.0.0.1',
+            'PORT': config('DB_PORT', default='5432'),
+        }
+    }
+
 
 
 AUTH_PASSWORD_VALIDATORS = [
