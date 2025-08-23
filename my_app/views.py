@@ -214,16 +214,16 @@ def load_locations(request):
 # new projects
 def newprojects(request):
     projects = newProject.objects.all().order_by('-id')
-
     for project in projects:
-        if hasattr(project, 'brochure') and project.brochure and hasattr(project.brochure, 'url'):
-            project.fixed_brochure_url = project.brochure.url.replace('/image/upload/', '/raw/upload/')
+        if project.brochure:  # Cloudinary FileField
+            project.fixed_brochure_url = project.brochure.url  # Direct Cloudinary URL
         elif project.brochure_url:
             project.fixed_brochure_url = project.brochure_url
         else:
             project.fixed_brochure_url = None
 
     return render(request, 'projects.html', {'projects': projects})
+
 
 
 #  Sell Form View
