@@ -86,20 +86,27 @@ from decouple import config
 LOCAL_DEV = config('LOCAL_DEV', default=True, cast=bool)
 
 if LOCAL_DEV:
-    DB_PORT = config('DB_PORT', default='5433')
-else:
-    DB_PORT = config('DB_PORT', default='5432')
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('DB_NAME'),
-        'USER': config('DB_USER'),
-        'PASSWORD': config('DB_PASSWORD'),
-        'HOST': '127.0.0.1',
-        'PORT': DB_PORT,
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': config('DB_NAME', default='realestate'),
+            'USER': config('DB_USER', default='postgres'),
+            'PASSWORD': config('DB_PASSWORD', default='password'),
+            'HOST': '127.0.0.1',
+            'PORT': config('DB_PORT', default='5433'),
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': config('DB_NAME', default='realestate'),
+            'USER': config('DB_USER', default='postgres'),
+            'PASSWORD': config('DB_PASSWORD', default='password'),
+            'HOST': '127.0.0.1',
+            'PORT': config('DB_PORT', default='5432'),
+        }
+    }
 
 
 

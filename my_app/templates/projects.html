@@ -43,4 +43,21 @@
       {% endfor %}
     </div>
   </div>
+
+  <div class="card-body d-flex flex-column">
+  <h5 class="card-title">{{ project.title }}</h5>
+  <p class="card-text">{{ project.summary }}</p>
+  
+  <!-- Debugging output -->
+  <p><strong>Brochure file:</strong> {{ project.brochure }}</p>
+  <p><strong>Brochure URL:</strong> {{ project.brochure_url }}</p>
+  <p><strong>Fixed URL:</strong> {{ project.fixed_brochure_url }}</p>
+
+  {% if project.fixed_brochure_url %}
+    <a href="{{ project.fixed_brochure_url }}" target="_blank" class="btn btn-sm btn-primary">View Brochure</a>
+  {% else %}
+    <button class="btn btn-sm btn-secondary" disabled>No Brochure</button>
+  {% endif %}
+</div>
+
 {% endblock %}
