@@ -31,6 +31,8 @@
               <h5 class="card-title">{{ project.title }}</h5>
               <p class="card-text">{{ project.summary }}</p>
               {% if project.fixed_brochure_url %}
+              <p>Brochure Debug: {{ project.fixed_brochure_url }}</p>
+
                 <a href="{{ project.fixed_brochure_url }}" target="_blank" class="btn btn-sm btn-primary">View Brochure</a>
               {% else %}
                 <button class="btn btn-sm btn-secondary" disabled>No Brochure</button>
