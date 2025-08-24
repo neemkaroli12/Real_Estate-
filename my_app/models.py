@@ -81,19 +81,6 @@ class LeadRequest(models.Model):
     def __str__(self):
         return f"Lead by {self.name} for {self.property.property_type} at {self.property.location}"
 
-# Projects section
-class newProject(models.Model):
-    title = models.CharField(max_length=200, null=True, blank=True)
-    image = CloudinaryField('image', folder='newprojects/')
-    summary = models.TextField(max_length=500, null=True, blank=True)
-    brochure = models.FileField(
-        storage=RawMediaCloudinaryStorage(),  # PDF will go as raw type
-        null=True,
-        blank=True
-    )
-
-    def __str__(self):
-        return self.title or "Unnamed Project"
 
 # Lease listing
 class Lease(models.Model):
