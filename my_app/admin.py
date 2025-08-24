@@ -1,11 +1,11 @@
 from django.contrib import admin
-from .models import Purpose, PropertyType, City, Location, newProject, Property, PropertyImage, LeadRequest, Lease, LeaseImage, Contact
+from .models import Purpose, PropertyType, City, Location, Property, PropertyImage, LeadRequest, Lease, LeaseImage, Contact
 # Basic model registrations
 admin.site.register(Purpose)
 admin.site.register(PropertyType)
 admin.site.register(City)
 admin.site.register(Location)
-admin.site.register(newProject)
+# admin.site.register(newProject)
 admin.site.register(PropertyImage)
 admin.site.register(LeaseImage)
 admin.site.register(Contact)
