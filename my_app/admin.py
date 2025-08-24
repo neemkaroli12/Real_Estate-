@@ -5,7 +5,7 @@ admin.site.register(Purpose)
 admin.site.register(PropertyType)
 admin.site.register(City)
 admin.site.register(Location)
-# admin.site.register(newProject)
+
 admin.site.register(PropertyImage)
 admin.site.register(LeaseImage)
 admin.site.register(Contact)

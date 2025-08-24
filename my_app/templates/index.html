@@ -71,11 +71,12 @@
               <img src="https://thumbs.dreamstime.com/b/new-projects-word-notebook-59737338.jpg" />
               <p class="text-primary">
                 <b>Upcoming Projects</b>
-              </p>
+
+</p>
             </a>
           </div>
-          <div class="slide">
-            <a href="">
+          <div class="slide">           
+ <a href="">
               <img src="https://cupliv.com/images/hyderabad/settl-amalfi/1.jpg" />
               <p class="text-primary">
                 <b>PG and Co-living</b>
@@ -111,45 +112,4 @@
       </div>
     </div>
   </div>
-  <section id="projects" class="bg-light py-5">
-    <style>
-      .card {
-        border-radius: 15px;
-        overflow: hidden;
-      }
-      .card-img-top {
-        border-bottom: 1px solid #ddd;
-      }
-    </style>
-    {% comment %} <div class="container mt-5">
-      <h2 class="mb-4">New Projects</h2>
-      <h5>Projects Found: {{ projects|length }}</h5>
-      <div class="row">
-  {% if projects %}
-    {% for project in projects %}
-      <div class="col-md-4">
-        <div class="card shadow mb-4">
-          <img src="{{ project.image.url }}" class="card-img-top" alt="{{ project.title }} image" style="height: 200px; object-fit: cover;" />
-          <div class="card-body">
-            <h5 class="card-title">{{ project.title }}</h5>
-            <p class="card-text">{{ project.summary|truncatewords:20 }}</p>
-            {% if project.fixed_brochure_url %}
-              <a href="{{ project.fixed_brochure_url }}" target="_blank" class="btn btn-sm btn-primary">View Brochure</a>
-            {% else %}
-              <button class="btn btn-sm btn-secondary" disabled>No Brochure</button>
-            {% endif %}
-            <!-- Example detail link, update the URL name and param as needed -->
-            <a href="{% url 'project_detail' project.id %}" class="btn btn-outline-primary ms-2 btn-sm">Read More</a>
-          </div>
-        </div>
-      </div>
-    {% endfor %}
-  {% else %}
-    <div class="col-12">
-      <p class="text-muted">No projects available right now.</p>
-    </div>
-  {% endif %}
-</div> 
-    </div>{% endcomment %}
-  </section>
 {% endblock %}
