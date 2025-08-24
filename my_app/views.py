@@ -15,7 +15,7 @@ import os
 def home(request):
     form = PropertySearchForm(request.GET or None)
     results = None
-    projects = newProject.objects.all().order_by('-id')  # or 'title'
+   
    
     if form.is_valid():
         purpose = form.cleaned_data['purpose']
@@ -36,7 +36,7 @@ def home(request):
         })
     return render(request, 'index.html', {
         'form': form,
-        'projects': projects
+        
     })
 # Property Listings
 def buy_properties(request):
