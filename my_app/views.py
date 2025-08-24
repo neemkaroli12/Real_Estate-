@@ -217,8 +217,6 @@ def newprojects(request):
     for project in projects:
         if project.brochure:  # Cloudinary FileField
             project.fixed_brochure_url = project.brochure.url  # Direct Cloudinary URL
-        elif project.brochure_url:
-            project.fixed_brochure_url = project.brochure_url
         else:
             project.fixed_brochure_url = None
 
