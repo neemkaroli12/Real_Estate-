@@ -87,10 +87,10 @@ class newProject(models.Model):
     image = CloudinaryField('image', folder='newprojects/')
     summary = models.TextField(max_length=500, null=True, blank=True)
     brochure = models.FileField(
-        storage=RawMediaCloudinaryStorage(),  # makes PDF go as resource_type='raw'
-        upload_to='project_brochures/'
+        storage=RawMediaCloudinaryStorage(),  # PDF will go as raw type
+        null=True,
+        blank=True
     )
-    # brochure_url = models.URLField(null=True, blank=True) 
 
     def __str__(self):
         return self.title or "Unnamed Project"
