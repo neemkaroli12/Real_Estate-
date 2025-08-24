@@ -80,32 +80,18 @@ WSGI_APPLICATION = 'my_project.wsgi.application'
 #         'PORT': '5432',  # naya port jo aapne second instance ke liye set kiya
 #     }
 # }
-from decouple import config
 
-LOCAL_DEV = config('LOCAL_DEV', default=True, cast=bool)
 
-if LOCAL_DEV:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': config('DB_NAME', default='realestate'),
-            'USER': config('DB_USER', default='postgres'),
-            'PASSWORD': config('DB_PASSWORD', default='password'),
-            'HOST': '127.0.0.1',
-            'PORT': '5433',  # local tunnel port
-        }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ.get('DB_NAME'),
+        'USER': os.environ.get('DB_USER'),
+        'PASSWORD': os.environ.get('DB_PASSWORD'),
+        'HOST': os.environ.get('DB_HOST', '127.0.0.1'),
+        'PORT': os.environ.get('DB_PORT', '5432'),
     }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': config('DB_NAME', default='realestate'),
-            'USER': config('DB_USER', default='postgres'),
-            'PASSWORD': config('DB_PASSWORD', default='password'),
-            'HOST': '127.0.0.1',
-            'PORT': '5432',  # VPS default Postgres port
-        }
-    }
+}
 
 
 AUTH_PASSWORD_VALIDATORS = [
