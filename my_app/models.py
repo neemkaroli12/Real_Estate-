@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 from django.db import models
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
@@ -119,3 +120,5 @@ class NewModel(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
 
+=======
+>>>>>>> 408ed7473ec96066ca046b47b7511e9f397bfa9f
