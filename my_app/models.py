@@ -115,3 +115,7 @@ class Contact(models.Model):
 
     def __str__(self):
         return self.name
+class NewModel(models.Model):
+    name = models.CharField(max_length=100)
+    description = models.TextField()
+
