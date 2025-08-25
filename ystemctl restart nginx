@@ -1,0 +1,11 @@
+[0;1;32m●[0m gunicorn_realestate.service - Gunicorn daemon for Django project
+     Loaded: loaded (]8;;file://srv963258.hstgr.cloud/etc/systemd/system/gunicorn_realestate.service/etc/systemd/system/gunicorn_realestate.service]8;;; [0;1;32menabled[0m; preset: [0;1;38;5;185mdisabled[0m)
+     Active: [0;1;32mactive (running)[0m since Mon 2025-08-25 04:36:53 UTC; 15ms ago
+   Main PID: 1355271 (gunicorn)
+      Tasks: 1 (limit: 48637)
+     Memory: 3.7M
+        CPU: 13ms
+     CGroup: /system.slice/gunicorn_realestate.service
+             └─[0;38;5;245m1355271 /root/Real_Estate-/testvenv311/bin/python3.11 /var/www/Real_Estate-/testvenv311/bin/gunicorn --access-logfile - --workers 3 --bind 0.0.0.0:8001 my_project.wsgi:application[0m
+
+Aug 25 04:36:53 srv963258.hstgr.cloud systemd[1]: Started Gunicorn daemon for Django project.

@@ -1,8 +1,10 @@
 {% extends 'common.html' %}
 {% block title %}Search Cities{% endblock %}
+
 {% block content %}
 <div class="container my-5">
   <h2 class="text-center mb-4">Search Results</h2>
+
   {% if result %}
     <div class="row">
       {% for property in result %}
@@ -13,6 +15,7 @@
             {% else %}
               <img src="https://via.placeholder.com/400x200?text=No+Image" class="card-img-top" alt="No Image">
             {% endif %}
+
             <div class="card-body">
               <h5 class="card-title">{{ property.title }}</h5>
               <p class="card-text">
@@ -30,7 +33,7 @@
     </div>
   {% else %}
     <div class="alert alert-warning text-center">
-       Sorry! No properties found matching your search.
+      Sorry! No properties found matching your search.
     </div>
   {% endif %}
 </div>

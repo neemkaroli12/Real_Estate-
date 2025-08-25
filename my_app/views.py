@@ -6,18 +6,24 @@ from django.conf import settings
 import requests
 import random
 from django.http import JsonResponse
-from .models import  Property, Purpose, City,  PropertyImage, LeadRequest,PropertyType, Location, Lease, LeaseImage
+from .models import  Property, Purpose, City, newProject, PropertyImage, LeadRequest,PropertyType, Location, Lease, LeaseImage
 from .forms import PropertySearchForm, LeadRequestForm, PropertyForm, CustomUserCreationForm,  SellPropertyForm, LeaseForm,ContactForm
 from .utils import send_otp, generate_otp
 from django.core.mail import EmailMessage, send_mail
 import os
-from django.db.models import Q
 # Home & Search 
 def home(request):
     form = PropertySearchForm(request.GET or None)
     results = None
-   
-   
+    projects = newProject.objects.all().order_by('-id')  # or 'title'
+    # Add brochure logic for each project
+    for project in projects:
+        if hasattr(project, 'brochure') and project.brochure and hasattr(project.brochure, 'url'):
+            project.fixed_brochure_url = project.brochure.url.replace('/image/upload/', '/raw/upload/')
+        elif project.brochure_url:
+            project.fixed_brochure_url = project.brochure_url
+        else:
+            project.fixed_brochure_url = None
     if form.is_valid():
         purpose = form.cleaned_data['purpose']
         property_type = form.cleaned_data['property_type']
@@ -35,6 +41,8 @@ def home(request):
         return render(request, 'output.html', {
             'result': results,
         })
+
+    # This return should be outside the if block
     return render(request, 'index.html', {
         'form': form,
         
@@ -50,8 +58,9 @@ def buy_properties(request):
         ).prefetch_related('images').order_by('-id')
     except Purpose.DoesNotExist:
         properties = Property.objects.none()
+    
+    return render(request, 'buy_properties.html', {'properties': properties})
 
-    return render(request, 'buy.html', {'properties': properties})
     
 def rent_properties(request):
     try:
@@ -205,7 +214,17 @@ def load_locations(request):
     return JsonResponse(list(locations), safe=False)
 
 # new projects
+def newprojects(request):
+    projects = newProject.objects.all().order_by('-id')
+    for project in projects:
+        if project.brochure:  # Cloudinary FileField
+            project.fixed_brochure_url = project.brochure.url  # Direct Cloudinary URL
+        elif project.brochure_url:
+            project.fixed_brochure_url = project.brochure_url
+        else:
+            project.fixed_brochure_url = None
 
+    return render(request, 'projects.html', {'projects': projects})
 
 
 #  Sell Form View

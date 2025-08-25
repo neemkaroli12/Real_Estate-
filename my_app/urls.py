@@ -5,7 +5,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 urlpatterns = [
     path('', views.home, name="index"),  
-    # path('projects/', views.newprojects, name="projects"),  
+    path('projects/', views.newprojects, name="projects"),  
     path('city/<int:city_id>/', views.city_detail, name='city_detail'),
     path('property/<int:pk>/', views.property_detail, name='property_detail'),
     path('verify-otp/<int:pk>/', views.verify_otp_view, name='verify_otp'),
@@ -22,6 +22,7 @@ urlpatterns = [
     path('services/', views.service, name='services'),
     path('nri-guide/', views.nri_Guide, name='nri-guide'),
     path('nri-services/', views.nri_Services, name='nri-services'),
+    path('projects/', views.new_projects, name='project'),
     path('contact/', views.contact, name='contact'),
 ] 
 
