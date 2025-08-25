@@ -123,32 +123,37 @@
     </style>
     <div class="container mt-5">
       <h2 class="mb-4">New Projects</h2>
-      <h5>Projects Found: {{ projects|length }}</h5>
-      <div class="row">
-        {% if projects %}
-          {% for project in projects %}
-            <div class="col-md-4">
-              <div class="card shadow mb-4">
-                <img src="{{ project.image.url }}" class="card-img-top" alt="Project Image" style="height: 200px; object-fit: cover;" />
-                <div class="card-body">
-                  <h5 class="card-title">{{ project.title }}</h5>
-                  <p class="card-text">{{ project.summary|truncatewords:20 }}</p>
-                  {% if project.fixed_brochure_url %}
-                    <a href="{{ project.fixed_brochure_url }}" target="_blank" class="btn btn-sm btn-primary">View Brochure</a>
-                  {% else %}
-                    <button class="btn btn-sm btn-secondary" disabled>No Brochure</button>
-                  {% endif %}
-                  <a href="{% url 'projects' %}" class="btn btn-outline-primary ms-2 btn-sm">Read More</a>
-                </div>
+	 <h5>Projects Found: {{ projects|length }}</h5>
+    <div class="row">
+      {% if projects %}
+        {% for project in projects %}
+          <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow">
+              {% if project.image %}
+                <img src="{{ project.image.url }}" class="card-img-top" alt="{{ project.title }}" style="height: 200px; object-fit: cover;" />
+              {% endif %}
+              <div class="card-body">
+                <h5 class="card-title">{{ project.title }}</h5>
+                <p class="card-text">{{ project.summary|truncatewords:20 }}</p>
+
+                {% if project.brochure %}
+                  <a href="{{ project.brochure.url }}" target="_blank" class="btn btn-sm btn-primary">View Brochure</a>
+                {% else %}
+                  <button class="btn btn-sm btn-secondary" disabled>No Brochure</button>
+                {% endif %}
+
+                <a href="{% url 'project' %}" class="btn btn-outline-primary ms-2 btn-sm">Read More</a>
               </div>
             </div>
-          {% endfor %}
-        {% else %}
-          <div class="col-12">
-            <p class="text-muted">No projects available right now.</p>
           </div>
-        {% endif %}
-      </div>
+        {% endfor %}
+      {% else %}
+        <div class="col-12">
+          <p class="text-muted">No projects available right now.</p>
+        </div>
+      {% endif %}
+    </div>
+
     </div>
   </section>
 {% endblock %}

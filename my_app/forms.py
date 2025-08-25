@@ -42,7 +42,7 @@ class PropertyForm(forms.ModelForm):
         fields = [
             'description', 'price', 'purpose', 'property_type',
             'city', 'location', 'area', 'facing', 'ownership',
-            'transaction_type', 'agent_phone', 'brochure', 'is_approved'
+            'transaction_type', 'agent_phone', 'is_approved'
         ]
         widgets = {
             'description': forms.Textarea(attrs={'class': 'form-control', 'rows': 4}),
@@ -56,7 +56,6 @@ class PropertyForm(forms.ModelForm):
             'ownership': forms.TextInput(attrs={'class': 'form-control'}),
             'transaction_type': forms.TextInput(attrs={'class': 'form-control'}),
             'agent_phone': forms.TextInput(attrs={'class': 'form-control'}),
-            'brochure': forms.ClearableFileInput(attrs={'class': 'form-control'}),
             'is_approved': forms.CheckboxInput(),
 }
 # Property Image Upload Form
