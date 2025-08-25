@@ -1,0 +1,20 @@
+[0;1;32m●[0m gunicorn_realestate.service - Gunicorn daemon for Django project
+     Loaded: loaded (]8;;file://srv963258.hstgr.cloud/etc/systemd/system/gunicorn_realestate.service/etc/systemd/system/gunicorn_realestate.service]8;;; [0;1;32menabled[0m; preset: [0;1;38;5;185mdisabled[0m)
+     Active: [0;1;32mactive (running)[0m since Mon 2025-08-25 03:22:41 UTC; 5s ago
+   Main PID: 1336886 (gunicorn)
+      Tasks: 4 (limit: 48637)
+     Memory: 128.8M
+        CPU: 735ms
+     CGroup: /system.slice/gunicorn_realestate.service
+             ├─[0;38;5;245m1336886 /root/Real_Estate-/testvenv311/bin/python3.11 /var/www/Real_Estate-/testvenv311/bin/gunicorn --access-logfile - --workers 3 --bind 0.0.0.0:8001 my_project.wsgi:application[0m
+             ├─[0;38;5;245m1336887 /root/Real_Estate-/testvenv311/bin/python3.11 /var/www/Real_Estate-/testvenv311/bin/gunicorn --access-logfile - --workers 3 --bind 0.0.0.0:8001 my_project.wsgi:application[0m
+             ├─[0;38;5;245m1336888 /root/Real_Estate-/testvenv311/bin/python3.11 /var/www/Real_Estate-/testvenv311/bin/gunicorn --access-logfile - --workers 3 --bind 0.0.0.0:8001 my_project.wsgi:application[0m
+             └─[0;38;5;245m1336892 /root/Real_Estate-/testvenv311/bin/python3.11 /var/www/Real_Estate-/testvenv311/bin/gunicorn --access-logfile - --workers 3 --bind 0.0.0.0:8001 my_project.wsgi:application[0m
+
+Aug 25 03:22:41 srv963258.hstgr.cloud systemd[1]: Started Gunicorn daemon for Django project.
+Aug 25 03:22:42 srv963258.hstgr.cloud gunicorn[1336886]: [2025-08-25 03:22:42 +0000] [1336886] [INFO] Starting gunicorn 23.0.0
+Aug 25 03:22:42 srv963258.hstgr.cloud gunicorn[1336886]: [2025-08-25 03:22:42 +0000] [1336886] [INFO] Listening at: http://0.0.0.0:8001 (1336886)
+Aug 25 03:22:42 srv963258.hstgr.cloud gunicorn[1336886]: [2025-08-25 03:22:42 +0000] [1336886] [INFO] Using worker: sync
+Aug 25 03:22:42 srv963258.hstgr.cloud gunicorn[1336887]: [2025-08-25 03:22:42 +0000] [1336887] [INFO] Booting worker with pid: 1336887
+Aug 25 03:22:42 srv963258.hstgr.cloud gunicorn[1336888]: [2025-08-25 03:22:42 +0000] [1336888] [INFO] Booting worker with pid: 1336888
+Aug 25 03:22:42 srv963258.hstgr.cloud gunicorn[1336892]: [2025-08-25 03:22:42 +0000] [1336892] [INFO] Booting worker with pid: 1336892

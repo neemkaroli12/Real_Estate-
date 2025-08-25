@@ -11,6 +11,7 @@ from .forms import PropertySearchForm, LeadRequestForm, PropertyForm, CustomUser
 from .utils import send_otp, generate_otp
 from django.core.mail import EmailMessage, send_mail
 import os
+from django.db.models import Q
 # Home & Search 
 def home(request):
     form = PropertySearchForm(request.GET or None)
@@ -49,9 +50,8 @@ def buy_properties(request):
         ).prefetch_related('images').order_by('-id')
     except Purpose.DoesNotExist:
         properties = Property.objects.none()
-    
-    return render(request, 'buy_properties.html', {'properties': properties})
 
+    return render(request, 'buy.html', {'properties': properties})
     
 def rent_properties(request):
     try:
